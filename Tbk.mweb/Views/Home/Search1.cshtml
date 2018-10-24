@@ -1,0 +1,178 @@
+﻿@model Top.Api.Response.TbkDgItemCouponGetResponse
+<!doctype html>
+<html>
+<head>
+
+    <title>天天有券</title>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="grey">
+    <meta name="description" content="天天有券">
+
+    <link href="~/Content/css/base.css" rel="stylesheet" />
+    <link href="~/Content/css/tkl.css" rel="stylesheet" />
+    <link href="~/Content/css/index.css" rel="stylesheet" />
+
+
+    <script src="~/Content/js/jq.js"></script>
+    <script src="~/Content/layer/layer.js?v=2018051701"></script>
+    <link href="~/Content/layer/theme/layer.css?v=3.1.1" rel="stylesheet" />
+    <script type="text/javascript">
+
+        window.mobileUtil = (function (win, doc) {
+            var UA = navigator.userAgent,
+                isAndroid = /android|adr/gi.test(UA),
+                isIOS = /iphone|ipod|ipad/gi.test(UA) && !isAndroid,
+                isBlackBerry = /BlackBerry/i.test(UA),
+                isWindowPhone = /IEMobile/i.test(UA),
+                isMobile = isAndroid || isIOS || isBlackBerry || isWindowPhone;
+            return {
+                isAndroid: isAndroid,
+                isIOS: isIOS,
+                isMobile: isMobile,
+                isWeixin: /MicroMessenger/gi.test(UA),
+                isPC: !isMobile
+            };
+        })(window, document);
+
+    </script>
+
+    <!--翻页样式-->
+    <style>
+        a {
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: none;
+            }
+
+        .layui-laypage a, .layui-laypage span {
+            display: inline-block;
+            vertical-align: middle;
+            padding: 0 15px;
+            border: 1px solid #e2e2e2;
+            height: 28px;
+            line-height: 28px;
+            margin: 0 -1px 5px 0;
+            background-color: #fff;
+            color: #333;
+            font-size: 12px;
+        }
+
+        .layui-laypage .layui-laypage-curr {
+            position: relative;
+        }
+
+        .layui-laypage > :first-child, .layui-laypage > :first-child em {
+            border-radius: 2px 0 0 2px;
+        }
+
+        .layui-laypage span {
+            color: #999;
+            font-weight: 700;
+        }
+
+        .layui-laypage {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 10px 0;
+            font-size: 0;
+        }
+
+        .layui-box, .layui-box * {
+            /* -webkit-box-sizing: content-box!important; */
+            -moz-box-sizing: content-box !important;
+            box-sizing: content-box !important;
+        }
+
+        .layui-laypage .layui-laypage-curr .layui-laypage-em {
+            position: absolute;
+            left: -1px;
+            top: -1px;
+            padding: 1px;
+            width: 100%;
+            height: 100%;
+            background-color: #009688;
+        }
+
+        .layui-laypage .layui-laypage-curr em {
+            position: relative;
+            color: #fff;
+            font-weight: 400;
+        }
+
+        .layui-laypage > :first-child, .layui-laypage > :first-child em {
+            border-radius: 2px 0 0 2px;
+        }
+
+        .layui-flow-more a cite, .layui-laypage em, .layui-tree li a cite, a cite {
+            font-style: normal;
+        }
+
+        .layui-box, .layui-box * {
+            -webkit-box-sizing: content-box !important;
+            -moz-box-sizing: content-box !important;
+            box-sizing: content-box !important;
+        }
+
+        a {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!--用户转发到微信和QQ时会自动抓取body内的第一张图片，要求（图片分辨率要超过300x300）-->
+    <div id="wx_logo" style="margin:0 auto;display:none;">
+        <img src="~/Content/images/logo300.jpg">
+    </div>
+    <div style="height:30px;background-color:#fff;padding-top:50px;text-align:center;">
+        @*<img src="~/Content/images/timg.jpg" />*@
+        <h2 style="font-weight:700">网购有券</h2>
+    </div>
+    <div id="app">
+        @*<div class="data-info">
+                <i></i><span class="tips">共<s>70726件</s>产品，今日已为您更新<s>18612件</s>优质精品</span><i></i>
+            </div>*@
+        <div class="search">
+            <form action="~/home/search">
+                <input type="text" style="height:0.33rem;" placeholder="输入宝贝关键字" name="q"><button type="submit"></button>
+            </form>
+        </div>
+        <div style="height:50px;background-color:#fff;"></div>
+
+        <div id="goods">
+            <div id="lists" class="items">
+
+            </div>
+
+
+        </div>
+
+       
+    </div>
+    <input type="hidden" id="isEnd" value="0">
+    <input type="hidden" id="cid" value="">
+    <input type="hidden" id="search" value="">
+
+
+    @*<script type="text/javascript" src="~/Content/js/index.js?v=2018051704"></script>*@
+    <script src="~/Content/js/index.js"></script>
+    <div id="back_top" class="slide-box">
+        <a href="javascript:;" class="back-top"><img src="~/Content/images/back-top.png"></a>
+    </div>
+
+    @*<script type="text/javascript">
+            $('.mybanner').css('display', 'block');
+
+        </script>*@
+    
+
+    <div style="display:none">
+        <script src="https://s13.cnzz.com/z_stat.php?id=1271277377&web_id=1271277377" language="JavaScript"></script>
+    </div>
+</body>
+</html>

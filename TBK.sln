@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tbk.Common", "Tbk.Common\Tbk.Common.csproj", "{6BD5F88C-F069-4B17-A986-E11024825315}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tbk.mweb", "Tbk.mweb\Tbk.mweb.csproj", "{E38C656D-6724-434E-9597-10D933752E50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tbk.mweb.Tests", "Tbk.mweb.Tests\Tbk.mweb.Tests.csproj", "{B6518530-1722-4CC7-B1DB-FE6889B6FF97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tbk.Entity", "Tbk.Entity\Tbk.Entity.csproj", "{65F5176E-3CA8-4A5A-8C69-DD60001C756A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tbk.DAL", "Tbk.DAL\Tbk.DAL.csproj", "{97AABBA9-3E32-4602-88A0-30DA66D11CB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PddOpenSdk", "PddOpenSdk\PddOpenSdk.csproj", "{96385FED-6406-4E7F-9A68-D55754EDE7A4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6BD5F88C-F069-4B17-A986-E11024825315}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BD5F88C-F069-4B17-A986-E11024825315}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BD5F88C-F069-4B17-A986-E11024825315}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BD5F88C-F069-4B17-A986-E11024825315}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E38C656D-6724-434E-9597-10D933752E50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E38C656D-6724-434E-9597-10D933752E50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E38C656D-6724-434E-9597-10D933752E50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E38C656D-6724-434E-9597-10D933752E50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6518530-1722-4CC7-B1DB-FE6889B6FF97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6518530-1722-4CC7-B1DB-FE6889B6FF97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6518530-1722-4CC7-B1DB-FE6889B6FF97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6518530-1722-4CC7-B1DB-FE6889B6FF97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65F5176E-3CA8-4A5A-8C69-DD60001C756A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65F5176E-3CA8-4A5A-8C69-DD60001C756A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65F5176E-3CA8-4A5A-8C69-DD60001C756A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65F5176E-3CA8-4A5A-8C69-DD60001C756A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97AABBA9-3E32-4602-88A0-30DA66D11CB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97AABBA9-3E32-4602-88A0-30DA66D11CB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97AABBA9-3E32-4602-88A0-30DA66D11CB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97AABBA9-3E32-4602-88A0-30DA66D11CB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96385FED-6406-4E7F-9A68-D55754EDE7A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96385FED-6406-4E7F-9A68-D55754EDE7A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96385FED-6406-4E7F-9A68-D55754EDE7A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96385FED-6406-4E7F-9A68-D55754EDE7A4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1BCB244C-D99C-49A1-8549-CFEB220BAC80}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,187 @@
+ERROR 2018-10-19 09:46:01,944 196237ms VipController          WriteLog           - ConnectionString 属性尚未初始化。
+ERROR 2018-10-19 09:46:05,948 200240ms VipController          WriteLog           - ConnectionString 属性尚未初始化。
+ERROR 2018-10-19 09:46:11,234 205526ms VipController          WriteLog           - ConnectionString 属性尚未初始化。
+ERROR 2018-10-19 19:13:28,441 260234ms MeController           WriteLog           - 提现出错:未将对象引用设置到对象的实例。
+ERROR 2018-10-19 19:13:28,459 260252ms MeController           WriteLog           - 提现出错:   在 Tbk.DAL.CashOutDao.CashOut(String openid, Decimal cashoutTotal) 位置 E:\code\TBK\Tbk.DAL\CashOutDao.cs:行号 45
+   在 Tbk.mweb.Controllers.MeController.ApplyCashOut(String openid, Decimal cashouttotal) 位置 D:\code\TBK\Tbk.mweb\Controllers\MeController.cs:行号 88
+ERROR 2018-10-19 21:06:46,634 17740ms MeController           WriteLog           - 查询收入明细出错:Unknown column 'openid' in 'where clause'
+ERROR 2018-10-19 21:06:46,652 17758ms MeController           WriteLog           - 查询收入明细出错:   在 MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   在 MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   在 MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int64& insertedId)
+   在 MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   在 MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   在 Tbk.Common.MySqlHelper.ExecuteReader(String sqlString, MySqlParameter[] cmdParms) 位置 E:\code\TBK\Tbk.Common\MySqlHelper.cs:行号 79
+   在 Tbk.Common.MySqlHelper.QueryAll[T](String sqlStr, MySqlParameter[] cmdParms) 位置 E:\code\TBK\Tbk.Common\MySqlHelper.cs:行号 322
+   在 Tbk.DAL.CashBackDao.GetCashBack(String openid) 位置 D:\code\TBK\Tbk.DAL\CashBackDao.cs:行号 20
+   在 Tbk.mweb.Controllers.MeController.GetCashBackDesc(String openid) 位置 D:\code\TBK\Tbk.mweb\Controllers\MeController.cs:行号 148
+ERROR 2018-10-19 21:07:55,857 86964ms MeController           WriteLog           - 查询收入明细出错:Unknown column 'openid' in 'where clause'
+ERROR 2018-10-19 21:07:55,857 86964ms MeController           WriteLog           - 查询收入明细出错:   在 MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   在 MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   在 MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int64& insertedId)
+   在 MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   在 MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   在 Tbk.Common.MySqlHelper.ExecuteReader(String sqlString, MySqlParameter[] cmdParms) 位置 E:\code\TBK\Tbk.Common\MySqlHelper.cs:行号 79
+   在 Tbk.Common.MySqlHelper.QueryAll[T](String sqlStr, MySqlParameter[] cmdParms) 位置 E:\code\TBK\Tbk.Common\MySqlHelper.cs:行号 322
+   在 Tbk.DAL.CashBackDao.GetCashBack(String openid) 位置 D:\code\TBK\Tbk.DAL\CashBackDao.cs:行号 20
+   在 Tbk.mweb.Controllers.MeController.GetCashBackDesc(String openid) 位置 D:\code\TBK\Tbk.mweb\Controllers\MeController.cs:行号 148
+ERROR 2018-10-19 21:07:57,119 88225ms MeController           WriteLog           - 查询收入明细出错:Unknown column 'openid' in 'where clause'
+ERROR 2018-10-19 21:07:57,119 88225ms MeController           WriteLog           - 查询收入明细出错:   在 MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   在 MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   在 MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int64& insertedId)
+   在 MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   在 MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   在 Tbk.Common.MySqlHelper.ExecuteReader(String sqlString, MySqlParameter[] cmdParms) 位置 E:\code\TBK\Tbk.Common\MySqlHelper.cs:行号 79
+   在 Tbk.Common.MySqlHelper.QueryAll[T](String sqlStr, MySqlParameter[] cmdParms) 位置 E:\code\TBK\Tbk.Common\MySqlHelper.cs:行号 322
+   在 Tbk.DAL.CashBackDao.GetCashBack(String openid) 位置 D:\code\TBK\Tbk.DAL\CashBackDao.cs:行号 20
+   在 Tbk.mweb.Controllers.MeController.GetCashBackDesc(String openid) 位置 D:\code\TBK\Tbk.mweb\Controllers\MeController.cs:行号 148
+ERROR 2018-10-19 21:08:00,903 92010ms MeController           WriteLog           - 查询收入明细出错:Unknown column 'openid' in 'where clause'
+ERROR 2018-10-19 21:08:00,904 92011ms MeController           WriteLog           - 查询收入明细出错:   在 MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   在 MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   在 MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int64& insertedId)
+   在 MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   在 MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   在 Tbk.Common.MySqlHelper.ExecuteReader(String sqlString, MySqlParameter[] cmdParms) 位置 E:\code\TBK\Tbk.Common\MySqlHelper.cs:行号 79
+   在 Tbk.Common.MySqlHelper.QueryAll[T](String sqlStr, MySqlParameter[] cmdParms) 位置 E:\code\TBK\Tbk.Common\MySqlHelper.cs:行号 322
+   在 Tbk.DAL.CashBackDao.GetCashBack(String openid) 位置 D:\code\TBK\Tbk.DAL\CashBackDao.cs:行号 20
+   在 Tbk.mweb.Controllers.MeController.GetCashBackDesc(String openid) 位置 D:\code\TBK\Tbk.mweb\Controllers\MeController.cs:行号 148
+ERROR 2018-10-19 21:08:33,011 124118ms MeController           WriteLog           - 查询收入明细出错:Unknown column 'openid' in 'where clause'
+ERROR 2018-10-19 21:08:33,011 124118ms MeController           WriteLog           - 查询收入明细出错:   在 MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   在 MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   在 MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int64& insertedId)
+   在 MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   在 MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   在 Tbk.Common.MySqlHelper.ExecuteReader(String sqlString, MySqlParameter[] cmdParms) 位置 E:\code\TBK\Tbk.Common\MySqlHelper.cs:行号 79
+   在 Tbk.Common.MySqlHelper.QueryAll[T](String sqlStr, MySqlParameter[] cmdParms) 位置 E:\code\TBK\Tbk.Common\MySqlHelper.cs:行号 322
+   在 Tbk.DAL.CashBackDao.GetCashBack(String openid) 位置 D:\code\TBK\Tbk.DAL\CashBackDao.cs:行号 20
+   在 Tbk.mweb.Controllers.MeController.GetCashBackDesc(String openid) 位置 D:\code\TBK\Tbk.mweb\Controllers\MeController.cs:行号 148
+ERROR 2018-10-19 21:08:35,167 126274ms MeController           WriteLog           - 查询收入明细出错:Unknown column 'openid' in 'where clause'
+ERROR 2018-10-19 21:08:35,167 126274ms MeController           WriteLog           - 查询收入明细出错:   在 MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   在 MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   在 MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int64& insertedId)
+   在 MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   在 MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   在 Tbk.Common.MySqlHelper.ExecuteReader(String sqlString, MySqlParameter[] cmdParms) 位置 E:\code\TBK\Tbk.Common\MySqlHelper.cs:行号 79
+   在 Tbk.Common.MySqlHelper.QueryAll[T](String sqlStr, MySqlParameter[] cmdParms) 位置 E:\code\TBK\Tbk.Common\MySqlHelper.cs:行号 322
+   在 Tbk.DAL.CashBackDao.GetCashBack(String openid) 位置 D:\code\TBK\Tbk.DAL\CashBackDao.cs:行号 20
+   在 Tbk.mweb.Controllers.MeController.GetCashBackDesc(String openid) 位置 D:\code\TBK\Tbk.mweb\Controllers\MeController.cs:行号 148
+ERROR 2018-10-19 21:09:56,049 207155ms MeController           WriteLog           - 查询收入明细出错:Unknown column 'openid' in 'where clause'
+ERROR 2018-10-19 21:09:56,050 207156ms MeController           WriteLog           - 查询收入明细出错:   在 MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   在 MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   在 MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int64& insertedId)
+   在 MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   在 MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   在 Tbk.Common.MySqlHelper.ExecuteReader(String sqlString, MySqlParameter[] cmdParms) 位置 E:\code\TBK\Tbk.Common\MySqlHelper.cs:行号 79
+   在 Tbk.Common.MySqlHelper.QueryAll[T](String sqlStr, MySqlParameter[] cmdParms) 位置 E:\code\TBK\Tbk.Common\MySqlHelper.cs:行号 322
+   在 Tbk.DAL.CashBackDao.GetCashBack(String openid) 位置 D:\code\TBK\Tbk.DAL\CashBackDao.cs:行号 20
+   在 Tbk.mweb.Controllers.MeController.GetCashBackDesc(String openid) 位置 D:\code\TBK\Tbk.mweb\Controllers\MeController.cs:行号 148
+ERROR 2018-10-22 16:45:44,869 201543ms WechatController       WriteLog           - 未将对象引用设置到对象的实例。
+ERROR 2018-10-22 16:46:42,811 259484ms WechatController       WriteLog           - 未将对象引用设置到对象的实例。
+ERROR 2018-10-22 16:47:05,914 282588ms WechatController       WriteLog           - 未将对象引用设置到对象的实例。
+ERROR 2018-10-23 08:34:33,539 122505ms WechatController       WriteLog           - MessageHandler错误：名称不能以“ ”字符(十六进制值 0x20)开头。 第 1 行，位置 20。
+ERROR 2018-10-23 08:34:33,646 122612ms WechatController       WriteLog           - System.Xml
+ERROR 2018-10-23 08:34:33,648 122614ms WechatController       WriteLog           -    在 System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   在 System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   在 System.Xml.XmlTextReaderImpl.ParseQName(Boolean isQName, Int32 startOffset, Int32& colonPos)
+   在 System.Xml.XmlTextReaderImpl.ParseElement()
+   在 System.Xml.XmlTextReaderImpl.ParseElementContent()
+   在 System.Xml.XmlTextReaderImpl.Read()
+   在 System.Xml.XmlLoader.LoadNode(Boolean skipOverWhitespace)
+   在 System.Xml.XmlLoader.LoadDocSequence(XmlDocument parentDoc)
+   在 System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   在 System.Xml.XmlDocument.Load(XmlReader reader)
+   在 System.Xml.XmlDocument.LoadXml(String xml)
+   在 TaobaoKe.Controllers.WechatController.<ResponseMsgAsync>d__11.MoveNext() 位置 E:\code\TBK\Tbk.mweb\Controllers\WechatController.cs:行号 326
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   在 TaobaoKe.Controllers.WechatController.<Post>d__4.MoveNext() 位置 E:\code\TBK\Tbk.mweb\Controllers\WechatController.cs:行号 88
+ERROR 2018-10-23 08:35:24,101 173067ms WechatController       WriteLog           - MessageHandler错误：名称不能以“ ”字符(十六进制值 0x20)开头。 第 1 行，位置 20。
+ERROR 2018-10-23 08:35:24,103 173069ms WechatController       WriteLog           - System.Xml
+ERROR 2018-10-23 08:35:24,104 173070ms WechatController       WriteLog           -    在 System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   在 System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   在 System.Xml.XmlTextReaderImpl.ParseQName(Boolean isQName, Int32 startOffset, Int32& colonPos)
+   在 System.Xml.XmlTextReaderImpl.ParseElement()
+   在 System.Xml.XmlTextReaderImpl.ParseElementContent()
+   在 System.Xml.XmlTextReaderImpl.Read()
+   在 System.Xml.XmlLoader.LoadNode(Boolean skipOverWhitespace)
+   在 System.Xml.XmlLoader.LoadDocSequence(XmlDocument parentDoc)
+   在 System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   在 System.Xml.XmlDocument.Load(XmlReader reader)
+   在 System.Xml.XmlDocument.LoadXml(String xml)
+   在 TaobaoKe.Controllers.WechatController.<ResponseMsgAsync>d__11.MoveNext() 位置 E:\code\TBK\Tbk.mweb\Controllers\WechatController.cs:行号 326
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   在 TaobaoKe.Controllers.WechatController.<Post>d__4.MoveNext() 位置 E:\code\TBK\Tbk.mweb\Controllers\WechatController.cs:行号 88
+ERROR 2018-10-23 08:38:27,118 356083ms WechatController       WriteLog           - MessageHandler错误：名称不能以“ ”字符(十六进制值 0x20)开头。 第 1 行，位置 19。
+ERROR 2018-10-23 08:38:27,121 356087ms WechatController       WriteLog           - System.Xml
+ERROR 2018-10-23 08:38:27,124 356090ms WechatController       WriteLog           -    在 System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   在 System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   在 System.Xml.XmlTextReaderImpl.ParseQName(Boolean isQName, Int32 startOffset, Int32& colonPos)
+   在 System.Xml.XmlTextReaderImpl.ParseElement()
+   在 System.Xml.XmlTextReaderImpl.ParseElementContent()
+   在 System.Xml.XmlTextReaderImpl.Read()
+   在 System.Xml.XmlLoader.LoadNode(Boolean skipOverWhitespace)
+   在 System.Xml.XmlLoader.LoadDocSequence(XmlDocument parentDoc)
+   在 System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   在 System.Xml.XmlDocument.Load(XmlReader reader)
+   在 System.Xml.XmlDocument.LoadXml(String xml)
+   在 TaobaoKe.Controllers.WechatController.<ResponseMsgAsync>d__11.MoveNext() 位置 E:\code\TBK\Tbk.mweb\Controllers\WechatController.cs:行号 326
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   在 TaobaoKe.Controllers.WechatController.<Post>d__4.MoveNext() 位置 E:\code\TBK\Tbk.mweb\Controllers\WechatController.cs:行号 88
+ERROR 2018-10-23 08:38:28,810 357776ms WechatController       WriteLog           - MessageHandler错误：名称不能以“ ”字符(十六进制值 0x20)开头。 第 1 行，位置 20。
+ERROR 2018-10-23 08:38:28,812 357778ms WechatController       WriteLog           - System.Xml
+ERROR 2018-10-23 08:38:28,813 357779ms WechatController       WriteLog           -    在 System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   在 System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   在 System.Xml.XmlTextReaderImpl.ParseQName(Boolean isQName, Int32 startOffset, Int32& colonPos)
+   在 System.Xml.XmlTextReaderImpl.ParseElement()
+   在 System.Xml.XmlTextReaderImpl.ParseElementContent()
+   在 System.Xml.XmlTextReaderImpl.Read()
+   在 System.Xml.XmlLoader.LoadNode(Boolean skipOverWhitespace)
+   在 System.Xml.XmlLoader.LoadDocSequence(XmlDocument parentDoc)
+   在 System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   在 System.Xml.XmlDocument.Load(XmlReader reader)
+   在 System.Xml.XmlDocument.LoadXml(String xml)
+   在 TaobaoKe.Controllers.WechatController.<ResponseMsgAsync>d__11.MoveNext() 位置 E:\code\TBK\Tbk.mweb\Controllers\WechatController.cs:行号 326
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   在 TaobaoKe.Controllers.WechatController.<Post>d__4.MoveNext() 位置 E:\code\TBK\Tbk.mweb\Controllers\WechatController.cs:行号 88
+ERROR 2018-10-23 08:39:47,630 436596ms WechatController       WriteLog           - MessageHandler错误：分析 CDATA 时，出现意外的文件结尾。 第 1 行，位置 264。
+ERROR 2018-10-23 08:39:47,635 436600ms WechatController       WriteLog           - System.Xml
+ERROR 2018-10-23 08:39:47,636 436601ms WechatController       WriteLog           -    在 System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   在 System.Xml.XmlTextReaderImpl.Throw(String res, String arg)
+   在 System.Xml.XmlTextReaderImpl.ParseCDataOrComment(XmlNodeType type, Int32& outStartPos, Int32& outEndPos)
+   在 System.Xml.XmlTextReaderImpl.ParseCDataOrComment(XmlNodeType type)
+   在 System.Xml.XmlTextReaderImpl.ParseElementContent()
+   在 System.Xml.XmlTextReaderImpl.Read()
+   在 System.Xml.XmlLoader.LoadNode(Boolean skipOverWhitespace)
+   在 System.Xml.XmlLoader.LoadDocSequence(XmlDocument parentDoc)
+   在 System.Xml.XmlLoader.Load(XmlDocument doc, XmlReader reader, Boolean preserveWhitespace)
+   在 System.Xml.XmlDocument.Load(XmlReader reader)
+   在 System.Xml.XmlDocument.LoadXml(String xml)
+   在 TaobaoKe.Controllers.WechatController.<ResponseMsgAsync>d__11.MoveNext() 位置 E:\code\TBK\Tbk.mweb\Controllers\WechatController.cs:行号 326
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   在 TaobaoKe.Controllers.WechatController.<Post>d__4.MoveNext() 位置 E:\code\TBK\Tbk.mweb\Controllers\WechatController.cs:行号 88
+ERROR 2018-10-23 08:43:18,468 647434ms WechatController       WriteLog           - 获取拼多多goods id失败http%3A%2F%2Fmobile.yangkeduo.com%2Fgoods.html%3Fgoods_id%3D2803851322%26ts%3D1540122616202%26state%3D
+ERROR 2018-10-23 08:45:10,416 759382ms WechatController       WriteLog           - 获取拼多多goods id失败http%3A%2F%2Fmobile.yangkeduo.com%2Fgoods.html%3Fgoods_id%3D2803851322%26ts%3D1540122616202%26state%3D
+ERROR 2018-10-23 10:03:06,628 111316ms WechatController       WriteLog           - <xml><ToUserName><![CDATA[toUser]]></ToUserName>  <FromUserName><![CDATA[fromUser]]></FromUserName>  <CreateTime>1348831860</CreateTime>  <MsgType><![CDATA[text]]></MsgType> <Content><![CDATA[http://mobile.yangkeduo.com/goods.html?goods_id=2803851322&ts=1540122616202&state=]]></Content>  <MsgId>1234567890123456</MsgId> </xml>
+ERROR 2018-10-23 10:32:10,745  4043ms WechatController       WriteLog           - <xml><ToUserName><![CDATA[toUser]]></ToUserName>  <FromUserName><![CDATA[fromUser]]></FromUserName>  <CreateTime>1348831860</CreateTime>  <MsgType><![CDATA[text]]></MsgType> <Content><![CDATA[http://mobile.yangkeduo.com/goods.html?goods_id=2803851322&ts=1540122616202&state=]]></Content>  <MsgId>1234567890123456</MsgId> </xml>
+ERROR 2018-10-23 12:43:06,826 51751ms WechatController       WriteLog           - <xml><ToUserName><![CDATA[toUser]]></ToUserName>  <FromUserName><![CDATA[fromUser]]></FromUserName>  <CreateTime>1348831860</CreateTime>  <MsgType><![CDATA[text]]></MsgType> <Content><![CDATA[242226243293916259]]></Content>  <MsgId>1234567890123456</MsgId> </xml>
+ERROR 2018-10-23 12:43:41,359 86285ms WechatController       WriteLog           - <xml><ToUserName><![CDATA[toUser]]></ToUserName>  <FromUserName><![CDATA[fromUser]]></FromUserName>  <CreateTime>1348831860</CreateTime>  <MsgType><![CDATA[text]]></MsgType> <Content><![CDATA[http://mobile.yangkeduo.com/goods.html?goods_id=2803851322&ts=1540122616202&state=]]></Content>  <MsgId>1234567890123456</MsgId> </xml>

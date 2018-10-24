@@ -1,0 +1,133 @@
+body{
+    background:#f5f5f5;
+    margin:0;
+    font-family: "微软雅黑";
+}
+#center{
+    width: 100%;
+}
+
+.hint{
+    width: 100%;
+    height: 1px;
+    background-color:#e3e3e3;
+    /*border: 1px solid #e3e3e3;*/
+}
+.hints{
+    margin-top: 90px;
+    width: 100%;
+    height: 1px;
+    background-color:#e3e3e3;
+    /*border: 1px solid #e3e3e3;*/
+}
+.middle{
+    background-color: white;
+    overflow: hidden;
+}
+.middles{
+    width: 100%;
+    height: 50px;
+    background-color: white;
+}
+.phonenumber1{
+    float: left;
+    margin-left: 10px;
+    width: 28%;
+    height: 60px;
+    line-height: 60px;
+    /*text-align: center;*/
+    font-family: "微软雅黑";
+    font-size: 15px;
+}
+.phonenumber{
+    float: left;
+    margin-left: 10px;
+    width: 28%;
+    height: 50px;
+    line-height: 50px;
+    /*text-align: center;*/
+    font-family: "微软雅黑";
+    font-size: 15px;
+}
+.input-numb {
+    border: none;
+    outline: medium;
+    height: 50px;
+    float: left;
+    line-height: 50px;
+    width: 50%;
+}
+.input-numb span{
+    padding-left: 10px;
+}
+.input-numb input {
+    height: 18px;
+    line-height: 18px;
+    padding-left: 10px;
+    border: none;
+    color: #cacaca;
+    box-shadow: none;
+}
+.middleinfo{
+    height: 60px;
+    line-height: 60px;
+    overflow: hidden;
+}
+.arrows{
+    position: relative;
+    float: right;
+    right: 20px;
+    line-height: 60px;
+    font-size: 20px;
+    color:#7d7e83;
+}
+.middlefonts{
+    display: inline-block;
+    line-height: 60px;
+    margin-left: 10px;
+    /*width: 30%;*/
+    font-family: "微软雅黑";
+    color: #888888;
+}
+#sure{
+    font-family: "微软雅黑";
+    position: relative;
+    top: 20px;
+    width: 90%;
+    height: 40px;
+}
+input,button,select,textarea{
+    outline:none;
+}
+#text{
+    /*margin-top: 150px;*/
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 30px;
+}
+#head{
+    font-size: 20px;
+    text-align: center;
+	margin-top:5px;
+}
+.content{
+    margin-top:5px;
+    font-size: 15px;
+    color: #767676;
+	 margin-left: 13px;
+    margin-right: 1%;
+}
+.newcontent{
+/*    border:1px solid #39c523; */
+
+   margin:14px 0px 14px 10px; 
+
+   font-size: 15px;
+   
+   
+}
+
+a:focus, a:hover {
+    text-decoration: none;
+    
+}

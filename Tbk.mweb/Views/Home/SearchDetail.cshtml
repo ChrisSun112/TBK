@@ -1,0 +1,466 @@
+﻿@model Tbk.Entity.ItemEntity 
+<html>
+<head>
+
+    <title>@Model.title</title>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="grey">
+    <meta name="description" content="@Model.title">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/base.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/tkl.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/detail.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/items.css">
+
+    <script type="text/javascript">
+
+        window.mobileUtil = (function (win, doc) {
+            var UA = navigator.userAgent,
+                isAndroid = /android|adr/gi.test(UA),
+                isIOS = /iphone|ipod|ipad/gi.test(UA) && !isAndroid,
+                isBlackBerry = /BlackBerry/i.test(UA),
+                isWindowPhone = /IEMobile/i.test(UA),
+                isMobile = isAndroid || isIOS || isBlackBerry || isWindowPhone;
+            return {
+                isAndroid: isAndroid,
+                isIOS: isIOS,
+                isMobile: isMobile,
+                isWeixin: /MicroMessenger/gi.test(UA),
+                isPC: !isMobile
+            };
+        })(window, document);
+        /*
+        ! (function(doc, win) {
+            var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange': 'resize',
+            fsize,
+            fn = function() {
+                var cWidth = !mobileUtil.isMobile ? 750 : docEl.clientWidth;
+                fsize = cWidth / 7.5;
+                cWidth && (docEl.style.fontSize = 2 * fsize + 'px');
+            };
+            fn();
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, fn, false);
+        })(document, window);
+        */
+
+        function back() {
+            //如果在iframe中
+            if (self != top) {
+                parent.close_box();
+            }
+            else {
+                history.go(-1);
+            }
+        }
+
+        function jump(url) {
+            //如果在iframe中
+            if (self != top) {
+                parent.location.href = url;
+            }
+            else {
+                location.href = url;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="app">
+        <div class="head">
+            <a class="back" href="javascript:back();"></a>
+            <span>@Model.title</span>
+        </div>
+        <div class="detail-wrapper">
+            <div class="img" id="wx_logo">
+                <img src="@(Model.pict_url + "_640x640.jpg")" alt="">
+            </div>
+            <div class="title-wrapper clearfix">
+
+                <span class="@(Model.shop_type=="天猫"?"tmall":"taobao")"></span>
+                <div style="line-height: 20px;margin-top: 10px;">@Model.title</div>
+                <br>
+                <span class="title_price">
+                    巻后价：¥ <b style="font-size: 20px;">@(Math.Round(Model.zk_final_price - Model.coupon_info, 1, MidpointRounding.AwayFromZero))</b>
+                </span>
+                <span style="color: #666; margin-left: 20px; ">
+                    在售价：<s>¥@Model.zk_final_price</s>
+                </span>
+            </div>
+            <div class="price-wrapper clearfix">
+
+                <span class="quan content">
+                    <img src="~/Content/images/quan.png" alt="" width="25" class="quanimg"> <span class="coupon">@Model.coupon_info</span>元
+                </span>
+                <span class="volume content">
+                    销量：<span class="coupon">@Model.volume</span>
+                </span>
+            </div>
+
+            <div class="recommend-wrapper">
+                <div class="text"></div>
+            </div>
+
+            <div class="btn-show-images" style="text-align: center; padding: 30px 15px 15px 15px;">
+                商品图文详情<span class="am-text-primary am-text-xs" style="color:#0e90d2;font-size: 13px;">（点击展开）</span>
+            </div>
+            <div class="images" style="display: none; padding:20px 0;">
+                <div class="img">
+                    <!--
+                    <img class="lazy" src="https://img.alicdn.com/imgextra/i3/36617101/TB2XdJvpC8mpuFjSZFMXXaxpVXa_!!36617101.jpg">
+                    <img class="lazy" src="https://img.alicdn.com/imgextra/i3/36617101/TB2asV3m9JjpuFjy0FdXXXmoFXa_!!36617101.jpg">
+                    -->
+                    <!--
+                        <img class="lazy" src="">
+                    -->
+
+                </div>
+            </div>
+
+            <div class="buy-wrapper">
+                <div class="db1">
+                    <span class="" id="back">
+                        <a href="javascript:back()">返回</a>
+                    </span>
+                    <span class="web" id="web_look">
+                        <a href="javascript:jump('@Model.coupon_click_url')">浏览器购買</a>
+                    </span>
+                    <span class="tkl" id="taokouling">
+                        <a href="javascript:getTkl();">掏囗令购買</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="pos-box clearfix" style="display: none">
+            <p class="pos-title">
+                <i></i>
+                精品推荐
+            </p>
+            <div class="ads-list jsGoGoods">
+            </div>
+        </div>
+        <br><br><br><br><br>
+    </div>
+    <script type="text/javascript" src="~/Content/js/jquery-2.1.1.min.js"></script>
+    <div id="back_top" class="slide-box">
+        <a href="javascript:;" class="back-top"><img src="~/Content/images/back-top.png"></a>
+    </div>
+    <div class="weixin-tip">
+        <div class="wechat-line"></div>
+        <div class="wechat-brow"></div>
+        <script>
+            //获取固件版本
+            var getOsv = function () {
+                var reg = /OS ((\d+_?){2,3})\s/;
+                if (navigator.userAgent.match(/iPad/i) || navigator.platform.match(/iPad/i) || navigator.userAgent.match(/iP(hone|od)/i) || navigator.platform.match(/iP(hone|od)/i)) {
+                    var osv = reg.exec(navigator.userAgent);
+                    if (osv.length > 0) {
+                        return osv[0].replace('OS', '').replace('os', '').replace(/\s+/g, '').replace(/_/g, '.');
+                    }
+                }
+                return '';
+            };
+            var osv = getOsv();
+            var osvArr = osv.split('.');
+            //初始化显示ios9引导
+            if (osvArr && osvArr.length > 0) {
+                if (parseInt(osvArr[0]) > 0 && parseInt(osvArr[0]) < 10) {
+                    $('.tkl-code').removeClass('yjfz_copy');
+                    $('.keycope').remove();
+                }
+            }
+        </script>
+        <div class="weixin-cover"></div>
+    </div>
+    <div class="tpwd_alert">
+        <div class="alert">
+            <h2>
+                掏囗令购買
+                <a width="16" height="16" class="close">X</a>
+            </h2>
+            <div class="wrapper">
+                <p id="copy_tpwd" class="text"></p>
+                <p id="copy_text" class="text" style="display: none; text-align: left;"></p>
+                <div class="bar">
+                    <span id="J-trigger-copy" data-clipboard-action="copy" data-clipboard-target="#J-tpwd" class="btn tpwd cop">
+                        复制掏囗令
+                    </span>
+                    <span id="J-trigger-copy-text" data-clipboard-action="copy" data-clipboard-target="#J-text" class="btn text cop">
+                        复制文案
+                    </span>
+                </div>
+                <p class="msg">
+                    点击复制后，请打开【手掏】领巻购買！
+                    <br>
+                    注:若复制失败，请手指长按屏幕复制掏囗令
+                </p>
+            </div>
+            <p class="tip">
+                温馨提示：手机无【手掏】者，可选择浏览器打开进行购買～
+            </p>
+        </div>
+
+        <input id="J-tpwd" style="width: 1px; height: 1px; opacity: 0;">
+        <textarea id="J-text" style="width: 1px; height: 1px; opacity: 0;"></textarea>
+
+    </div>
+    <script type="text/javascript" src="~/Content/js/pack.clipboard.js"></script>
+    <script>
+            $(document).ready(function () {
+
+                if (mobileUtil.isWeixin) {
+
+                    $("#back").css("width", "50%");
+                    $("#web_look").css("display", "none");
+                    $("#taokouling").css("width", "50%");
+                }
+                //微信点击站外链接弹出提示
+                $('.weixin-cover').click(function () {
+                    $('.weixin-tip').css('display', 'none');
+                    $('.tkl').css('display', 'block');
+                    $('.buy-wrapper').css('display', 'block');
+                });
+                $(".web a").click(function (event) {
+                    var _url = $(this).attr('href') ? $(this).attr('href') : $(this).data('href');
+                    var ua = navigator.userAgent.toLowerCase();
+                    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                        event.preventDefault();
+                        $('.weixin-tip').css('display', 'block');
+                        $('.tkl').css('display', 'none');
+                        $('.buy-wrapper').css('display', 'none');
+
+                        if ($(this).data("href")) {
+                            var _url = $(this).data("href");
+                        } else {
+                            var _url = $(this).attr("href");
+                        }
+                        if (/iphone|ipad|ipod/.test(ua)) {
+                            $('.wechat-brow').addClass('iosChat');
+                        } else if (/android|adr|linux/.test(ua)) {
+                            $('.wechat-brow').addClass('androidChat');
+                        }
+                        return false;
+                    }
+                });
+
+                $("#back_top").click(function () {
+                    $("body,html").animate({ scrollTop: 0 }, 1000);
+                });
+                $(window).scroll(function () {
+                    if ($(window).scrollTop() > 500) {
+                        $("#back_top").fadeIn(1500);
+                    }
+                    else {
+                        $("#back_top").fadeOut(1500);
+                    }
+                });
+            });
+            function reCss() {
+                $('#J-trigger-copy').html("复制掏囗令");
+                $('#J-trigger-copy').removeClass("green");
+                $('#J-trigger-copy-text').html("复制文案");
+                $('#J-trigger-copy-text').removeClass("green");
+            }
+            function getTkl() {
+                var tkl = "@config.GetTaobaoKePassword(Model.coupon_click_url, Model.pict_url + "_400x400.jpg")";
+                var msg = "success";
+                $('#copy_tpwd').html('正在获取中...');
+                $('.tpwd_alert').show();
+                if (tkl == 'None')
+                    $('#copy_tpwd').html(msg);
+                else
+                    $('#copy_tpwd').html(tkl);
+                $('#J-tpwd').val(tkl);
+
+                var copytext = '@Model.title\n【原价】@Model.zk_final_price 元\n【巻后价】@(Model.zk_final_price-Model.coupon_info)元\n复制这条信息，打开「手机绹宝」领巻下单🎵'+tkl+'🎵\n';
+                $('#J-text').html(copytext);
+
+                $('#copy_text').html(copytext.replace(/\n/g, "<br>"));
+
+            };
+            $('.close').click(function () {
+                $('.tpwd_alert').hide();
+            });
+            //点击复制掏囗令 切换到掏囗令
+            $('#J-trigger-copy').click(function () {
+                $("#copy_tpwd").show();
+                $("#copy_text").hide();
+
+            });
+
+            //点击复制文案 切换到文案
+            $('#J-trigger-copy-text').click(function () {
+                $("#copy_tpwd").hide();
+                $("#copy_text").show();
+
+            });
+
+            $('.cop').click(function () {
+                if (mobileUtil.isIOS) {
+                    var t = new Clipboard("#J-trigger-copy", {
+                        target: function () {
+
+                            return document.getElementById("J-tpwd")
+                        }
+                    }),
+                        e = new Clipboard("#J-trigger-copy-text", {
+                            target: function () {
+
+                                return document.getElementById("J-text")
+                            }
+                        });
+                } else {
+                    var t = new Clipboard("#J-trigger-copy"),
+                        e = new Clipboard("#J-trigger-copy-text");
+                }
+
+
+                t.on("success", function (t) {
+                    $('#J-trigger-copy').html("复制成功");
+                    $('#J-trigger-copy').addClass("green");
+                    setTimeout(function () {
+                        $('#J-trigger-copy').html("复制掏囗令");
+                        $('#J-trigger-copy').removeClass("green");
+                    }.bind(this), 2e3),
+                        t.clearSelection()
+                }.bind(this));
+                t.on("error",
+                    function (t) {
+                        $('#J-trigger-copy').html("复制失败");
+                        t.clearSelection()
+                    }.bind(this));
+                e.on("success",
+                    function (t) {
+                        $('#J-trigger-copy-text').html("复制成功");
+                        $('#J-trigger-copy-text').addClass("green");
+                        setTimeout(function () {
+                            $('#J-trigger-copy-text').html("复制文案");
+                            $('#J-trigger-copy-text').removeClass("green");
+                        }.bind(this), 2e3),
+                            t.clearSelection()
+                    }.bind(this));
+                e.on("error",
+                    function (t) {
+                        $('#J-trigger-copy-text').html("复制失败");
+                        t.clearSelection()
+                    }.bind(this));
+            });
+            $('.btn-show-images').click(function () {
+                $('.btn-show-images').hide();
+                $('.images').show();
+                $('.images').html('<div style="text-align:center">正在加载中...</div>');
+
+                @*var url = "http://hws.m.taobao.com/cache/mtop.wdetail.getItemDescx/4.9/?&data=%7B%22item_num_id%22:%22@(Model.item_id)%22%7D&type=jsonp";
+
+
+                $.ajax(url, {
+                    dataType: "jsonp",
+                    type: "get",
+                    jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+                    success: function (result) {
+                        var images = result.data.images;
+                        var img_html = "";
+                        for (var i = 0; i < images.length; i++) {
+                            img_html += "<img src='" + images[i] + "_720x720' style='width:100%'>";
+                        }
+                        $('.images').html(img_html);
+                    }
+                });*@
+
+                 $.post("/wechat/GetDetailImage", { id: '@(Model.item_id)' }, function (result) {
+                    if (result.success == true) {
+                        var images = result.data;
+                        var img_html = "";
+                        for (var i = 0; i < images.length; i++) {
+                            img_html += "<img src='" + images[i] + "_720x720' style='width:100%'>";
+                        }
+                        $('.images').html(img_html);
+                    }
+
+                })
+            });
+
+
+            $(function () {
+                //事件监听,实现iphone直接全选文案
+                //------------------------------------------
+                var ua = navigator.userAgent.toLowerCase();
+                if (ua.match(/iphone/i) == "iphone" || ua.match(/ipad/i) == "ipad" || ua.match(/android/i) == "android") {
+                    document.addEventListener("selectionchange", function (e) {
+                        if (window.getSelection().anchorNode.parentNode.id == 'copy_tpwd' && document.getElementById('copy_tpwd').innerText != window.getSelection()) {
+                            var key = document.getElementById('copy_tpwd');
+                            window.getSelection().selectAllChildren(key);
+                        }
+                        else if (window.getSelection().anchorNode.parentNode.id == 'copy_text' && document.getElementById('copy_text').innerText != window.getSelection()) {
+                            var key = document.getElementById('copy_text');
+                            window.getSelection().selectAllChildren(key);
+                        }
+
+                    }, false);
+                }
+            });
+
+    </script>
+    <div style="display:none">
+    <script src="https://s13.cnzz.com/z_stat.php?id=1271277377&web_id=1271277377" language="JavaScript"></script></div>
+    <script src="~/Content/js/wx_jsapi_sdkhelper.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+        var timestamp = new Date().getSeconds();
+        var nonceStr = create_noncestr();
+        var url = window.location.href;
+        var signature = create_signature(nonceStr, '@Common.AccessTokenHelper.GetJsapiTicket()', timestamp, url);
+   
+        //配置微信信息
+        wx.config({
+            debug: false,    // true:调试时候弹窗
+            appId: 'wxe2c5d6d728777f32',  // 微信appid
+            timestamp: timestamp, // 时间戳
+            nonceStr: nonceStr,  // 随机字符串
+            signature: signature, // 签名
+            jsApiList: [
+                // 所有要调用的 API 都要加到这个列表中
+                'onMenuShareTimeline',       // 分享到朋友圈接口
+                'onMenuShareAppMessage',  //  分享到朋友接口
+                'onMenuShareQQ',         // 分享到QQ接口
+                'onMenuShareWeibo'      // 分享到微博接口
+            ]
+        });
+        var shareData = {
+            "imgUrl": '@Model.pict_url',    // 分享显示的缩略图地址
+            "link": url,    // 分享地址
+            "desc": '@Model.title',   // 分享描述
+            "title": '原价@(Model.zk_final_price)元,领券后@(Math.Round(Model.zk_final_price - Model.coupon_info, 1, MidpointRounding.AwayFromZero))元',   // 分享标题
+            success: function () {
+            }
+        };
+        wx.ready(function () {
+            // 微信分享的数据
+
+                wx.onMenuShareTimeline({
+            "imgUrl": '@Model.pict_url',    // 分享显示的缩略图地址
+            "link": url,    // 分享地址
+            "desc": '@Model.title',   // 分享描述
+            "title": '@Model.title',   // 分享标题
+            success: function () {
+            }
+        });
+                wx.onMenuShareAppMessage(shareData);
+                wx.onMenuShareQQ(shareData);
+                wx.onMenuShareWeibo(shareData);
+            });
+
+
+        wx.error(function (res) {
+            // config信息验证失败会执行error函数，如签名过期导致验证失败，
+            // 具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，
+            //对于SPA可以在这里更新签名。
+            alert("好像出错了！！");
+        });
+    </script>
+</body>
+</html>

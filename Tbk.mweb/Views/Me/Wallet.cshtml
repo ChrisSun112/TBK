@@ -1,0 +1,348 @@
+﻿@model Tbk.Entity.WxUser
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>我的钱包</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta name="format-detection" content="telephone=no" />
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/css/weui.min.css" rel="stylesheet">
+    <link href="~/Content/css/wallet.css" rel="stylesheet" />
+    <link href="~/Content/css/cash.css" rel="stylesheet" />
+    <link href="~/Content/css/mycenter.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script src="~/Content/js/wx_jsapi_sdkhelper.js"></script>
+    <!-- 微信自定义接口 -->
+    <script>
+        window.onload=function(){
+          var isPageHide = false;
+          window.addEventListener('pageshow',function(){
+            if(isPageHide){
+                window.location.reload();
+            }
+          });
+          window.addEventListener('pagehide',function(){
+            isPageHide = true;
+          });
+            }
+
+        var appid = "wxe2c5d6d728777f32";
+        var timestamp = new Date().getSeconds();
+        var nonceStr = create_noncestr();
+        var url = location.href;
+
+        var signature = create_signature(nonceStr, '@Tbk.Common.AccessTokenHelper.GetJsapiTicket()', timestamp, url);
+
+        wx.config({
+            debug: false,
+            appId: appid,
+            timestamp: timestamp,
+            nonceStr: nonceStr,
+            signature: signature,
+            jsApiList: [
+                "onMenuShareAppMessage",
+                "onMenuShareTimeline",
+                "chooseImage",
+                "uploadImage",
+                "downloadImage"
+            ]
+        });
+
+        wx.ready(function(){
+            wx.hideOptionMenu();
+        });
+            </script>
+    <!-- 微信自定义接口 -->
+</head>
+<body>
+    <div id="center">
+        <div id="info">
+            <div id="infofontlast">可用余额: </div> <div id="balance1">￥@Model.remaining_sum</div>
+        </div>
+        <div id="otherbalance">
+            <a href="javascript:void()"><div id="addmoney">累计返利: ￥@Model.total</div></a>
+            <a href="javascript:void()"><div id="sharemoney">已提现: ￥@Model.cash_out_sum</div></a>
+        </div>
+    </div>
+    <div class="middle middlebottom" style="margin-bottom:unset;">
+        <div class="middleinfos" style="height:auto;">
+            <div id="alltitle">
+                <a href="javascript:show(1)">
+                    <div class="sometitle1">
+                        <div class="somefont"><img src="~/Content/images/moneytwo2x.png" style="height: 35px;width: 35px"></div>
+                        <div class="titles">提现</div>
+                        <div style=" position: relative;top:-88px;float:right;display: inline-block;width: 1px;height: 100px;background-color:#e3e3e3"></div>
+                    </div>
+                </a>
+                <a href="javascript:show(2)">
+                    <div class="sometitle1">
+                        <div class="somefont"><img src="~/Content/images/yinhangka2x.png" style="height: 35px;width: 35px"></div>
+                        <div class="titles">提现明细</div>
+                        <div style="position: relative;top:-88px;float:right;display: inline-block;width: 1px;height: 100px;background-color:#e3e3e3"></div>
+                    </div>
+                </a>
+                <a href="javascript:show(3)">
+                    <div class="sometitle1">
+                        <div class="somefont"><img src="~/Content/images/shouty2x.png" style="height: 35px;width: 35px"></div>
+                        <div class="titles">收入明细</div>
+                    </div>
+                </a>
+            </div>
+            <div class="hint" style="border: 0px solid rgb(242,242,242); border-bottom: 1px solid rgb(242,242,242);"></div>
+
+        </div>
+    </div>
+
+    <div class="tixian" style="display:none;">
+        <div id="newtext">
+            <div class="newcontent">请按照提示输入提现金额</div>
+        </div>
+        <div id="center">
+            <form id="cashform">
+                <div class="middles">
+                    <div class="phonenumber">可提现金额</div>
+                    <div class="input-numb"><span>@Model.remaining_sum</span></div>
+                </div>
+
+                <div class="hint"></div>
+                <div class="middles">
+                    <div class="phonenumber">金额</div>
+                    <div class="input-numb"><input type="number" min="0.01" step="0.01" class="input_money" name="money" placeholder="请输入提现金额"></div>
+
+                    <input type="hidden" name="user_money" id="user_money" value="@Model.remaining_sum">
+                    <input type="hidden" name="least_money" id="least_money" value="1">
+                    <input type="hidden" name="max_money" id="max_money" value="2000"><button class="weui_btn weui_btn_primary" id="sure" onclick="return checknull()">确定</button>
+                </div>
+            </form>
+            <div class="hints" style="border: 1px solid #e3e3e3;"></div>
+            <div id="text">
+                <div id="head">提现须知</div>
+                <div class="content">1.您确认收货后，我们会返还一定比例的现金到您的账户上。（注：需可提现金额达到1元及以上才能提现）；</div>
+                <div class="content">2.提交提现申请后，我们会在2个工作日内把返现转入到您的微信上。</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="tixian_desc" style="display:none;">
+        <div id="newtext">
+            <div class="newcontent">提现明细</div>
+        </div>
+        <div class="middle" >
+
+         </div>
+
+        <div id="text">
+            <div class="content">只显示6个月内的提现明细。</div>
+        </div>
+
+    </div>
+
+
+    <div class="shouru_desc" style="display:none;">
+        <div id="newtext">
+            <div class="newcontent">收入明细</div>
+        </div>
+        <div class="middle ">
+
+        </div>
+        <div id="text">
+            <div class="content">只显示6个月内的收入明细。</div>
+        </div>
+    </div>
+
+    <script src="/Content/js/jquery-2.1.1.min.js"></script>
+    <script src="~/Content/js/layer.js"></script>
+    <script src="~/Content/js/common.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".input_money").click(function () {
+                $(".input_money").css("color", "black");
+            });
+            $(".input_password").click(function () {
+                $(".input_password").css("color", "black");
+            });
+        });
+
+        function show(type) {
+            if (type === 1) {
+                $(".tixian").show();
+                $(".tixian_desc").hide();
+                $(".shouru_desc").hide();
+            } else if (type === 2) {
+
+                loadCashOutDesc();
+
+                $(".tixian").hide();
+                $(".tixian_desc").show();
+                $(".shouru_desc").hide();
+                
+            } else if (type === 3) {
+
+                loadCashBackDesc();
+                $(".tixian").hide();
+                $(".tixian_desc").hide();
+                $(".shouru_desc").show();
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+
+        function loadCashBackDesc() {
+            var openid = getUrlParam("openid");
+
+
+            $.ajax({
+                url: "/me/GetCashBackDesc",
+                async: true,
+                type: "POST",
+                dataType: "json",
+                data: { openid: openid },
+                success: function (result) {
+                    if (result.success === true) {
+                        var content = '';
+                        if (result.data.length > 0) {
+                            for (var i = 0; i < result.data.length; i++) {
+                                content += '<div><div class="middleinfo"><p><span style="margin-left:15px;">' + ChangeDateFormat(result.data[i].CreateDateTime) + '</span> <span style="margin-left:30px;">收入' + result.data[i].Cash_Back_Total + '元</span>  <span style="float:right;margin-right:15px;">' + result.data[i].Channel+'</span></p></div></div><div class="hint"></div>';
+                            }
+                        } else {
+                            content = '<div><div class="middleinfo"><p>&nbsp;&nbsp;&nbsp;&nbsp;没有收入记录</p></div></div><div class="hint"></div>';
+                        }
+
+                        $(".shouru_desc .middle").html(content);
+                        
+                    }
+                    //return false;
+                else{
+                        layer.open({
+                            content:data.message, skin: 'msg', time: 3
+                        });
+                        
+                    }
+                }
+            });
+
+        }
+
+
+        function loadCashOutDesc() {
+            var openid = getUrlParam("openid");
+
+            $.ajax({
+                url: "/me/GetCashOutDesc",
+                async: true,
+                type: "POST",
+                dataType: "json",
+                data: { openid: openid },
+                success: function (result) {
+                    if (result.success === true) {
+                        var content = '';
+                        if (result.data.length > 0) {
+                            for (var i = 0; i < result.data.length; i++) {
+                                content += '<div><div class="middleinfo"><p><span style="margin-left:15px;">' + ChangeDateFormat(result.data[i].CreateDatetime) + '</span> <span style="margin-left:30px;">提现' + result.data[i].Cash_out_total + '元</span><span style="float:right;margin-right:15px;">' + result.data[i].Status + '</span></p></div></div><div class="hint"></div>';
+                            }
+                        } else {
+                            content = '<div><div class="middleinfo"><p>&nbsp;&nbsp;&nbsp;&nbsp;没有提现记录</p></div></div><div class="hint"></div>';
+                        }
+
+                        $(".tixian_desc .middle").html(content);
+
+                    }
+                    //return false;
+                    else {
+                        layer.open({
+                            content: data.message, skin: 'msg', time: 3
+                        });
+
+                    }
+                }
+            });
+
+        }
+
+        function removeBtn() {
+            $("#sure").text("提交中...");
+            $("#sure").attr("disabled", "disabled");
+            $("#sure").removeClass("weui_btn_primary");
+        }
+        function addBtn() {
+            $("#sure").text("确定");
+            $("#sure").removeAttr("disabled");
+            $("#sure").addClass("weui_btn_primary");
+        }
+        function checknull() {
+            removeBtn();
+            var input_money = $(".input_money").val();
+            var least_money = $("#least_money").val();
+            var max_money = $("#max_money").val();
+            var user_money = $("#user_money").val();
+            if (input_money === "") {
+                layer.open({
+                    content: '金额不能为空', skin: 'msg', time: 3
+                });
+                addBtn();
+                return false;
+            }
+            if (parseFloat(input_money) < least_money) {
+                layer.open({
+                    content: '最低提现不低于 ' + $("#least_money").val() + ' 元', skin: 'msg', time: 3
+                });
+                addBtn();
+                return false;
+            }
+            if (parseFloat(input_money) > max_money) {
+                layer.open({
+                    content: '最高提现不高于 ' + $("#max_money").val() + ' 元', skin: 'msg', time: 3
+                });
+                addBtn();
+                return false;
+            }
+            if (parseFloat(input_money) > user_money) {
+                layer.open({
+                    content: "您的余额只剩￥" + $("#user_money").val(), skin: 'msg', time: 3
+                });
+                addBtn();
+                return false;
+            }
+
+            var openid = getUrlParam("openid");
+            if (openid === null || openid === '') {
+                layer.open({
+                    content: "丢失参数", skin: 'msg', time: 3
+                });
+                addBtn();
+                return false;
+            }
+
+            $.ajax({
+                url: "/me/ApplyCashOut",
+                async: true,
+                type: "POST",
+                dataType: "json",
+                data: { openid: openid, cashouttotal: parseFloat(input_money) },
+                success: function (data) {
+                    if (data.success === true) {
+                        layer.open({
+                            content: "提现成功！", skin: 'msg', time: 3
+                        });
+                        addBtn();
+                        window.location.reload();
+                        //return false;
+                    } else {
+                        layer.open({
+                            content: data.message, skin: 'msg', time: 3
+                        });
+                        addBtn();
+                        return false;
+                    }
+                }
+            });
+        }
+    </script>
+
+
+</body>
+</html>

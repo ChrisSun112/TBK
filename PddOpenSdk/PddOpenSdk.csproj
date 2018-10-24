@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{96385FED-6406-4E7F-9A68-D55754EDE7A4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PddOpenSdk</RootNamespace>
+    <AssemblyName>PddOpenSdk</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\Function.cs" />
+    <Compile Include="Models\AccessTokenResponseModel.cs" />
+    <Compile Include="Models\PddRequestModel.cs" />
+    <Compile Include="Models\PddResponseModel.cs" />
+    <Compile Include="Models\Request\Ad\CreateAdKeywordRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\CreateAdPlanRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\CreateAdUnitRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\DeleteAdKeywordRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\DeleteAdPlanRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\DeleteAdUnitRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\GetAdBalanceRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\GetAdChartBykeywordRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\GetAdCreativeReportRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\GetAdHistoryKeywordReportRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\GetAdHistoryPlanReportRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\GetAdHistoryReportRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\GetAdHistoryRtKeywordReportRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\GetAdHistoryRtPlanReportRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\GetAdHistoryRtReportRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\GetAdHistoryRtUnitReportRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\GetAdHistoryUnitReportRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\GetAdKeywordRcommendedRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\GetAdKeywordRelevanceRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\GetAdPlanInfoListRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\IdAdUnitGetByPlanRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\PlanAdCanCreateRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\UpdateAdKeywordRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\UpdateAdPlanMaxCostRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\UpdateAdPlanNameRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\UpdateAdPlanOptStatusRequestModel.cs" />
+    <Compile Include="Models\Request\Ad\UpdateAdUnitOptStatusRequestModel.cs" />
+    <Compile Include="Models\Request\Ddkoauth\GenDdkOauthGoodsZsUnitUrlRequestModel.cs" />
+    <Compile Include="Models\Request\Ddkoauth\GenDdkOauthLotteryUrlRequestModel.cs" />
+    <Compile Include="Models\Request\Ddkoauth\GenDdkOauthMallUrlRequestModel.cs" />
+    <Compile Include="Models\Request\Ddkoauth\GenDdkOauthResourceUrlRequestModel.cs" />
+    <Compile Include="Models\Request\Ddkoauth\GenDdkOauthWeappQrcodeUrlRequestModel.cs" />
+    <Compile Include="Models\Request\Ddkoauth\GenerateDdkOauthCmsPromUrlRequestModel.cs" />
+    <Compile Include="Models\Request\Ddkoauth\GenerateDdkOauthGoodsPidRequestModel.cs" />
+    <Compile Include="Models\Request\Ddkoauth\GenerateDdkOauthGoodsPromUrlRequestModel.cs" />
+    <Compile Include="Models\Request\Ddkoauth\GenerateDdkOauthRpPromUrlRequestModel.cs" />
+    <Compile Include="Models\Request\Ddkoauth\GenerateDdkOauthThemePromUrlRequestModel.cs" />
+    <Compile Include="Models\Request\Ddkoauth\GetDdkOauthAppNewBillListRequestModel.cs" />
+    <Compile Include="Models\Request\Ddkoauth\GetDdkOauthLotteryNewListRequestModel.cs" />
+    <Compile Include="Models\Request\Ddkoauth\GetDdkOauthOrderDetailRequestModel.cs" />
+    <Compile Include="Models\Request\Ddkoauth\GetDdkOauthOrderListIncrementRequestModel.cs" />
+    <Compile Include="Models\Request\Ddkoauth\QueryDdkOauthGoodsPidRequestModel.cs" />
+    <Compile Include="Models\Request\Ddkoauth\QueryDdkOauthZsUnitGoodsRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\DetailDdkGoodsRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\GenDdkGoodsZsUnitUrlRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\GenDdkLotteryUrlRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\GenDdkMallUrlRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\GenDdkResourceUrlRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\GenDdkWeappQrcodeUrlRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\GenerateDdkCmsPromUrlRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\GenerateDdkGoodsPidRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\GenerateDdkGoodsPromotionUrlRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\GenerateDdkRpPromUrlRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\GenerateDdkThemePromUrlRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\GetDdkAppNewBillListRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\GetDdkGoodsBasicInfoRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\GetDdkGoodsRecommendRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\GetDdkLotteryNewListRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\GetDdkMallGoodsListRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\GetDdkMerchantListRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\GetDdkOrderDetailRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\GetDdkOrderListIncrementRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\GetDdkThemeListRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\QueryDdkDirectGoodsRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\QueryDdkGoodsPidRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\QueryDdkZsUnitGoodsRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\SearchDdkGoodsRequestModel.cs" />
+    <Compile Include="Models\Request\Ddk\SearchDdkThemeGoodsRequestModel.cs" />
+    <Compile Include="Models\Request\Erp\GetOrderInformationRequestModel.cs" />
+    <Compile Include="Models\Request\Erp\GetOrderListRequestModel.cs" />
+    <Compile Include="Models\Request\Erp\GetOrderNumberListIncrementRequestModel.cs" />
+    <Compile Include="Models\Request\Erp\GetOrderNumberListRequestModel.cs" />
+    <Compile Include="Models\Request\Erp\GetOrderStatusRequestModel.cs" />
+    <Compile Include="Models\Request\Erp\SyncErpOrderRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\AddGoodsRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\CatsGoodsAuthorizationRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\ChangeGoodsCpsUnitRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\CommitGoodsEditGoodsRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\CommitGoodsSubmitGoodsRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\CreateGoodsCpsMallUnitRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\CreateGoodsCpsUnitRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\CreateGoodsLogisticsTemplateRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\FieldExchangeThirdRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\GetGoodsCatsRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\GetGoodsCommitDetailRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\GetGoodsCountryRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\GetGoodsDetailRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\GetGoodsFabricContentRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\GetGoodsFabricRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\GetGoodsInformationRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\GetGoodsListRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\GetGoodsLogisticsTemplateRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\GetGoodsMallTemplateRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\GetGoodsOptRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\GetGoodsSpecIdRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\GetGoodsSpecRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\GetGoodsTemplateSubPropertyRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\QueryGoodsCpsUnitRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\RelationGoodsGetRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\SearchGoodsTemplateValueRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\SetGoodsRelationRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\SetGoodsSaleStatusRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\UpdateGoodsInformationRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\UpdateGoodsSkuPriceRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\UpdateGoodsSkuStockIncrementRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\UpdateGoodsSkuStockRequestModel.cs" />
+    <Compile Include="Models\Request\Goods\UploadGoodsImageRequestModel.cs" />
+    <Compile Include="Models\Request\Invoice\QueryInvoiceApplicationRequestModel.cs" />
+    <Compile Include="Models\Request\Invoice\QueryInvoiceDetailRequestModel.cs" />
+    <Compile Include="Models\Request\Invoice\UpdateInvoiceApplicationRequestModel.cs" />
+    <Compile Include="Models\Request\Invoice\UploadInvoiceDetailRequestModel.cs" />
+    <Compile Include="Models\Request\Logisticscs\CloseLogisticsCsSessionRequestModel.cs" />
+    <Compile Include="Models\Request\Logisticscs\GetLogisticsCsHistoryMessageRequestModel.cs" />
+    <Compile Include="Models\Request\Logisticscs\GetLogisticsTicketProblemTypeRequestModel.cs" />
+    <Compile Include="Models\Request\Logisticscs\GetLogisticsTicketRequestModel.cs" />
+    <Compile Include="Models\Request\Logisticscs\NotifyLogisticsTicketRequestModel.cs" />
+    <Compile Include="Models\Request\Logisticscs\SendLogisticsCsMessageRequestModel.cs" />
+    <Compile Include="Models\Request\Logisticscs\StartLogisticsCsSessionRequestModel.cs" />
+    <Compile Include="Models\Request\Logisticscs\UploadLogisticsTicketImageRequestModel.cs" />
+    <Compile Include="Models\Request\Logistics\GetLogisticsAddressRequestModel.cs" />
+    <Compile Include="Models\Request\Logistics\GetLogisticsCompaniesRequestModel.cs" />
+    <Compile Include="Models\Request\Logistics\SendLogisticsOnlineRequestModel.cs" />
+    <Compile Include="Models\Request\Mall\GetMallInfoRequestModel.cs" />
+    <Compile Include="Models\Request\Promotion\AddPromotionCouponQuantityRequestModel.cs" />
+    <Compile Include="Models\Request\Promotion\ClosePromotionCouponRequestModel.cs" />
+    <Compile Include="Models\Request\Promotion\CreatePromotionGoodsCouponRequestModel.cs" />
+    <Compile Include="Models\Request\Promotion\CreatePromotionHomeCouponRequestModel.cs" />
+    <Compile Include="Models\Request\Promotion\GetPromotionGoodsCouponListRequestModel.cs" />
+    <Compile Include="Models\Request\Promotion\GetPromotionMerchantCouponListRequestModel.cs" />
+    <Compile Include="Models\Request\Refund\CheckRefundStatusRequestModel.cs" />
+    <Compile Include="Models\Request\Refund\GetRefundAddressListRequestModel.cs" />
+    <Compile Include="Models\Request\Refund\GetRefundListIncrementRequestModel.cs" />
+    <Compile Include="Models\Request\Sms\CancelSmsSellSettingRecordRequestModel.cs" />
+    <Compile Include="Models\Request\Sms\CrowdSmsAddRequestModel.cs" />
+    <Compile Include="Models\Request\Sms\DeletingSmsSellRequestModel.cs" />
+    <Compile Include="Models\Request\Sms\QuerySmsCrowdsPeopleNumberRequestModel.cs" />
+    <Compile Include="Models\Request\Sms\QuerySmsCrowdsRequestModel.cs" />
+    <Compile Include="Models\Request\Sms\QuerySmsCustomTemplateRequestModel.cs" />
+    <Compile Include="Models\Request\Sms\QuerySmsRemainDetailRequestModel.cs" />
+    <Compile Include="Models\Request\Sms\QuerySmsRemainSettingDetailRequestModel.cs" />
+    <Compile Include="Models\Request\Sms\QuerySmsSellRecordListRequestModel.cs" />
+    <Compile Include="Models\Request\Sms\QuerySmsSellSettingDetailRequestModel.cs" />
+    <Compile Include="Models\Request\Sms\QuerySmsSendRecordListRequestModel.cs" />
+    <Compile Include="Models\Request\Sms\QuerySmsShortStatisticRequestModel.cs" />
+    <Compile Include="Models\Request\Sms\QuerySmsTemplateRequestModel.cs" />
+    <Compile Include="Models\Request\Sms\SettingSmsCustomRequestModel.cs" />
+    <Compile Include="Models\Request\Sms\SettingSmsRemainRequestModel.cs" />
+    <Compile Include="Models\Request\Sms\TemplateSmsCreateCustomRequestModel.cs" />
+    <Compile Include="Models\Request\Stock\MoveStockWareRequestModel.cs" />
+    <Compile Include="Models\Request\Time\GetTimeRequestModel.cs" />
+    <Compile Include="Models\Request\Virtual\NotifyVirtualMobileChargeRequestModel.cs" />
+    <Compile Include="Models\Request\Voucher\ComplainVoucherVoucherRequestModel.cs" />
+    <Compile Include="Models\Request\Voucher\SendVoucherAppointmentInfoRequestModel.cs" />
+    <Compile Include="Models\Request\Voucher\SendVoucherPhysicalGoodsRequestModel.cs" />
+    <Compile Include="Models\Request\Voucher\SendVoucherVoucherInfoRequestModel.cs" />
+    <Compile Include="Models\Request\Voucher\VerificationVoucherVirtualCardRequestModel.cs" />
+    <Compile Include="Models\Response\Ad\CreateAdKeywordResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\CreateAdPlanResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\CreateAdUnitResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\DeleteAdKeywordResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\DeleteAdPlanResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\DeleteAdUnitResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\GetAdBalanceResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\GetAdChartBykeywordResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\GetAdCreativeReportResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\GetAdHistoryKeywordReportResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\GetAdHistoryPlanReportResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\GetAdHistoryReportResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\GetAdHistoryRtKeywordReportResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\GetAdHistoryRtPlanReportResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\GetAdHistoryRtReportResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\GetAdHistoryRtUnitReportResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\GetAdHistoryUnitReportResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\GetAdKeywordRcommendedResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\GetAdKeywordRelevanceResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\GetAdPlanInfoListResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\IdAdUnitGetByPlanResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\PlanAdCanCreateResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\UpdateAdKeywordResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\UpdateAdPlanMaxCostResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\UpdateAdPlanNameResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\UpdateAdPlanOptStatusResponseModel.cs" />
+    <Compile Include="Models\Response\Ad\UpdateAdUnitOptStatusResponseModel.cs" />
+    <Compile Include="Models\Response\Ddkoauth\GenDdkOauthGoodsZsUnitUrlResponseModel.cs" />
+    <Compile Include="Models\Response\Ddkoauth\GenDdkOauthLotteryUrlResponseModel.cs" />
+    <Compile Include="Models\Response\Ddkoauth\GenDdkOauthMallUrlResponseModel.cs" />
+    <Compile Include="Models\Response\Ddkoauth\GenDdkOauthResourceUrlResponseModel.cs" />
+    <Compile Include="Models\Response\Ddkoauth\GenDdkOauthWeappQrcodeUrlResponseModel.cs" />
+    <Compile Include="Models\Response\Ddkoauth\GenerateDdkOauthCmsPromUrlResponseModel.cs" />
+    <Compile Include="Models\Response\Ddkoauth\GenerateDdkOauthGoodsPidResponseModel.cs" />
+    <Compile Include="Models\Response\Ddkoauth\GenerateDdkOauthGoodsPromUrlResponseModel.cs" />
+    <Compile Include="Models\Response\Ddkoauth\GenerateDdkOauthRpPromUrlResponseModel.cs" />
+    <Compile Include="Models\Response\Ddkoauth\GenerateDdkOauthThemePromUrlResponseModel.cs" />
+    <Compile Include="Models\Response\Ddkoauth\GetDdkOauthAppNewBillListResponseModel.cs" />
+    <Compile Include="Models\Response\Ddkoauth\GetDdkOauthLotteryNewListResponseModel.cs" />
+    <Compile Include="Models\Response\Ddkoauth\GetDdkOauthOrderDetailResponseModel.cs" />
+    <Compile Include="Models\Response\Ddkoauth\GetDdkOauthOrderListIncrementResponseModel.cs" />
+    <Compile Include="Models\Response\Ddkoauth\QueryDdkOauthGoodsPidResponseModel.cs" />
+    <Compile Include="Models\Response\Ddkoauth\QueryDdkOauthZsUnitGoodsResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\DetailDdkGoodsResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\GenDdkGoodsZsUnitUrlResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\GenDdkLotteryUrlResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\GenDdkMallUrlResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\GenDdkResourceUrlResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\GenDdkWeappQrcodeUrlResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\GenerateDdkCmsPromUrlResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\GenerateDdkGoodsPidResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\GenerateDdkGoodsPromotionUrlResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\GenerateDdkRpPromUrlResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\GenerateDdkThemePromUrlResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\GetDdkAppNewBillListResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\GetDdkGoodsBasicInfoResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\GetDdkGoodsRecommendResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\GetDdkLotteryNewListResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\GetDdkMallGoodsListResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\GetDdkMerchantListResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\GetDdkOrderDetailResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\GetDdkOrderListIncrementResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\GetDdkThemeListResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\QueryDdkDirectGoodsResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\QueryDdkGoodsPidResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\QueryDdkZsUnitGoodsResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\SearchDdkGoodsResponseModel.cs" />
+    <Compile Include="Models\Response\Ddk\SearchDdkThemeGoodsResponseModel.cs" />
+    <Compile Include="Models\Response\Erp\GetOrderInformationResponseModel.cs" />
+    <Compile Include="Models\Response\Erp\GetOrderListResponseModel.cs" />
+    <Compile Include="Models\Response\Erp\GetOrderNumberListIncrementResponseModel.cs" />
+    <Compile Include="Models\Response\Erp\GetOrderNumberListResponseModel.cs" />
+    <Compile Include="Models\Response\Erp\GetOrderStatusResponseModel.cs" />
+    <Compile Include="Models\Response\Erp\SyncErpOrderResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\AddGoodsResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\CatsGoodsAuthorizationResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\ChangeGoodsCpsUnitResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\CommitGoodsEditGoodsResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\CommitGoodsSubmitGoodsResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\CreateGoodsCpsMallUnitResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\CreateGoodsCpsUnitResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\CreateGoodsLogisticsTemplateResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\FieldExchangeThirdResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\GetGoodsCatsResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\GetGoodsCommitDetailResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\GetGoodsCountryResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\GetGoodsDetailResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\GetGoodsFabricContentResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\GetGoodsFabricResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\GetGoodsInformationResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\GetGoodsListResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\GetGoodsLogisticsTemplateResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\GetGoodsMallTemplateResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\GetGoodsOptResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\GetGoodsSpecIdResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\GetGoodsSpecResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\GetGoodsTemplateSubPropertyResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\QueryGoodsCpsUnitResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\RelationGoodsGetResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\SearchGoodsTemplateValueResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\SetGoodsRelationResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\SetGoodsSaleStatusResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\UpdateGoodsInformationResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\UpdateGoodsSkuPriceResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\UpdateGoodsSkuStockIncrementResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\UpdateGoodsSkuStockResponseModel.cs" />
+    <Compile Include="Models\Response\Goods\UploadGoodsImageResponseModel.cs" />
+    <Compile Include="Models\Response\Invoice\QueryInvoiceApplicationResponseModel.cs" />
+    <Compile Include="Models\Response\Invoice\QueryInvoiceDetailResponseModel.cs" />
+    <Compile Include="Models\Response\Invoice\UpdateInvoiceApplicationResponseModel.cs" />
+    <Compile Include="Models\Response\Invoice\UploadInvoiceDetailResponseModel.cs" />
+    <Compile Include="Models\Response\Logisticscs\CloseLogisticsCsSessionResponseModel.cs" />
+    <Compile Include="Models\Response\Logisticscs\GetLogisticsCsHistoryMessageResponseModel.cs" />
+    <Compile Include="Models\Response\Logisticscs\GetLogisticsTicketProblemTypeResponseModel.cs" />
+    <Compile Include="Models\Response\Logisticscs\GetLogisticsTicketResponseModel.cs" />
+    <Compile Include="Models\Response\Logisticscs\NotifyLogisticsTicketResponseModel.cs" />
+    <Compile Include="Models\Response\Logisticscs\SendLogisticsCsMessageResponseModel.cs" />
+    <Compile Include="Models\Response\Logisticscs\StartLogisticsCsSessionResponseModel.cs" />
+    <Compile Include="Models\Response\Logisticscs\UploadLogisticsTicketImageResponseModel.cs" />
+    <Compile Include="Models\Response\Logistics\GetLogisticsAddressResponseModel.cs" />
+    <Compile Include="Models\Response\Logistics\GetLogisticsCompaniesResponseModel.cs" />
+    <Compile Include="Models\Response\Logistics\SendLogisticsOnlineResponseModel.cs" />
+    <Compile Include="Models\Response\Mall\GetMallInfoResponseModel.cs" />
+    <Compile Include="Models\Response\Promotion\AddPromotionCouponQuantityResponseModel.cs" />
+    <Compile Include="Models\Response\Promotion\ClosePromotionCouponResponseModel.cs" />
+    <Compile Include="Models\Response\Promotion\CreatePromotionGoodsCouponResponseModel.cs" />
+    <Compile Include="Models\Response\Promotion\CreatePromotionHomeCouponResponseModel.cs" />
+    <Compile Include="Models\Response\Promotion\GetPromotionGoodsCouponListResponseModel.cs" />
+    <Compile Include="Models\Response\Promotion\GetPromotionMerchantCouponListResponseModel.cs" />
+    <Compile Include="Models\Response\Refund\CheckRefundStatusResponseModel.cs" />
+    <Compile Include="Models\Response\Refund\GetRefundAddressListResponseModel.cs" />
+    <Compile Include="Models\Response\Refund\GetRefundListIncrementResponseModel.cs" />
+    <Compile Include="Models\Response\Sms\CancelSmsSellSettingRecordResponseModel.cs" />
+    <Compile Include="Models\Response\Sms\CrowdSmsAddResponseModel.cs" />
+    <Compile Include="Models\Response\Sms\DeletingSmsSellResponseModel.cs" />
+    <Compile Include="Models\Response\Sms\QuerySmsCrowdsPeopleNumberResponseModel.cs" />
+    <Compile Include="Models\Response\Sms\QuerySmsCrowdsResponseModel.cs" />
+    <Compile Include="Models\Response\Sms\QuerySmsCustomTemplateResponseModel.cs" />
+    <Compile Include="Models\Response\Sms\QuerySmsRemainDetailResponseModel.cs" />
+    <Compile Include="Models\Response\Sms\QuerySmsRemainSettingDetailResponseModel.cs" />
+    <Compile Include="Models\Response\Sms\QuerySmsSellRecordListResponseModel.cs" />
+    <Compile Include="Models\Response\Sms\QuerySmsSellSettingDetailResponseModel.cs" />
+    <Compile Include="Models\Response\Sms\QuerySmsSendRecordListResponseModel.cs" />
+    <Compile Include="Models\Response\Sms\QuerySmsShortStatisticResponseModel.cs" />
+    <Compile Include="Models\Response\Sms\QuerySmsTemplateResponseModel.cs" />
+    <Compile Include="Models\Response\Sms\SettingSmsCustomResponseModel.cs" />
+    <Compile Include="Models\Response\Sms\SettingSmsRemainResponseModel.cs" />
+    <Compile Include="Models\Response\Sms\TemplateSmsCreateCustomResponseModel.cs" />
+    <Compile Include="Models\Response\Stock\MoveStockWareResponseModel.cs" />
+    <Compile Include="Models\Response\Time\GetTimeResponseModel.cs" />
+    <Compile Include="Models\Response\Virtual\NotifyVirtualMobileChargeResponseModel.cs" />
+    <Compile Include="Models\Response\Voucher\ComplainVoucherVoucherResponseModel.cs" />
+    <Compile Include="Models\Response\Voucher\SendVoucherAppointmentInfoResponseModel.cs" />
+    <Compile Include="Models\Response\Voucher\SendVoucherPhysicalGoodsResponseModel.cs" />
+    <Compile Include="Models\Response\Voucher\SendVoucherVoucherInfoResponseModel.cs" />
+    <Compile Include="Models\Response\Voucher\VerificationVoucherVirtualCardResponseModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AuthApi.cs" />
+    <Compile Include="Services\PddApi\AdApi.cs" />
+    <Compile Include="Services\PddApi\DdkApi.cs" />
+    <Compile Include="Services\PddApi\DdkOauthApi.cs" />
+    <Compile Include="Services\PddApi\ErpApi.cs" />
+    <Compile Include="Services\PddApi\GoodsApi.cs" />
+    <Compile Include="Services\PddApi\InvoiceApi.cs" />
+    <Compile Include="Services\PddApi\LogisticsApi.cs" />
+    <Compile Include="Services\PddApi\LogisticsCsApi.cs" />
+    <Compile Include="Services\PddApi\MallApi.cs" />
+    <Compile Include="Services\PddApi\PromotionApi.cs" />
+    <Compile Include="Services\PddApi\RefundApi.cs" />
+    <Compile Include="Services\PddApi\SmsApi.cs" />
+    <Compile Include="Services\PddApi\StockApi.cs" />
+    <Compile Include="Services\PddApi\TimeApi.cs" />
+    <Compile Include="Services\PddApi\VirtualApi.cs" />
+    <Compile Include="Services\PddApi\VoucherApi.cs" />
+    <Compile Include="Services\PddCommonApi.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tbk.Common\Tbk.Common.csproj">
+      <Project>{6BD5F88C-F069-4B17-A986-E11024825315}</Project>
+      <Name>Tbk.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

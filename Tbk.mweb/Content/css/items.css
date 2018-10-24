@@ -1,0 +1,226 @@
+﻿.head {
+	color:#000;
+	font-size:.17rem;
+	text-align:center;
+	line-height:3;
+	height:.5rem;
+	border-bottom:1px solid #B2B2B2;
+	position:relative
+}
+.head span {
+	display:block;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	width:2rem;
+	margin:0 auto
+}
+.head .back {
+	position:absolute;
+	font-size:.2rem;
+	top:0;
+	left:.1rem;
+	width:.2rem;
+	height:.5rem;
+	color:#000;
+	background:url(img/fanhui.png) no-repeat center;
+	background-size:50% auto
+}
+
+.head .go-home {
+	background: url(img/home.png) no-repeat center;
+	background-size:.3rem .3rem;
+	width: .5rem;
+	height: .5rem;
+	position: absolute;
+	right: 1px;
+	top:1px;
+	opacity: 0.7;
+
+}
+.items {
+	padding:.2rem .15rem 0;
+}
+.items>div {
+	box-sizing:border-box;/*使用padding和border都不会撑开尺寸*/
+	width:49%;
+	margin-bottom:25px;
+	display: inline-block;
+}
+.items>div:nth-child(odd) {
+	padding-right: 7px;
+
+}
+.items>div:nth-child(even) {
+	padding-left: 7px;
+
+}
+.item .coverImage {
+	width:100%;
+	display:block;
+	border:1px solid #E1E1E1
+}
+.item .title .tab {
+	font-size:0
+}
+.item .title .tab img {
+	width:.13rem;
+	height:.13rem;
+	margin-right:.03rem
+}
+.item .title .tab img:last-child {
+	margin-right:0
+}
+.item .title .text {
+	width:1.1rem;
+	color:#696969;
+	font-size:.12rem;
+	vertical-align:middle;
+	-o-text-overflow:ellipsis;
+	text-overflow:ellipsis;
+	overflow:hidden;
+	white-space:nowrap;
+	display:inline-block
+}
+.item .progress-count {
+	margin-top:.1rem;
+	color:#C9C6C6;
+	font-size:.09rem
+}
+.item .count>div {
+	display:inline-block
+}
+.count-progress .count-progress-bgm {
+	position:relative;
+	display:inline-block;
+	width:.69rem;
+	height:.06rem;
+	border-radius:.04rem;
+	background:url(img/hxc.png) no-repeat center;
+	background-size:100%;
+	overflow:hidden
+}
+.count-progress .count-progress-bgm .count-progress-line {
+	position:absolute;
+	display:inline-block;
+	height:.06rem;
+	top:0;
+	left:0;
+	background-color:#C0BDBD
+}
+.count {
+	margin-bottom:.1rem
+}
+.count .count-month {
+	color:#696969;
+	font-size:.09rem;
+	float:right
+}
+.info .main {
+	display:inline-block
+}
+.info .main .price {
+	font-size:.18rem;
+	color:#FD7690
+}
+.info .main .oriprice {
+	font-size:.12rem;
+	color:#C7C4C4;
+	text-decoration:line-through
+}
+.info .count-price {
+	display:inline-block;
+	float:right;
+	margin-top:.04rem
+}
+.info .count-price .count-price-bgm {
+	display:inline-block;
+	background:#f95c68;
+}
+.info .count-price .count-price-bgm i {
+	display:inline-block;
+	margin:1px;
+	padding:0 1px;
+	background-color:#fff;
+	font-size:.11rem;
+	color:#FD7690
+}
+.info .count-price .count-price-bgm s {
+	display:inline-block;
+	text-decoration:none;
+	padding:0 .04rem;
+	color:#FFF;
+	font-size:.09rem
+}
+.loading {
+	height:.5rem;
+	line-height:.5rem;
+	text-align:center
+}
+.eva-slot {
+	width:100%;
+	height:.435rem;
+	border-bottom:1px solid #E1E1E1
+}
+.eva-slot div {
+	display:inline-block;
+	width:32%;
+	height:100%;
+	color:#696969;
+	font-size:.14rem;
+	line-height:.435rem;
+	text-align:center;
+	position:relative
+}
+.eva-slot .eva-slot-updown {
+	position:absolute;
+	display:inline-block;
+	width:.1rem;
+	height:.16rem;
+	line-height:0
+}
+.eva-slot .eva-slot-up {
+	display:inline-block;
+	width:.1rem;
+	height:.08rem;
+	background:#f0f;
+	background:url(img/shang.png) no-repeat top center;
+	background-size:100%
+}
+.eva-slot .eva-slot-dwon {
+	display:inline-block;
+	width:.1rem;
+	height:.08rem;
+	background:#f0f;
+	background:url(img/xia.png) no-repeat bottom center;
+	background-size:100%
+}
+.eva-slot .eva-slot-center .eva-slot-updown {
+	top:.13rem;
+	right:.2rem
+}
+.eva-slot .eva-slot-right .eva-slot-updown {
+	top:.13rem;
+	right:.33rem
+}
+.eva-slot .eva-slot-up-che {
+	background-image:url(img/shanga.png)!important
+}
+.eva-slot .eva-slot-dwon-che {
+	background-image:url(img/xiaa.png)!important
+}
+.eva-slot .line:after {
+	content:'';
+	display:inline-block;
+	width:.4rem;
+	height:.02rem;
+	background:url(img/hx.png) no-repeat;
+	background-size:100% 100%;
+	background-position:center;
+	position:absolute;
+	bottom:0;
+	left:50%;
+	transform:translateX(-50%);
+	-webkit-transform:translateX(-50%);
+	-moz-transform:translateX(-50%)
+}

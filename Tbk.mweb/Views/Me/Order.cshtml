@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>我的订单</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta name="format-detection" content="telephone=no" />
+    @*<link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />*@
+    <link href="~/Content/css/weui.min.css" rel="stylesheet" />
+    <link href="~/Content/css/main.css" rel="stylesheet" />
+    <script src="~/Content/js/jquery-2.1.1.min.js"></script>
+    <script src="~/Content/js/updown.js"></script>
+    <script src="~/Content/js/zepto.min.js"></script>
+    <script src="~/Content/js/common.js"></script>
+    <style>
+        .dropload-down {
+            height: 50px;
+        }
+
+        .dropload-up, .dropload-down {
+            position: relative;
+            overflow: hidden;
+            font-size: 12px;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+        }
+
+        .dropload-refresh, .dropload-update, .dropload-load, .dropload-noData {
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+        }
+
+        .navMk {
+            /*top: 41px;*/
+        }
+
+        #inData {
+            margin-top: 85px;
+        }
+
+        .nav li {
+            width: 33%;
+        }
+
+        .table {
+            width: 100%;
+            max-width: 100%;
+            margin-bottom: 20px;
+        }
+
+        table {
+            background-color: transparent;
+        }
+
+        table {
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+
+        .table > thead > tr > th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+            padding: 8px;
+            line-height: 1.42857143;
+            vertical-align: top;
+            border-top: 1px solid #ddd;
+        }
+
+        .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+            padding: 8px;
+            line-height: 1.42857143;
+            vertical-align: top;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script src="~/Content/js/wx_jsapi_sdkhelper.js"></script>
+    <!-- 微信自定义接口 -->
+    <script>
+        window.onload=function(){
+          var isPageHide = false;
+          window.addEventListener('pageshow',function(){
+            if(isPageHide){
+                window.location.reload();
+            }
+          });
+          window.addEventListener('pagehide',function(){
+            isPageHide = true;
+          });
+        }
+
+        var appid = "wxe2c5d6d728777f32";
+        var timestamp = new Date().getSeconds();
+        var nonceStr = create_noncestr();
+        var url = location.href;
+
+        var signature = create_signature(nonceStr, '@Tbk.Common.AccessTokenHelper.GetJsapiTicket()', timestamp, url);
+
+        wx.config({
+            debug: false,
+            appId: appid,
+            timestamp: timestamp,
+            nonceStr: nonceStr,
+            signature: signature,
+            jsApiList: [
+                "onMenuShareAppMessage",
+                "onMenuShareTimeline",
+                "chooseImage",
+                "uploadImage",
+                "downloadImage"
+            ]
+        });
+
+        wx.ready(function(){
+            wx.hideOptionMenu();
+        });
+    </script>
+    <!-- 微信自定义接口 -->
+</head>
+<body>
+    @*<div class="nav">
+        <ul class="nav" style="background-color:#f2f2f2;">
+
+            <li style="width:32%;" class="active" onclick="setActive(this)"><a href="javascript:void(0)" style="border-bottom:0;width:100px;height:20px;line-height:20px;border-radius:10px;">淘宝</a></li>
+            <li style="width:2%;color:#d0d0d0;font-size:14px;">|</li>
+            <li style="width:32%;" onclick="setActive(this)"><a href="javascript:void(0)" style="width:100px;height:41px;">京东</a></li>
+            <li style="width:2%;color:#d0d0d0;font-size:14px;">|</li>
+            <li style="width:32%;" onclick="setActive(this)"><a href="javascript:void(0)" style="width:100px;height:41px;">拼多多</a></li>
+        </ul>
+    </div>*@
+
+    <div class="nav navMk" style="">
+        
+        <ul class="nav navMk">
+            <li onclick="setNavtrue(this,'淘宝')"><a href="javascript:void(0)" class="navtrue">淘宝</a></li>
+            <li onclick="setNavtrue(this,'京东')"><a href="javascript:void(0)">京东</a></li>
+            <li onclick="setNavtrue(this,'拼多多')"><a href="javascript:void(0)">拼多多</a></li>
+        </ul>
+    </div>
+
+    <div class="order-banner" style="margin-top: 43px;text-align: center;">
+      
+        
+    </div>
+</body>
+
+</html>
+<script>
+
+    $(function () {
+        loadOrder("淘宝");
+    });
+
+    function setNavtrue(e,channel) {
+        var parentElement = $(e).parent();
+        parentElement.find(".navtrue").removeClass("navtrue");
+        $(e).find("a").addClass("navtrue");
+        loadOrder(channel);
+    }
+
+    function loadOrder(channel) {
+        var openid = getUrlParam("openid");
+
+        $.ajax({
+            url: "/me/GetOrders ",
+            async: true,
+            type: "POST",
+            dataType: "json",
+            data: { openid: openid, channel: channel },
+            success: function (result) {
+                if (result.success === true) {
+                    var content = '';
+                    if (result.data.length > 0) {
+                        content += '<table class="table table - hover" style="background-color:#fff;"><thead><tr><th>订单编号</th><th>付款金额</th><th>返佣(元)</th><th>创建时间</th><th>状态</th></tr></thead ><tbody>';
+                        for (var i = 0; i < result.data.length; i++) {
+                            content += '<tr><th scope="row">' + result.data[i].OrderNo + '</th><td>' + result.data[i].Payment + '</td><td>' + result.data[i].CashOutTotal + '</td><td>' + ChangeDateFormat(result.data[i].CreateDateTime)+'</td><td>'+result.data[i].Status+'</td></tr>';
+                        }
+                        content += "</tbody></table>";
+                    } else {
+                        content = '<img class="order- no-order-tips" src="/Content/images/no_order.png" alt="您还没有相关订单哦～"><div class="order-no-order-text" style = " font-size: 15px; margin-top:15px;color:#666" > 您还没有相关订单哦～</div >';
+                    }
+
+                    $(".order-banner").html(content);
+
+                }
+                //return false;
+                else {
+                    layer.open({
+                        content: data.message, skin: 'msg', time: 3
+                    });
+
+                }
+            }
+        });
+    }
+</script>

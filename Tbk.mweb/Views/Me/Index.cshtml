@@ -1,0 +1,146 @@
+﻿@model Tbk.Entity.WxUser
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta name="format-detection" content="telephone=no" />
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/css/weui.min.css" rel="stylesheet">
+    <link href="~/Content/css/mycenter.css" rel="stylesheet">
+
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script src="~/Content/js/wx_jsapi_sdkhelper.js"></script>
+    <!-- 微信自定义接口 -->
+    <script>
+        window.onload=function(){
+          var isPageHide = false;
+          window.addEventListener('pageshow',function(){
+            if(isPageHide){
+                window.location.reload();
+            }
+          });
+          window.addEventListener('pagehide',function(){
+            isPageHide = true;
+          });
+        }
+
+        var appid = "wxe2c5d6d728777f32";
+        var timestamp = new Date().getSeconds();
+        var nonceStr = create_noncestr();
+        var url = location.href;
+        var signature = create_signature(nonceStr, '@Tbk.Common.AccessTokenHelper.GetJsapiTicket()', timestamp, url);
+
+        wx.config({
+            debug: false,
+            appId: appid,
+            timestamp: timestamp,
+            nonceStr: nonceStr,
+            signature: signature,
+            jsApiList: [
+                "onMenuShareAppMessage",
+                "onMenuShareTimeline",
+                "chooseImage",
+                "uploadImage",
+                "downloadImage"
+            ]
+        });
+
+        wx.ready(function(){
+            wx.hideOptionMenu();
+        });
+    </script>
+    <!-- 微信自定义接口 -->
+
+</head>
+<body>
+    <div id="center">
+        <a href="/user/info?iden=fddgw">
+            <div id="info">
+                <div><img id="infopic" src="@Model.headimgurl" style="border-radius: 100% 100% 100% 100%;" /></div>
+                <div id="infofont">
+                    <div id="infofonthead">@Model.nickname</div>
+                    <div id="level">等级:<div id="lv">Lv 1</div></div>
+                    <div id="infofontlast">可用余额:<div id="balance">￥@Model.remaining_sum</div></div>
+                </div>
+                @*<div class="arrow">
+                    <img src="~/Content/images/returnwhite2x.png" style="width: 8px;height: 14px" />
+                </div>*@
+            </div>
+        </a>
+        <div id="otherbalance">
+            <a href="javascript:void(0)"><div id="addmoney">累计返利: ￥@Model.total</div></a>
+            <a href="javascript:void(0)"><div id="sharemoney">已提现: ￥@Model.cash_out_sum</div></a>
+        </div>
+        <div class="middle">
+
+
+            <a href="wallet?openid=@Model.openid">
+                <div class="middleinfo">
+                    <div class="middlefont">
+                        <img src="~/Content/images/wallet2x.png" style="height: 30px;width: 30px" />
+                    </div>
+                    <div class="title">我的钱包</div>
+                    <div class="arrows">
+                        <img src="~/Content/images/return2x.png" style="width: 8px;height: 14px" />
+                    </div>
+                </div>
+            </a>
+            <div class="hint"></div>
+            <a href="bingorder?openid=@Model.openid">
+                <div class="middleinfo">
+                    <div class="middlefont">
+                        <img src="~/Content/images/bindingorder2x.png" style="height: 30px;width: 30px" />
+                    </div>
+                    <div class="title">绑定订单</div>
+                    <div class="arrows">
+                        <img src="~/Content/images/return2x.png" style="width: 8px;height: 14px" />
+                    </div>
+                </div>
+            </a>
+            <div class="hint"></div>
+        
+                <a href="order?openid=@Model.openid">
+                    <div class="middleinfo">
+                        <div class="middlefont">
+                            <img src="~/Content/images/myorder2x.png" style="height: 30px;width: 30px" />
+                        </div>
+                        <div class="title">我的订单</div>
+                        <div class="arrows">
+                            <img src="~/Content/images/return2x.png" style="width: 8px;height: 14px" />
+                        </div>
+                    </div>
+                </a>
+
+            @*<div class="hints"></div>
+         
+            <a href="/help?iden=fddgw">
+                <div class="middleinfo">
+                    <div class="middlefont">
+                        <img src="~/Content/images/why2x.png" style="height: 30px;width: 30px" />
+                    </div>
+                    <div class="title">帮助中心</div>
+                    <div class="arrows">
+                        <img src="~/Content/images/return2x.png" style="width: 8px;height: 14px" />
+                    </div>
+                </div>
+            </a>
+            <div class="hint"></div>
+            <a href="/help/aboutus?iden=fddgw">
+                <div class="middleinfo">
+                    <div class="middlefont">
+                        <img src="~/Content/images/women2x.png" style="height: 30px;width: 30px" />
+                    </div>
+                    <div class="title">关于我们</div>
+                    <div class="arrows">
+                        <img src="~/Content/images/return2x.png" style="width: 8px;height: 14px" />
+                    </div>
+                </div>
+            </a>*@
+
+        </div>
+    </div>
+   
+</body>
+</html>

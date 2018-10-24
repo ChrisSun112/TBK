@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>绑定</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta name="format-detection" content="telephone=no" />
+    <link href="~/Content/css/weui.min.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/bound.css" rel="stylesheet" />
+    <script src="~/Content/js/jquery-2.1.1.min.js"></script>
+    <script src="~/Content/js/layer.js"></script>
+    <script src="~/Content/js/common.js"></script>
+
+
+    <script type="text/javascript">
+        function checknull() {
+            var str = document.getElementById("inputnumber").value;
+            var openId = getUrlParam("openid");
+            if (str === "" || str.length < 12) {
+
+                // alert("请输入正确的订单号!");
+                layer.open({
+                    content: '请输入正确的订单号!', skin: 'msg', time: 5
+                });
+                document.getElementById("inputnumber").value = "";
+                return false;
+            }
+            var flag = false;
+            $.ajax({
+                type: "POST",
+                url: "/me/OrderBind",
+                async: false,
+                dataType: "json",
+                data: { orderNo: str, openId: openId },
+                success: function (data) {
+                    if (data.success === 0) {
+
+                        alert('订单号绑定成功。');
+
+                    } else if (data.success === -1) {
+
+                        alert('没有查找到您输入的订单号。');
+                      
+
+                    } else if (data.success === -2) {
+                        alert('绑定失败，请稍后重试。');
+                    }
+                }
+            });
+            return flag;
+        }
+    </script>
+
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script src="~/Content/js/wx_jsapi_sdkhelper.js"></script>
+    <!-- 微信自定义接口 -->
+    <script>
+        window.onload=function(){
+          var isPageHide = false;
+          window.addEventListener('pageshow',function(){
+            if(isPageHide){
+                window.location.reload();
+            }
+          });
+          window.addEventListener('pagehide',function(){
+            isPageHide = true;
+          });
+        }
+
+        var appid = "wxe2c5d6d728777f32";
+        var timestamp = new Date().getSeconds();
+        var nonceStr = create_noncestr();
+        var url = location.href;
+        var signature = create_signature(nonceStr, '@Tbk.Common.AccessTokenHelper.GetJsapiTicket()', timestamp, url);
+
+        wx.config({
+            debug: false,
+            appId: appid,
+            timestamp: timestamp,
+            nonceStr: nonceStr,
+            signature: signature,
+            jsApiList: [
+                "onMenuShareAppMessage",
+                "onMenuShareTimeline",
+                "chooseImage",
+                "uploadImage",
+                "downloadImage"
+            ]
+        });
+
+        wx.ready(function(){
+            wx.hideOptionMenu();
+        });
+    </script>
+    <!-- 微信自定义接口 -->
+</head>
+<body>
+    <div id="top">
+        <div id="title">
+            <div id="text">请绑定订单以获得订单状态</div>
+        </div>
+    </div>
+    <form method="post">
+        <div id="middle">
+            <div id="ordernumber" style="padding-left:12px">订单号</div>
+            <div class="input-numb"><input type="tel" class="input_order" id="inputnumber" name="order_number" placeholder="请输入订单号" /></div>
+        </div>
+        <button class="weui_btn weui_btn_primary" id="save" onclick="return checknull()">手动绑定订单号</button>
+    </form>
+</body>
+</html>
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".input_order").click(function(){
+        $(".input_order").css("color","black");
+    });
+})
+</script>

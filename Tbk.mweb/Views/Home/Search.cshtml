@@ -1,0 +1,289 @@
+﻿@model Top.Api.Response.TbkDgItemCouponGetResponse
+<!doctype html>
+<html>
+<head>
+
+    <title>天天有券</title>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="grey">
+    <meta name="description" content="天天有券">
+
+    <link href="~/Content/css/base.css" rel="stylesheet" />
+    <link href="~/Content/css/tkl.css" rel="stylesheet" />
+    <link href="~/Content/css/index.css" rel="stylesheet" />
+
+
+    <script src="~/Content/js/jq.js"></script>
+    <script src="~/Content/layer/layer.js?v=2018051701"></script>
+    <link href="~/Content/layer/theme/layer.css?v=3.1.1" rel="stylesheet" />
+    <script type="text/javascript">
+
+        window.mobileUtil = (function (win, doc) {
+            var UA = navigator.userAgent,
+                isAndroid = /android|adr/gi.test(UA),
+                isIOS = /iphone|ipod|ipad/gi.test(UA) && !isAndroid,
+                isBlackBerry = /BlackBerry/i.test(UA),
+                isWindowPhone = /IEMobile/i.test(UA),
+                isMobile = isAndroid || isIOS || isBlackBerry || isWindowPhone;
+            return {
+                isAndroid: isAndroid,
+                isIOS: isIOS,
+                isMobile: isMobile,
+                isWeixin: /MicroMessenger/gi.test(UA),
+                isPC: !isMobile
+            };
+        })(window, document);
+         
+    </script>
+
+    <!--翻页样式-->
+    <style>
+        a {
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: none;
+            }
+
+        .layui-laypage a, .layui-laypage span {
+            display: inline-block;
+            vertical-align: middle;
+            padding: 0 15px;
+            border: 1px solid #e2e2e2;
+            height: 28px;
+            line-height: 28px;
+            margin: 0 -1px 5px 0;
+            background-color: #fff;
+            color: #333;
+            font-size: 12px;
+        }
+
+        .layui-laypage .layui-laypage-curr {
+            position: relative;
+        }
+
+        .layui-laypage > :first-child, .layui-laypage > :first-child em {
+            border-radius: 2px 0 0 2px;
+        }
+
+        .layui-laypage span {
+            color: #999;
+            font-weight: 700;
+        }
+
+        .layui-laypage {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 10px 0;
+            font-size: 0;
+        }
+
+        .layui-box, .layui-box * {
+            /* -webkit-box-sizing: content-box!important; */
+            -moz-box-sizing: content-box !important;
+            box-sizing: content-box !important;
+        }
+
+        .layui-laypage .layui-laypage-curr .layui-laypage-em {
+            position: absolute;
+            left: -1px;
+            top: -1px;
+            padding: 1px;
+            width: 100%;
+            height: 100%;
+            background-color: #009688;
+        }
+
+        .layui-laypage .layui-laypage-curr em {
+            position: relative;
+            color: #fff;
+            font-weight: 400;
+        }
+
+        .layui-laypage > :first-child, .layui-laypage > :first-child em {
+            border-radius: 2px 0 0 2px;
+        }
+
+        .layui-flow-more a cite, .layui-laypage em, .layui-tree li a cite, a cite {
+            font-style: normal;
+        }
+
+        .layui-box, .layui-box * {
+            -webkit-box-sizing: content-box !important;
+            -moz-box-sizing: content-box !important;
+            box-sizing: content-box !important;
+        }
+
+        a {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!--用户转发到微信和QQ时会自动抓取body内的第一张图片，要求（图片分辨率要超过300x300）-->
+    <div id="wx_logo" style="margin:0 auto;display:none;">
+        <img src="~/Content/images/logo300.jpg">
+    </div>
+
+    <div id="app">
+        @*<div class="data-info">
+                <i></i><span class="tips">共<s>70726件</s>产品，今日已为您更新<s>18612件</s>优质精品</span><i></i>
+            </div>*@
+        <div class="search">
+            <form action="~/home/search">
+                <input type="text" placeholder="输入宝贝关键字" name="q"><button type="submit"></button>
+            </form>
+        </div>
+        
+
+        <div id="goods">
+            <div id="lists" class="items">
+
+            </div>
+
+            
+        </div>
+
+        <div class="loading" v-show="loading">
+            正在加载
+        </div>
+    </div>
+    <input type="hidden" id="isEnd" value="0">
+    <input type="hidden" id="cid" value="">
+    <input type="hidden" id="search" value="">
+
+
+    @*<script type="text/javascript" src="~/Content/js/index.js?v=2018051704"></script>*@
+    <script src="~/Content/js/common.js"></script>
+    <div id="back_top" class="slide-box">
+        <a href="javascript:;" class="back-top"><img src="~/Content/images/back-top.png"></a>
+    </div>
+
+    @*<script type="text/javascript">
+        $('.mybanner').css('display', 'block');
+
+    </script>*@
+    <script>
+        var orderData = {
+            "items": [],
+            "pageNo": 1,
+            "pageSize": 20
+        }
+        //var vue = new Vue({
+        //    el: "#itemsDiv",
+        //    data: orderData
+        //});
+
+        list();
+
+        $("#back_top").click(function () {
+            $("body,html").animate({ scrollTop: 0 }, 1000);
+        });
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 500) {
+                $("#back_top").fadeIn(1500);
+            }
+            else {
+                $("#back_top").fadeOut(1500);
+            }
+        });
+
+        function list() {
+            $.ajax({
+                type: "post",
+                url: "/home/GetCoupons",
+                data: { q: "@(Request.QueryString["q"])","pageno": orderData.pageNo },
+                dataType: "json",
+                async: true,
+                success: function (result) {
+                    if (result != null && result.success) {
+                        //判断接口返回的数组中有无数据
+                        if (result.data != null && result.data.length>0) {
+
+                            var content = "";
+                            for (var i = 0; i < result.data.length; i++){
+
+                                content += '<div class="item" ><a href="/home/searchDetail?item_id=' + result.data[i].NumIid + '&title=' + result.data[i].Title + '&pict_url=' + result.data[i].PictUrl + '&shop_type=' + (result.data[i].UserType == 1 ? "天猫" : "淘宝") + '&zk_final_price=' + result.data[i].ZkFinalPrice + '&coupon_info=' + result.data[i].CouponInfo.match(/减(\d+)+/)[1] + '&volume=' + result.data[i].Volume + '&coupon_click_url=' + result.data[i].CouponClickUrl + '"> <div class="cover-image"><img src="' + result.data[i].PictUrl + '_290x290.jpg")" class="lazy" alt="' + result.data[i].Title + '">';
+                                content += '</div><div class="item-info"><h1 class="title"><span class="text"><img src="/Content/css/img/' + (result.data[i].UserType == 1 ? 'tmalls' : 'taobao') + '.png" alt="">' + result.data[i].Title + '</span>';
+                                content += '</h1><p class="monthSales"> 月销量 ' + result.data[i].Volume + '笔</p><div class="info"><h2 class="title">券后价</h2><span class="main"><i class="price">¥' + round(result.data[i].ZkFinalPrice - result.data[i].CouponInfo.match(/减(\d+)+/)[1], 1) + '</i>';
+                                content += '<strong class="oriprice" >¥' + result.data[i].ZkFinalPrice + '</strong></span></div><div class="progress" style="float: left"><div class="count-price"><div class="count-price-bgm">';
+                                content += '<i>' + result.data[i].CouponInfo.match(/减(\d+)+/)[1] + '	元</i><s>立即领券</s></div></div></div></div></a></div>';
+                            }
+
+                            $('.loading').css("display", "none");
+                            $("#lists").append(content);
+                        }
+                    } else {
+                        alert(data.msg);
+                    }
+                },
+                error: function (res) {
+
+                }
+            });
+        }
+
+
+
+        //下拉加载数据
+        $(window).bind("scroll", function () {
+            if (getScrollHeight() == getDocumentTop() + getWindowHeight()) {
+                // alert("滑到底部");
+                orderData.pageNo = orderData.pageNo + 1;
+                list();
+            }
+        });
+
+
+
+        //文档高度
+        function getDocumentTop() {
+            var scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;
+            if (document.body) {
+                bodyScrollTop = document.body.scrollTop;
+            }
+            if (document.documentElement) {
+                documentScrollTop = document.documentElement.scrollTop;
+            }
+            scrollTop = (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;
+            console.log("scrollTop:" + scrollTop);
+            return scrollTop;
+        }
+
+        //可视窗口高度
+        function getWindowHeight() {
+            var windowHeight = 0;
+            if (document.compatMode == "CSS1Compat") {
+                windowHeight = document.documentElement.clientHeight;
+            } else {
+                windowHeight = document.body.clientHeight;
+            }
+            console.log("windowHeight:" + windowHeight);
+            return windowHeight;
+        }
+
+        //滚动条滚动高度
+        function getScrollHeight() {
+            var scrollHeight = 0, bodyScrollHeight = 0, documentScrollHeight = 0;
+            if (document.body) {
+                bodyScrollHeight = document.body.scrollHeight;
+            }
+            if (document.documentElement) {
+                documentScrollHeight = document.documentElement.scrollHeight;
+            }
+            scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
+            console.log("scrollHeight:" + scrollHeight);
+            return scrollHeight;
+        }
+    </script>
+
+    <div style="display:none">
+        <script src="https://s13.cnzz.com/z_stat.php?id=1271277377&web_id=1271277377" language="JavaScript"></script>
+    </div>
+</body>
+</html>
