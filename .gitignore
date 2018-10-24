@@ -35,6 +35,7 @@ bld/
 *.VisualState.xml
 TestResult.xml
 Web.config
+app.config
 
 
 # Build Results of an ATL Project
