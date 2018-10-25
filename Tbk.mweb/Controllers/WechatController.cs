@@ -348,7 +348,7 @@ namespace TaobaoKe.Controllers
                         {
                             //刚关注时的时间，用于欢迎词  
                             int nowtime = ConvertDateTimeInt(DateTime.Now);
-                            string msg = "/:rose 亲，您好，我是网购省钱助手。\n您今后在淘宝天猫/拼多多 想购买的商品都可发给我，查询优惠券和返利！\n\n \ue231 <a href='https://mp.weixin.qq.com/s/ho825gKx2VP0oayX7pMdYQ'>点击淘宝优惠券返利教程</a> \n\n \ue231 <a href='https://mp.weixin.qq.com/s/1Nbyse1WBKpSOUjO3gOg0g'>点击拼多多优惠券返利教程</a> \n\n \ue231<a href='http://m.yshizi.cn'>淘宝优惠券商城</a> \n\n \ue231 <a href='https://mobile.yangkeduo.com/duo_cms_mall.html?pid=2495191_31302208cpsSign&state=&opt_id=-1&sort_type=1'>拼多多商城</a> \r\n ";
+                            string msg = "/:rose 亲，您好，我是网购省钱助手。\n您今后在淘宝天猫/拼多多 想购买的商品都可发给我，查询优惠券和返利！\n\n \ue231 <a href='https://mp.weixin.qq.com/s/ho825gKx2VP0oayX7pMdYQ'>点击淘宝优惠券返利教程</a> \n\n \ue231 <a href='https://mp.weixin.qq.com/s/1Nbyse1WBKpSOUjO3gOg0g'>点击拼多多优惠券返利教程</a> \n\n \ue231<a href='http://m.yshizi.cn'>淘宝优惠券商城</a> \n\n \ue231 <a href='https://mobile.yangkeduo.com/duo_cms_mall.html?pid=2495191_31302208cpsSign&state=&opt_id=-1&sort_type=1'>拼多多商城</a> \n\n可把我【设置置顶】，方便购物哦。";
                             string resxml = "<xml><ToUserName><![CDATA[" + xmlMsg.FromUserName + "]]></ToUserName><FromUserName><![CDATA[" + xmlMsg.ToUserName + "]]></FromUserName><CreateTime>" + nowtime + "</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[" + msg + "]]></Content><FuncFlag>0</FuncFlag></xml>";
 
                             try
@@ -410,6 +410,9 @@ namespace TaobaoKe.Controllers
                                 case "hongbao":
 
                                     string msg = "双11超级荭包\n\n活动时间：10月20日-11月10日，每天可领3次！好福利记得分享哦！\n——————\n领取口令：￥FgIib6pJREH￥\n——————\n\ue231①长按复制本段口令消息，\n\ue231②打开手机淘寳领取荭包！";
+                                    return "<xml><ToUserName><![CDATA[" + xmlMsg.FromUserName + "]]></ToUserName><FromUserName><![CDATA[" + xmlMsg.ToUserName + "]]></FromUserName><CreateTime>" + nowtime + "</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[" + msg + "]]></Content><FuncFlag>0</FuncFlag></xml>";
+                                case "usage":
+                                    msg = "\ue231 <a href='https://mp.weixin.qq.com/s/ho825gKx2VP0oayX7pMdYQ'>点击淘宝优惠券返利教程</a> \n\n \ue231 <a href='https://mp.weixin.qq.com/s/1Nbyse1WBKpSOUjO3gOg0g'>点击拼多多优惠券返利教程</a> \n";
                                     return "<xml><ToUserName><![CDATA[" + xmlMsg.FromUserName + "]]></ToUserName><FromUserName><![CDATA[" + xmlMsg.ToUserName + "]]></FromUserName><CreateTime>" + nowtime + "</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[" + msg + "]]></Content><FuncFlag>0</FuncFlag></xml>";
                             }
                             return "";

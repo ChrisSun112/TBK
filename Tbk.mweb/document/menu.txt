@@ -1,0 +1,67 @@
+﻿{
+    "button": [
+        {
+            "name": "领优惠券", 
+            "sub_button": [
+                {
+                    "type": "view", 
+                    "name": "淘宝优惠券", 
+                    "url": "http://m.yshizi.cn", 
+                    "sub_button": [ ]
+                }, 
+                {
+                    "type": "view", 
+                    "name": "拼多多优惠券", 
+                    "url": "https://mobile.yangkeduo.com/duo_cms_mall.html?pid=2495191_31302208cpsSign=CM2495191_31302208_3a1c1a0431608b9c1eb417183d57c1bdduoduo_type=2", 
+                    "sub_button": [ ]
+                }
+            ]
+        }, 
+        {
+            "name": "超级红包", 
+            "sub_button": [
+                {
+                    "type": "click", 
+                    "name": "[红包]双11超级红包", 
+                    "key": "hongbao", 
+                    "sub_button": [ ]
+                }, 
+                {
+                    "type": "click", 
+                    "name": "分享拿红包", 
+                    "key": "tuiguang", 
+                    "sub_button": [ ]
+                }
+            ]
+        }, 
+        {
+            "name": "更多", 
+            "sub_button": [
+                {
+                    "type": "view", 
+                    "name": "个人中心", 
+                    "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxe2c5d6d728777f32&redirect_uri=http%3A%2F%2Fm.yshizi.cn%2Fwechat%2FWebBaseAuthorize&response_type=code&scope=snsapi_base&state=me#wechat_redirect", 
+                    "sub_button": [ ]
+                }, 
+                {
+                    "type": "view", 
+                    "name": "我要提现", 
+                    "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxe2c5d6d728777f32&redirect_uri=http%3A%2F%2Fm.yshizi.cn%2Fwechat%2FWebBaseAuthorize&response_type=code&scope=snsapi_base&state=cash#wechat_redirect", 
+                    "sub_button": [ ]
+                }, 
+                {
+                    "type": "click", 
+                    "name": "领券教程", 
+                    "key": "usage", 
+                    "sub_button": [ ]
+                }, 
+                {
+                    "type": "view", 
+                    "name": "联系客服", 
+                    "url": "https://mmbiz.qpic.cn/mmbiz_jpg/cTZ3Q5ICnWJzzcKpFVMtuCA2fpAqCS9fOpKmrV6kFQaAyZRYWPcm32ofXZq72KPQrYpr00wK36gbpiaxGw2266g/0?wx_fmt=jpeg", 
+                    "sub_button": [ ]
+                }
+            ]
+        }
+    ]
+}

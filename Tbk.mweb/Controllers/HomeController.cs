@@ -92,21 +92,6 @@ namespace TaobaoKe.Controllers
 
         public ActionResult Search()
         {
-
-            //ITopClient client = new DefaultTopClient(config.url, config.appkey, config.secret);
-            //TbkDgItemCouponGetRequest req = new TbkDgItemCouponGetRequest();
-            //req.AdzoneId = config.addzoneId;
-            //req.Platform = 2L;
-
-            //req.PageSize = config.pageSize + 10;
-            //req.Q = q;
-            //req.PageNo = pageno;
-
-            //TbkDgItemCouponGetResponse rsp = client.Execute(req);
-
-            //Common.LogHelper.WriteLog(typeof(HomeController), "搜索记录:" + q);
-
-            //return View(rsp);
             return View();
         }
 
@@ -126,7 +111,7 @@ namespace TaobaoKe.Controllers
 
             TbkDgItemCouponGetResponse rsp = client.Execute(req);
 
-            if (rsp.Results != null && rsp.Results.Count > 0)
+            if (rsp.Results != null)
             {
                 return Json(new { success = true, data = rsp.Results.OrderByDescending(s=>s.Volume) });
             }
@@ -208,6 +193,7 @@ namespace TaobaoKe.Controllers
             }
             return Json(new { success = true, data = list });
         }
+
         public ActionResult JDetail(long id=0)
         {
             

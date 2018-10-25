@@ -217,9 +217,7 @@
                     }
                     //return false;
                 else{
-                        layer.open({
-                            content:data.message, skin: 'msg', time: 3
-                        });
+                        alert(data.message);
                         
                     }
                 }
@@ -253,9 +251,7 @@
                     }
                     //return false;
                     else {
-                        layer.open({
-                            content: data.message, skin: 'msg', time: 3
-                        });
+                        alert(data.message);
 
                     }
                 }
@@ -280,39 +276,35 @@
             var max_money = $("#max_money").val();
             var user_money = $("#user_money").val();
             if (input_money === "") {
-                layer.open({
-                    content: '金额不能为空', skin: 'msg', time: 3
-                });
+             
+                alert('金额不能为空')
                 addBtn();
                 return false;
             }
             if (parseFloat(input_money) < least_money) {
-                layer.open({
-                    content: '最低提现不低于 ' + $("#least_money").val() + ' 元', skin: 'msg', time: 3
-                });
+               
+                alert('最低提现不低于 ' + $("#least_money").val() + ' 元');
                 addBtn();
                 return false;
             }
             if (parseFloat(input_money) > max_money) {
-                layer.open({
-                    content: '最高提现不高于 ' + $("#max_money").val() + ' 元', skin: 'msg', time: 3
-                });
+               
+                alert('最高提现不高于 ' + $("#max_money").val() + ' 元');
                 addBtn();
                 return false;
             }
             if (parseFloat(input_money) > user_money) {
-                layer.open({
-                    content: "您的余额只剩￥" + $("#user_money").val(), skin: 'msg', time: 3
-                });
+           
+
+                alert("您的余额只剩￥" + $("#user_money").val());
                 addBtn();
                 return false;
             }
 
             var openid = getUrlParam("openid");
             if (openid === null || openid === '') {
-                layer.open({
-                    content: "丢失参数", skin: 'msg', time: 3
-                });
+                
+                alert("丢失参数");
                 addBtn();
                 return false;
             }
@@ -325,16 +317,15 @@
                 data: { openid: openid, cashouttotal: parseFloat(input_money) },
                 success: function (data) {
                     if (data.success === true) {
-                        layer.open({
-                            content: "提现成功！", skin: 'msg', time: 3
-                        });
+                        alert("提现申请成功，我们将在在二个工作日内审核！")
+                        
                         addBtn();
                         window.location.reload();
                         //return false;
                     } else {
-                        layer.open({
-                            content: data.message, skin: 'msg', time: 3
-                        });
+
+                        alert(data.message);
+                      
                         addBtn();
                         return false;
                     }
@@ -343,6 +334,8 @@
         }
     </script>
 
-
+    <div style="display:none">
+        <script src="https://s13.cnzz.com/z_stat.php?id=1271277377&web_id=1271277377" language="JavaScript"></script>
+    </div>
 </body>
 </html>

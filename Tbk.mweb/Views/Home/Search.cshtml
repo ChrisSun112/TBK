@@ -202,10 +202,12 @@
                 async: true,
                 success: function (result) {
                     if (result != null && result.success) {
+
+                        var content = "";
                         //判断接口返回的数组中有无数据
                         if (result.data != null && result.data.length>0) {
 
-                            var content = "";
+                            
                             for (var i = 0; i < result.data.length; i++){
 
                                 content += '<div class="item" ><a href="/home/searchDetail?item_id=' + result.data[i].NumIid + '&title=' + result.data[i].Title + '&pict_url=' + result.data[i].PictUrl + '&shop_type=' + (result.data[i].UserType == 1 ? "天猫" : "淘宝") + '&zk_final_price=' + result.data[i].ZkFinalPrice + '&coupon_info=' + result.data[i].CouponInfo.match(/减(\d+)+/)[1] + '&volume=' + result.data[i].Volume + '&coupon_click_url=' + result.data[i].CouponClickUrl + '"> <div class="cover-image"><img src="' + result.data[i].PictUrl + '_290x290.jpg")" class="lazy" alt="' + result.data[i].Title + '">';
@@ -217,6 +219,10 @@
 
                             $('.loading').css("display", "none");
                             $("#lists").append(content);
+                        } else if (result.data != null && result.data.length == 0) {
+                            content += '<div class="item" ><p style="margin-left:20px;">关键字太长，没有找到你要的商品，请换关键字重试。</p></div>';
+                            $('.loading').css("display", "none");
+                            $("#lists").html(content);
                         }
                     } else {
                         alert(data.msg);

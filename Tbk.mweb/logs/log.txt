@@ -185,3 +185,17 @@ ERROR 2018-10-23 10:03:06,628 111316ms WechatController       WriteLog          
 ERROR 2018-10-23 10:32:10,745  4043ms WechatController       WriteLog           - <xml><ToUserName><![CDATA[toUser]]></ToUserName>  <FromUserName><![CDATA[fromUser]]></FromUserName>  <CreateTime>1348831860</CreateTime>  <MsgType><![CDATA[text]]></MsgType> <Content><![CDATA[http://mobile.yangkeduo.com/goods.html?goods_id=2803851322&ts=1540122616202&state=]]></Content>  <MsgId>1234567890123456</MsgId> </xml>
 ERROR 2018-10-23 12:43:06,826 51751ms WechatController       WriteLog           - <xml><ToUserName><![CDATA[toUser]]></ToUserName>  <FromUserName><![CDATA[fromUser]]></FromUserName>  <CreateTime>1348831860</CreateTime>  <MsgType><![CDATA[text]]></MsgType> <Content><![CDATA[242226243293916259]]></Content>  <MsgId>1234567890123456</MsgId> </xml>
 ERROR 2018-10-23 12:43:41,359 86285ms WechatController       WriteLog           - <xml><ToUserName><![CDATA[toUser]]></ToUserName>  <FromUserName><![CDATA[fromUser]]></FromUserName>  <CreateTime>1348831860</CreateTime>  <MsgType><![CDATA[text]]></MsgType> <Content><![CDATA[http://mobile.yangkeduo.com/goods.html?goods_id=2803851322&ts=1540122616202&state=]]></Content>  <MsgId>1234567890123456</MsgId> </xml>
+ERROR 2018-10-25 10:41:59,546 120239ms HomeController         WriteLog           - 搜索记录:徐航
+ERROR 2018-10-25 10:42:37,927 158619ms HomeController         WriteLog           - 搜索记录:搜索记录
+ERROR 2018-10-25 10:44:15,182 255875ms HomeController         WriteLog           - 搜索记录:MG小象高腰牛仔裤女2018新款复古宽松显瘦直筒裤学生chic早秋裤子
+ERROR 2018-10-25 10:45:14,595 315288ms HomeController         WriteLog           - 搜索记录:MG小象高腰牛仔裤女2018新款复古宽松显瘦直筒裤学生chic早秋裤子
+ERROR 2018-10-25 10:45:57,144 357836ms HomeController         WriteLog           - 搜索记录:MG小象高腰牛仔裤女2018新款复古宽松显瘦直筒裤学生chic早秋裤子
+ERROR 2018-10-25 10:48:51,694 76456ms HomeController         WriteLog           - 搜索记录:MG小象高腰牛仔裤女2018新款复古宽松显瘦直筒裤学生chic早秋裤子
+ERROR 2018-10-25 10:50:38,199 182961ms HomeController         WriteLog           - 搜索记录:MG小象高腰牛仔裤女2018新款复古宽松显瘦直筒裤学生chic早秋裤子
+ERROR 2018-10-25 10:51:04,167 208929ms HomeController         WriteLog           - 搜索记录:MG小象高腰牛仔裤女2018新款复古宽松显瘦直筒裤学生chic早秋裤子
+ERROR 2018-10-25 10:51:13,662 218425ms HomeController         WriteLog           - 搜索记录:MG小象高腰牛仔裤女2018新款复古宽松显瘦直筒裤学生chic早秋裤子
+ERROR 2018-10-25 10:52:09,040 273802ms HomeController         WriteLog           - 搜索记录:MG小象高腰牛仔裤女2018新款复古宽松显瘦直筒裤学生chic早秋裤子
+ERROR 2018-10-25 10:52:21,385 286147ms HomeController         WriteLog           - 搜索记录:MG小象高腰牛仔裤女2018新款复古宽松显瘦直筒裤学生chic早秋裤子
+ERROR 2018-10-25 10:58:06,064 20296ms HomeController         WriteLog           - 搜索记录:
+ERROR 2018-10-25 10:58:51,467 65699ms HomeController         WriteLog           - 搜索记录:MG小象高腰牛仔裤女2018新款复古宽松显瘦直筒裤学生chic早秋裤子
+ERROR 2018-10-25 10:59:05,839 80070ms HomeController         WriteLog           - 搜索记录:MG小象高腰牛仔裤女2018新款复古宽松显瘦直筒裤学生chic早秋裤子

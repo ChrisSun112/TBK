@@ -177,6 +177,7 @@
     <Content Include="Content\layui\layui.js" />
     <Content Include="Content\layui\lay\flow.js" />
     <Content Include="Content\layui\lay\laypage.js" />
+    <Content Include="document\menu.txt" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
