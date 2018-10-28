@@ -12,6 +12,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -33,6 +34,8 @@ namespace TaobaoKe.Controllers
         private string Token = "weixin";
         private decimal commission_rate = decimal.Parse(ConfigurationManager.AppSettings["commission_rate"].ToString());
         private string pdd_pid = ConfigurationManager.AppSettings["pdd_pid"].ToString();
+
+        private HttpClient client = new HttpClient();
 
         public WechatController()
         {
@@ -227,6 +230,43 @@ namespace TaobaoKe.Controllers
             return Json(new { data = (string)jobject["data"]["pcDescContent"] });
         }
 
+        public async Task<JsonResult> GetDetailImageAsync(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return Json(new { success = false, message = "id不能为空" });
+            }
+
+            string url = $"http://demo.huiyunmp.cn/index.php?s=tcms/goods&id={id}&pid=1000089_28822128&tbpid=mm_14645718_25722686_116308606";
+
+            var httpResponse = await client.GetAsync(url);
+
+            if (httpResponse.IsSuccessStatusCode)
+            {
+                var content = await httpResponse.Content.ReadAsStringAsync();
+                Document docNoval = NSoup.NSoupClient.Parse(content);
+
+
+                Element ele = docNoval.GetElementById("descimg");
+
+                var imagelist = ele.GetElementsByClass("lazy");
+
+                IList<string> list = new List<string>();
+
+                foreach (var g in imagelist)
+                {
+                    list.Add(g.Attr("src"));
+                }
+                return Json(new { success = true, data = list });
+            }
+            else
+            {
+                return Json(new { success = false });
+            }
+
+               
+        }
+
         public JsonResult GetDetailImage(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -236,7 +276,7 @@ namespace TaobaoKe.Controllers
 
             string url = $"http://demo.huiyunmp.cn/index.php?s=tcms/goods&id={id}&pid=1000089_28822128&tbpid=mm_14645718_25722686_116308606";
 
-            string htmlChild = HttpUtility.HttpGet(url, "", "utf-8");
+            string htmlChild =  HttpUtility.HttpGet(url, "", "utf-8");
 
             Document docNoval = NSoup.NSoupClient.Parse(htmlChild);
 

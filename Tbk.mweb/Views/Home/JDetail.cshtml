@@ -380,7 +380,7 @@
                     }
                 });*@
 
-                 $.post("/wechat/GetDetailImage", { id: '@(Model.item_id)' }, function (result) {
+                $.post("/wechat/GetDetailImageAsync", { id: '@(Model.item_id)' }, function (result) {
                     if (result.success == true) {
                         var images = result.data;
                         var img_html = "";
