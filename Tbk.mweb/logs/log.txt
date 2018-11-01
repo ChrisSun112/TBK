@@ -199,3 +199,9 @@ ERROR 2018-10-25 10:52:21,385 286147ms HomeController         WriteLog          
 ERROR 2018-10-25 10:58:06,064 20296ms HomeController         WriteLog           - 搜索记录:
 ERROR 2018-10-25 10:58:51,467 65699ms HomeController         WriteLog           - 搜索记录:MG小象高腰牛仔裤女2018新款复古宽松显瘦直筒裤学生chic早秋裤子
 ERROR 2018-10-25 10:59:05,839 80070ms HomeController         WriteLog           - 搜索记录:MG小象高腰牛仔裤女2018新款复古宽松显瘦直筒裤学生chic早秋裤子
+ERROR 2018-10-30 16:35:00,137 103169ms config                 WriteLog           - 生成淘宝口令失败未将对象引用设置到对象的实例。
+ERROR 2018-10-30 16:35:00,189 103221ms config                 WriteLog           - 生成淘宝口令失败,url为https:undefined
+ERROR 2018-10-30 16:35:34,602 137634ms config                 WriteLog           - 生成淘宝口令失败未将对象引用设置到对象的实例。
+ERROR 2018-10-30 16:35:34,603 137635ms config                 WriteLog           - 生成淘宝口令失败,url为https:undefined
+ERROR 2018-10-30 16:36:04,188 167220ms config                 WriteLog           - 生成淘宝口令失败未将对象引用设置到对象的实例。
+ERROR 2018-10-30 16:36:04,188 167220ms config                 WriteLog           - 生成淘宝口令失败,url为https:undefined

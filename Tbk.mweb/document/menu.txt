@@ -6,7 +6,13 @@
                 {
                     "type": "view", 
                     "name": "淘宝优惠券", 
-                    "url": "http://m.yshizi.cn", 
+                    "url": "http://tk.yshizi.cn/tbk/?r=index/wap", 
+                    "sub_button": [ ]
+                }, 
+				{
+                    "type": "view", 
+                    "name": "京东优惠券", 
+                    "url": "http://tk.yshizi.cn/", 
                     "sub_button": [ ]
                 }, 
                 {
@@ -18,9 +24,15 @@
             ]
         }, 
         {
-            "name": "超级红包", 
+            "name": "粉丝福利", 
             "sub_button": [
                 {
+                    "type": "click", 
+                    "name": "[红包]双11心愿清单", 
+                    "key": "xinyuan", 
+                    "sub_button": [ ]
+                }, 
+				{
                     "type": "click", 
                     "name": "[红包]双11超级红包", 
                     "key": "hongbao", 

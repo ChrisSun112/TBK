@@ -454,6 +454,9 @@ namespace TaobaoKe.Controllers
                                 case "usage":
                                     msg = "\ue231 <a href='https://mp.weixin.qq.com/s/ho825gKx2VP0oayX7pMdYQ'>点击淘宝优惠券返利教程</a> \n\n \ue231 <a href='https://mp.weixin.qq.com/s/1Nbyse1WBKpSOUjO3gOg0g'>点击拼多多优惠券返利教程</a> \n";
                                     return "<xml><ToUserName><![CDATA[" + xmlMsg.FromUserName + "]]></ToUserName><FromUserName><![CDATA[" + xmlMsg.ToUserName + "]]></FromUserName><CreateTime>" + nowtime + "</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[" + msg + "]]></Content><FuncFlag>0</FuncFlag></xml>";
+                                case "xinyuan":
+                                    msg = "双11心愿清单\n\n【快来帮我助力心愿单，双11当天抽10人赢免单哦】\n好福利记得分享哦！\n￥z9sTbiU4lRB￥\n——————\n\ue231①长按复制本段口令消息，\n\ue231②打开手机淘寳助力！";
+                                    return "<xml><ToUserName><![CDATA[" + xmlMsg.FromUserName + "]]></ToUserName><FromUserName><![CDATA[" + xmlMsg.ToUserName + "]]></FromUserName><CreateTime>" + nowtime + "</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[" + msg + "]]></Content><FuncFlag>0</FuncFlag></xml>";
                             }
                             return "";
                         }
@@ -656,7 +659,7 @@ namespace TaobaoKe.Controllers
 
             if (goods==null) //无优惠券 无佣金
             {
-                return " 亲，这款商品的优惠返利活动结束了~\n请换个商品试试吧。\n========================\n\ue231    <a href='https://mobile.yangkeduo.com/duo_cms_mall.html?pid=2495191_31302208cpsSign=CM2495191_31302208_3a1c1a0431608b9c1eb417183d57c1bdduoduo_type=2'>拼多多优惠券商城</a>\n下单确认收货后就能收到返利佣金啦~";
+                return "/:rose 亲，这款商品的优惠返利活动结束了~\n请换个商品试试吧。\n========================\n\ue231    <a href='https://mobile.yangkeduo.com/duo_cms_mall.html?pid=2495191_31302208cpsSign=CM2495191_31302208_3a1c1a0431608b9c1eb417183d57c1bdduoduo_type=2'>拼多多优惠券商城</a>\n下单确认收货后就能收到返利佣金啦~";
             }
             else if(goods.HasCoupon) //有优惠券 有佣金
             {
@@ -672,9 +675,12 @@ namespace TaobaoKe.Controllers
                     });
 
 
-                    return $" 亲，商品信息如下~\n========================\n{goods.GoodsName}\n【在售价】{((decimal)goods.MinNormalPrice) / 100}元\n【券后价】{Math.Round(((decimal)(goods.MinNormalPrice - goods.CouponDiscount)) / 100,2)}元\n【约返利】{Math.Round((decimal)((goods.MinNormalPrice - goods.CouponDiscount) * goods.PromotionRate) / 100000,2)}元\n\ue231 <a href='{promotionUrlModel.GoodsPromotionUrlGenerateResponse.GoodsPromotionUrlList.FirstOrDefault().Url}'>拼多多返利下单</a>\n下单确认收货后就能收到返利佣金啦~";
+                    return $"/:rose 亲，商品信息如下~\n========================\n{goods.GoodsName}\n【在售价】{((decimal)goods.MinGroupPrice) / 100}元\n【券后价】{Math.Round(((decimal)(goods.MinGroupPrice - goods.CouponDiscount.Value)) / 100, 2)}元\n\ue231 <a href='{promotionUrlModel.GoodsPromotionUrlGenerateResponse.GoodsPromotionUrlList.FirstOrDefault().Url}'>点击这里下单</a>\n下单确认收货后就能收到返利佣金啦~";
 
-                }catch(Exception ex)
+                    //return $"/:rose 亲，商品信息如下~\n========================\n{goods.GoodsName}\n【在售价】{((decimal)goods.MinGroupPrice) / 100}元\n【券后价】{Math.Round(((decimal)(goods.MinGroupPrice - goods.CouponDiscount.Value)) / 100,2)}元\n【约返利】{Math.Round((decimal)((goods.MinNormalPrice - goods.CouponDiscount.Value) * goods.PromotionRate) / 100000,2)}元\n\ue231 <a href='{promotionUrlModel.GoodsPromotionUrlGenerateResponse.GoodsPromotionUrlList.FirstOrDefault().Url}'>点击这里下单</a>\n下单确认收货后就能收到返利佣金啦~";
+
+                }
+                catch (Exception ex)
                 {
                     LogHelper.WriteLog(typeof(WechatController), "调用拼多多获取推广链接失败" + ex.Message);
                     return "";
@@ -694,7 +700,7 @@ namespace TaobaoKe.Controllers
                     });
 
 
-                    return $"亲，商品信息如下~\n========================\n{goods.GoodsName}\n【在售价】{((decimal)goods.MinNormalPrice) / 100}元\n【约返利】{Math.Round((decimal)(goods.MinNormalPrice * goods.PromotionRate) / 100000,2)}元\n\ue231 <a href='{promotionUrlModel.GoodsPromotionUrlGenerateResponse.GoodsPromotionUrlList.FirstOrDefault().Url}'>拼多多返利下单</a>\n下单确认收货后就能收到返利佣金啦~";
+                    return $"/:rose 亲，商品信息如下~\n========================\n{goods.GoodsName}\n【在售价】{((decimal)goods.MinGroupPrice) / 100}元\n【约返利】{Math.Round((decimal)(goods.MinGroupPrice * goods.PromotionRate) / 100000,2)}元\n\ue231 <a href='{promotionUrlModel.GoodsPromotionUrlGenerateResponse.GoodsPromotionUrlList.FirstOrDefault().Url}'>点击这里下单</a>\n下单确认收货后就能收到返利佣金啦~";
                 }catch(Exception ex)
                 {
                     LogHelper.WriteLog(typeof(WechatController), "调用拼多多获取推广链接失败" + ex.Message);
@@ -783,13 +789,15 @@ namespace TaobaoKe.Controllers
                         var g = rsp.ResultList.Where(y => !string.IsNullOrEmpty(y.CouponId)).OrderByDescending(w => w.Volume).FirstOrDefault();
                         if (g == null)
                         {
-                            responeMessage = responeMessage = "亲，这款商品的优惠返利活动结束了~\n请换一个商品试试吧。\n========================\n\ue231 <a href='http://m.yshizi.cn'>掏宝优惠券商城</a> \n";
+                            responeMessage = responeMessage = ConfigurationManager.AppSettings["tbk_nocoupon_msg"].Replace("\\n", "\n").Replace("\\ue231", "\ue231"); 
 
                         }
                         else
                         {
                             var hongbao = (decimal.Parse(g.ZkFinalPrice) - decimal.Parse(Regex.Match(g.CouponInfo, "减" + @"(\d+)").Groups[1].Value)) * decimal.Parse(g.CommissionRate) / 10000 * commission_rate;
-                            responeMessage = $"{g.Title}\n【在售价】{g.ZkFinalPrice}元\n【巻后价】{Math.Round(double.Parse(g.ZkFinalPrice) - double.Parse(Regex.Match(g.CouponInfo, "减" + @"(\d+)").Groups[1].Value), 2)} 元\n【约返利】{Math.Round(hongbao, 2)}元\n复制这条信息，打开「手机绹宝」领巻下单{config.GetTaobaoKePassword(g.CouponShareUrl, g.PictUrl + "_400x400.jpg")}\n==========================\n下单确认收货后就能收到返利佣金啦~";
+                            //responeMessage = $"{g.Title}\n【在售价】{g.ZkFinalPrice}元\n【巻后价】{Math.Round(double.Parse(g.ZkFinalPrice) - double.Parse(Regex.Match(g.CouponInfo, "减" + @"(\d+)").Groups[1].Value), 2)} 元\n【约返利】{Math.Round(hongbao, 2)}元\n复制这条信息，打开「手机绹宝」领巻下单{config.GetTaobaoKePassword(g.CouponShareUrl, g.PictUrl + "_400x400.jpg")}\n==========================\n下单确认收货后就能收到返利佣金啦~";
+
+                            responeMessage = $"{g.Title}\n【在售价】{g.ZkFinalPrice}元\n【巻后价】{Math.Round(double.Parse(g.ZkFinalPrice) - double.Parse(Regex.Match(g.CouponInfo, "减" + @"(\d+)").Groups[1].Value), 2)} 元\n复制这条信息，打开「手机绹宝」领巻下单{config.GetTaobaoKePassword(g.CouponShareUrl, g.PictUrl + "_400x400.jpg")}\n";
 
                         }
                         return responeMessage;
@@ -808,7 +816,7 @@ namespace TaobaoKe.Controllers
                             var g = rsp.ResultList.Where(y => !string.IsNullOrEmpty(y.CouponId)).OrderByDescending(y => y.Volume).FirstOrDefault();
 
                             var hongbao = (decimal.Parse(g.ZkFinalPrice) - decimal.Parse(Regex.Match(g.CouponInfo, "减" + @"(\d+)").Groups[1].Value)) * decimal.Parse(g.CommissionRate) / 10000 * commission_rate;
-                            responeMessage = $"{g.Title}\n【在售价】{g.ZkFinalPrice}元\n【巻后价】{Math.Round(double.Parse(g.ZkFinalPrice) - double.Parse(Regex.Match(g.CouponInfo, "减" + @"(\d+)").Groups[1].Value), 2)} 元\n【约返利】{Math.Round(hongbao, 2)}元\n复制这条信息，打开「手机绹宝」领巻下单{config.GetTaobaoKePassword(g.CouponShareUrl, g.PictUrl + "_400x400.jpg")}\n==========================\n下单确认收货后就能收到返利佣金啦~";
+                            responeMessage = $"{g.Title}\n【在售价】{g.ZkFinalPrice}元\n【巻后价】{Math.Round(double.Parse(g.ZkFinalPrice) - double.Parse(Regex.Match(g.CouponInfo, "减" + @"(\d+)").Groups[1].Value), 2)} 元\n复制这条信息，打开「手机绹宝」领巻下单{config.GetTaobaoKePassword(g.CouponShareUrl, g.PictUrl + "_400x400.jpg")}\n";
 
                             return responeMessage;
 
@@ -829,7 +837,7 @@ namespace TaobaoKe.Controllers
                                 else
                                 {
                                     var hongbao = (decimal.Parse(g.ZkFinalPrice)- decimal.Parse(Regex.Match(g.CouponInfo, "减" + @"(\d+)").Groups[1].Value)) * decimal.Parse(g.CommissionRate) / 10000 * commission_rate;
-                                    responeMessage = $"{g.Title}\n【在售价】{g.ZkFinalPrice}元\n【巻后价】{Math.Round(double.Parse(g.ZkFinalPrice) - double.Parse(Regex.Match(g.CouponInfo, "减" + @"(\d+)").Groups[1].Value), 2)} 元\n【约返利】{Math.Round(hongbao, 2)}元\n复制这条信息，打开「手机绹宝」领巻下单{config.GetTaobaoKePassword(g.CouponShareUrl, g.PictUrl + "_400x400.jpg")}\n==========================\n下单确认收货后就能收到返利佣金啦~";
+                                    responeMessage = $"{g.Title}\n【在售价】{g.ZkFinalPrice}元\n【巻后价】{Math.Round(double.Parse(g.ZkFinalPrice) - double.Parse(Regex.Match(g.CouponInfo, "减" + @"(\d+)").Groups[1].Value), 2)} 元\n复制这条信息，打开「手机绹宝」领巻下单{config.GetTaobaoKePassword(g.CouponShareUrl, g.PictUrl + "_400x400.jpg")}\n";
                                     return responeMessage;
                                 }
                             }
@@ -840,13 +848,13 @@ namespace TaobaoKe.Controllers
 
                         if (w == null)
                         {
-                            responeMessage = "亲，这款商品的优惠返利活动结束了~\n请换一个商品试试吧。\n========================\n\ue231 <a href='http://m.yshizi.cn'>掏宝优惠券商城</a> \n";
+                            responeMessage = ConfigurationManager.AppSettings["tbk_nocoupon_msg"].Replace("\\n", "\n").Replace("\\ue231", "\ue231"); 
                         }
                         else
                         {
                             var hongbao = (decimal.Parse(w.ZkFinalPrice) - decimal.Parse(Regex.Match(w.CouponInfo, "减" + @"(\d+)").Groups[1].Value)) * decimal.Parse(w.CommissionRate) / 10000 * commission_rate;
 
-                            responeMessage = $"亲，这款商品的优惠返利活动结束了~\n已为你推荐以下宝贝。\n==========================\n{w.Title}\n【在售价】{w.ZkFinalPrice}元\n【巻后价】{Math.Round(double.Parse(w.ZkFinalPrice) - double.Parse(Regex.Match(w.CouponInfo, "减" + @"(\d+)").Groups[1].Value), 2)} 元\n【约返利】{Math.Round(hongbao, 2)}元\n复制这条信息，打开「手机绹宝」领巻下单{config.GetTaobaoKePassword(w.CouponShareUrl, w.PictUrl + "_400x400.jpg")}\n==========================\n下单确认收货后就能收到返利佣金啦~";
+                            responeMessage = $"/:rose 亲，这款商品的优惠返利活动结束了~\n已为你推荐以下宝贝。\n==========================\n{w.Title}\n【在售价】{w.ZkFinalPrice}元\n【巻后价】{Math.Round(double.Parse(w.ZkFinalPrice) - double.Parse(Regex.Match(w.CouponInfo, "减" + @"(\d+)").Groups[1].Value), 2)} 元\n复制这条信息，打开「手机绹宝」领巻下单{config.GetTaobaoKePassword(w.CouponShareUrl, w.PictUrl + "_400x400.jpg")}\n";
                         }
 
                         return responeMessage;
@@ -857,7 +865,7 @@ namespace TaobaoKe.Controllers
                 }
                 else
                 {
-                    responeMessage = "亲，这款商品的优惠返利活动结束了~\n请换一个商品试试吧。\n========================\n\ue231 <a href='http://m.yshizi.cn'>掏宝优惠券商城</a> \n";
+                    responeMessage = ConfigurationManager.AppSettings["tbk_nocoupon_msg"].Replace("\\n", "\n").Replace("\\ue231", "\ue231");
 
                 }
 

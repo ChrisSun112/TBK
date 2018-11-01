@@ -38,7 +38,7 @@ namespace Tbk.Common
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url + (postDataStr == "" ? "" : "?") + postDataStr);
             request.Method = "GET";
             HttpWebResponse response;
-            request.ContentType = "text/html;charset=" + encode;
+            request.ContentType = "text/html;charset=";
             try
             {
                 response = (HttpWebResponse)request.GetResponse();

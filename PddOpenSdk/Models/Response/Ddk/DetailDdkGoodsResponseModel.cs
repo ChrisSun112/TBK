@@ -105,37 +105,37 @@ namespace PddOpenSdk.Models.Response.Ddk
         /// Examples: 300
         /// </summary>
         [JsonProperty("coupon_min_order_amount")]
-        public int CouponMinOrderAmount { get; set; }
+        public int? CouponMinOrderAmount { get; set; }
 
         /// <summary>
         /// Examples: 300
         /// </summary>
         [JsonProperty("coupon_discount")]
-        public int CouponDiscount { get; set; }
+        public int? CouponDiscount { get; set; }
 
         /// <summary>
         /// Examples: 50000
         /// </summary>
         [JsonProperty("coupon_total_quantity")]
-        public int CouponTotalQuantity { get; set; }
+        public int? CouponTotalQuantity { get; set; }
 
         /// <summary>
         /// Examples: 49940
         /// </summary>
         [JsonProperty("coupon_remain_quantity")]
-        public int CouponRemainQuantity { get; set; }
+        public int? CouponRemainQuantity { get; set; }
 
         /// <summary>
         /// Examples: 1525536000
         /// </summary>
         [JsonProperty("coupon_start_time")]
-        public int CouponStartTime { get; set; }
+        public int? CouponStartTime { get; set; }
 
         /// <summary>
         /// Examples: 1525967999
         /// </summary>
         [JsonProperty("coupon_end_time")]
-        public int CouponEndTime { get; set; }
+        public int? CouponEndTime { get; set; }
 
         /// <summary>
         /// Examples: 150

@@ -13,6 +13,15 @@ namespace PddOpenSdk.Services.PddApi
             var result = await PostAsync<DetailDdkGoodsRequestModel, DetailDdkGoodsResponseModel>("pdd.ddk.goods.detail", detailDdkGoods);
             return result;
         }
+
+        /// <summary>
+        /// 多多进宝商品详情查询
+        /// </summary>
+        public DetailDdkGoodsResponseModel DetailDdkGoods(DetailDdkGoodsRequestModel detailDdkGoods)
+        {
+            var result = Post<DetailDdkGoodsRequestModel, DetailDdkGoodsResponseModel>("pdd.ddk.goods.detail", detailDdkGoods);
+            return result;
+        }
         /// <summary>
         /// 多多进宝商品查询
         /// </summary>

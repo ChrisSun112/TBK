@@ -87,6 +87,52 @@ namespace PddOpenSdk.Services
             
             return Activator.CreateInstance<TResult>();
         }
+
+        protected TResult Post<TModel, TResult>(string type, TModel model)
+        {
+            if (string.IsNullOrEmpty(ClientId) || string.IsNullOrEmpty(ClientSecret))
+            {
+                throw new Exception("请检查是否设置ClientId、ClientSecret及AccessToken");
+            }
+
+
+            TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            // 类型转换到字典
+            var dic = Function.ToDictionary(model);
+            // 添加公共参数
+            dic.Add("access_token", AccessToken);
+            dic.Add("client_id", ClientId);
+            dic.Add("data_type", "JSON");
+            dic.Add("versioin", "V1");
+            dic.Add("timestamp", ((long)(ts.TotalSeconds)).ToString());
+            if (dic.Keys.Any(k => k == "type"))
+            {
+                dic.Remove("type");
+                dic.Add("type", type);
+            }
+            // 添加签名
+            dic.Add("sign", BuildSign(dic));
+
+   
+
+            var jsonResult = HttpUtility.SendPostHttpRequest(ApiUrl, "application/json", JsonConvert.SerializeObject(dic));
+
+            var jObject = JObject.Parse(jsonResult);
+            if (jObject.TryGetValue("error_response", out var errorResponse))
+            {
+                // TODO:记录异常
+                LogHelper.WriteLog(typeof(PddCommonApi), jsonResult + "\r\n");
+
+                return Activator.CreateInstance<TResult>();
+            }
+            else
+            {
+                return JsonConvert.DeserializeObject<TResult>(jsonResult);
+            }
+
+            return Activator.CreateInstance<TResult>(); ;
+
+        }
         /// <summary>
         /// 生成签名
         /// </summary>

@@ -413,7 +413,7 @@
         var timestamp = new Date().getSeconds();
         var nonceStr = create_noncestr();
         var url = window.location.href;
-        var signature = create_signature(nonceStr, '@Common.AccessTokenHelper.GetJsapiTicket()', timestamp, url);
+        var signature = create_signature(nonceStr, '@Tbk.Common.AccessTokenHelper.GetJsapiTicket()', timestamp, url);
    
         //配置微信信息
         wx.config({

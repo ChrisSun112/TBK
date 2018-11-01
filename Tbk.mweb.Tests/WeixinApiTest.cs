@@ -9,6 +9,7 @@ namespace Tbk.mweb.Tests
     [TestClass]
     public class WeixinApiTest
     {
+        
         [TestMethod]
         public void SendTemplateMsg()
         {

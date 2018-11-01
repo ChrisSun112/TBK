@@ -312,6 +312,7 @@
     <Compile Include="Models\Response\Goods\UpdateGoodsSkuStockIncrementResponseModel.cs" />
     <Compile Include="Models\Response\Goods\UpdateGoodsSkuStockResponseModel.cs" />
     <Compile Include="Models\Response\Goods\UploadGoodsImageResponseModel.cs" />
+    <Compile Include="Models\Response\Haojingke\HjkGoodsDetailResponseModel.cs" />
     <Compile Include="Models\Response\Invoice\QueryInvoiceApplicationResponseModel.cs" />
     <Compile Include="Models\Response\Invoice\QueryInvoiceDetailResponseModel.cs" />
     <Compile Include="Models\Response\Invoice\UpdateInvoiceApplicationResponseModel.cs" />
@@ -368,6 +369,7 @@
     <Compile Include="Services\PddApi\DdkOauthApi.cs" />
     <Compile Include="Services\PddApi\ErpApi.cs" />
     <Compile Include="Services\PddApi\GoodsApi.cs" />
+    <Compile Include="Services\HaojingkeApi.cs" />
     <Compile Include="Services\PddApi\InvoiceApi.cs" />
     <Compile Include="Services\PddApi\LogisticsApi.cs" />
     <Compile Include="Services\PddApi\LogisticsCsApi.cs" />
