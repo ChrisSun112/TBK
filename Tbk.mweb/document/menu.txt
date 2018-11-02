@@ -49,18 +49,7 @@
         {
             "name": "更多", 
             "sub_button": [
-                {
-                    "type": "view", 
-                    "name": "个人中心", 
-                    "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxe2c5d6d728777f32&redirect_uri=http%3A%2F%2Fm.yshizi.cn%2Fwechat%2FWebBaseAuthorize&response_type=code&scope=snsapi_base&state=me#wechat_redirect", 
-                    "sub_button": [ ]
-                }, 
-                {
-                    "type": "view", 
-                    "name": "我要提现", 
-                    "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxe2c5d6d728777f32&redirect_uri=http%3A%2F%2Fm.yshizi.cn%2Fwechat%2FWebBaseAuthorize&response_type=code&scope=snsapi_base&state=cash#wechat_redirect", 
-                    "sub_button": [ ]
-                }, 
+               
                 {
                     "type": "click", 
                     "name": "领券教程", 

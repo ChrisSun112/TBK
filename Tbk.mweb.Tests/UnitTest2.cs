@@ -67,7 +67,7 @@ namespace Tbk.mweb.Tests
            
             ExmlMsg msg = new ExmlMsg() { Content = "http://mobile.yangkeduo.com/goods.html?goods_id=496395155" };
 
-            var result = wechatController.TextCaseAsync(msg);
+            //var result = wechatController.TextCaseAsync(msg);
         }
     }
 }

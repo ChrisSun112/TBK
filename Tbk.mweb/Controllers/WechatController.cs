@@ -35,6 +35,10 @@ namespace TaobaoKe.Controllers
         private decimal commission_rate = decimal.Parse(ConfigurationManager.AppSettings["commission_rate"].ToString());
         private string pdd_pid = ConfigurationManager.AppSettings["pdd_pid"].ToString();
 
+        private HaojingkeApi hjkApi = new HaojingkeApi("f7e704a8ae9fc8bc", "1534105049", "http://api-gw.haojingke.com/index.php/api/index/myapi");
+
+
+
         private HttpClient client = new HttpClient();
 
         public WechatController()
@@ -388,7 +392,7 @@ namespace TaobaoKe.Controllers
                         {
                             //刚关注时的时间，用于欢迎词  
                             int nowtime = ConvertDateTimeInt(DateTime.Now);
-                            string msg = "/:rose 亲，您好，我是网购省钱助手。\n您今后在淘宝天猫/拼多多 想购买的商品都可发给我，查询优惠券和返利！\n\n \ue231 <a href='https://mp.weixin.qq.com/s/ho825gKx2VP0oayX7pMdYQ'>点击淘宝优惠券返利教程</a> \n\n \ue231 <a href='https://mp.weixin.qq.com/s/1Nbyse1WBKpSOUjO3gOg0g'>点击拼多多优惠券返利教程</a> \n\n \ue231<a href='http://m.yshizi.cn'>淘宝优惠券商城</a> \n\n \ue231 <a href='https://mobile.yangkeduo.com/duo_cms_mall.html?pid=2495191_31302208cpsSign&state=&opt_id=-1&sort_type=1'>拼多多商城</a> \n\n可把我【设置置顶】，方便购物哦。";
+                            string msg = $"/:rose 亲，您好，我是网购省钱助手。\n您今后在淘宝天猫、京东、拼多多 想购买的商品都可发给我，查询优惠券！\n\n \ue231 <a href='{ConfigurationManager.AppSettings["tb_find_coupon_sop"]}'>点击淘宝优惠券返利教程</a> \n\n \ue231 <a href='{ConfigurationManager.AppSettings["jd_find_coupon_sop"]}'>点击京东优惠券返利教程</a> \n\n \ue231 <a href='{ConfigurationManager.AppSettings["pdd_find_coupon_sop"]}'>点击拼多多优惠券返利教程</a> \n\n 可【置顶公众号】，方便以后购物哦。";
                             string resxml = "<xml><ToUserName><![CDATA[" + xmlMsg.FromUserName + "]]></ToUserName><FromUserName><![CDATA[" + xmlMsg.ToUserName + "]]></FromUserName><CreateTime>" + nowtime + "</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[" + msg + "]]></Content><FuncFlag>0</FuncFlag></xml>";
 
                             try
@@ -452,7 +456,7 @@ namespace TaobaoKe.Controllers
                                     string msg = "双11超级荭包\n\n活动时间：10月20日-11月10日，每天可领3次！好福利记得分享哦！\n——————\n领取口令：￥FgIib6pJREH￥\n——————\n\ue231①长按复制本段口令消息，\n\ue231②打开手机淘寳领取荭包！";
                                     return "<xml><ToUserName><![CDATA[" + xmlMsg.FromUserName + "]]></ToUserName><FromUserName><![CDATA[" + xmlMsg.ToUserName + "]]></FromUserName><CreateTime>" + nowtime + "</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[" + msg + "]]></Content><FuncFlag>0</FuncFlag></xml>";
                                 case "usage":
-                                    msg = "\ue231 <a href='https://mp.weixin.qq.com/s/ho825gKx2VP0oayX7pMdYQ'>点击淘宝优惠券返利教程</a> \n\n \ue231 <a href='https://mp.weixin.qq.com/s/1Nbyse1WBKpSOUjO3gOg0g'>点击拼多多优惠券返利教程</a> \n";
+                                    msg = $"\ue231 <a href='{ConfigurationManager.AppSettings["tb_find_coupon_sop"]}'>点击淘宝优惠券返利教程</a> \n\n\ue231 <a href='{ConfigurationManager.AppSettings["jd_find_coupon_sop"]}'>点击京东优惠券返利教程</a> \n\n\ue231 <a href='{ConfigurationManager.AppSettings["pdd_find_coupon_sop"]}'>点击拼多多优惠券返利教程</a> \n";
                                     return "<xml><ToUserName><![CDATA[" + xmlMsg.FromUserName + "]]></ToUserName><FromUserName><![CDATA[" + xmlMsg.ToUserName + "]]></FromUserName><CreateTime>" + nowtime + "</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[" + msg + "]]></Content><FuncFlag>0</FuncFlag></xml>";
                                 case "xinyuan":
                                     msg = "双11心愿清单\n\n【快来帮我助力心愿单，双11当天抽10人赢免单哦】\n好福利记得分享哦！\n￥z9sTbiU4lRB￥\n——————\n\ue231①长按复制本段口令消息，\n\ue231②打开手机淘寳助力！";
@@ -575,14 +579,18 @@ namespace TaobaoKe.Controllers
                 if (content.Contains("yangkeduo.com"))
                 {
                     msg = await GetPddCouponAsync(xmlMsg);
+
+                }else if (content.Contains("jd.com"))
+                {
+                    msg = GetJdCoupon(xmlMsg);
                 }
                 else if (content.Length == 18 && new Regex("^[0-9]*$").IsMatch(content)) //匹配淘宝订单号
                 {
-                    msg = "您的订单编号已收到，稍后请留意订单状态更新通知。";
+                    msg = "您的订单编号已收到，预计两个工作日内核实后通过现金红包形式发放。";
 
                 }else if (content.Length == 22 && new Regex("^[0-9-]*$").IsMatch(content)) //匹配拼多多订单号
                 {
-                    msg = "您的订单编号已收到，稍后请留意订单状态更新通知。";
+                    msg = "您的订单编号已收到，预计两个工作日内核实后通过现金红包形式发放。";
                 }
                 else
                 {
@@ -712,6 +720,52 @@ namespace TaobaoKe.Controllers
 
         }
 
+
+        public string GetJdCoupon(ExmlMsg xmlMsg)
+        {
+            string msg = xmlMsg.Content;
+            Match m_goods = Regex.Match(msg, @"(?<=product\/)([0-9]*)|(?<=sku=)([0-9]*)");
+
+            string skuId = m_goods.Value;
+
+            if (string.IsNullOrEmpty(skuId))
+            {
+                LogHelper.WriteLog(typeof(WechatController), "获取京东skuid失败" + msg);
+                return "";
+            }
+
+            try
+            {
+                var hjkGoodsDetail = hjkApi.GetJDGoodsDetail(skuId);
+
+                if (hjkGoodsDetail.StatusCode == 200 && hjkGoodsDetail.Data != null && !string.IsNullOrEmpty(hjkGoodsDetail.Data.CouponList))
+                {
+                    var model = hjkApi.GetUnionUrl(skuId, hjkGoodsDetail.Data.CouponList);
+                    if (model != null && model.StatusCode == 200 && !string.IsNullOrEmpty(model.Data))
+                    {
+                        return $"{hjkGoodsDetail.Data.SkuName}\n【在售价】{hjkGoodsDetail.Data.WlPrice}元\n【巻后价】{hjkGoodsDetail.Data.WlPriceAfter} 元\n\n\ue231 <a href='{model.Data}'>点击这里领券下单</a>\n\n";
+                    }
+                    else
+                    {
+                        return ConfigurationManager.AppSettings["jd_nocoupon_msg"].Replace("\\n", "\n").Replace("\\ue231", "\ue231");
+                    }
+
+                }
+                else
+                {
+                    return ConfigurationManager.AppSettings["jd_nocoupon_msg"].Replace("\\n", "\n").Replace("\\ue231", "\ue231");
+                }
+            }catch(Exception ex)
+            {
+                LogHelper.WriteLog(typeof(WechatController), "获取京东skuid失败" + ex.Message);
+                return "";
+            }
+
+           
+
+           
+        }
+
         /// <summary>
         /// 通过抓消息关键字获取item title
         /// </summary>
@@ -789,7 +843,7 @@ namespace TaobaoKe.Controllers
                         var g = rsp.ResultList.Where(y => !string.IsNullOrEmpty(y.CouponId)).OrderByDescending(w => w.Volume).FirstOrDefault();
                         if (g == null)
                         {
-                            responeMessage = responeMessage = ConfigurationManager.AppSettings["tbk_nocoupon_msg"].Replace("\\n", "\n").Replace("\\ue231", "\ue231"); 
+                             responeMessage = ConfigurationManager.AppSettings["tbk_nocoupon_msg"].Replace("\\n", "\n").Replace("\\ue231", "\ue231"); 
 
                         }
                         else

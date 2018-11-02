@@ -61,6 +61,7 @@
     <Compile Include="PddApiTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTest2.cs" />
+    <Compile Include="HaojingkeApiTest.cs" />
     <Compile Include="WeixinApiTest.cs" />
   </ItemGroup>
   <ItemGroup>

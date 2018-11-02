@@ -313,6 +313,7 @@
     <Compile Include="Models\Response\Goods\UpdateGoodsSkuStockResponseModel.cs" />
     <Compile Include="Models\Response\Goods\UploadGoodsImageResponseModel.cs" />
     <Compile Include="Models\Response\Haojingke\HjkGoodsDetailResponseModel.cs" />
+    <Compile Include="Models\Response\Haojingke\HjkUnionUrlResponseModel.cs" />
     <Compile Include="Models\Response\Invoice\QueryInvoiceApplicationResponseModel.cs" />
     <Compile Include="Models\Response\Invoice\QueryInvoiceDetailResponseModel.cs" />
     <Compile Include="Models\Response\Invoice\UpdateInvoiceApplicationResponseModel.cs" />
