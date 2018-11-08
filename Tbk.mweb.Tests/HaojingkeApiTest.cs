@@ -48,8 +48,8 @@ namespace Tbk.mweb.Tests
         [TestMethod]
         public void GetJDUnionUrlTest()
         {
-            var hjkGoodsDetail = api.GetJDGoodsDetail("32635634502");
-            var model = api.GetUnionUrl("32635634502",hjkGoodsDetail.Data.CouponList);
+            //var hjkGoodsDetail = api.GetJDGoodsDetail("32635634502");
+            var model = api.GetUnionUrl("25725309068", "http://item.jd.com/25725309068.html");
             Assert.IsNotNull(model);
         }
     }

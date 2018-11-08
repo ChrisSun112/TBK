@@ -39,26 +39,26 @@ namespace Tbk.mweb.Tests
 
             var data = new
             {
-                touser = "o8IJf5hcH-rrubcZQUcN56xPizig",
+                touser = "o8IJf5uvDWuxCsGGgjJ8HArPtzBA",
                 template_id = "WdfEogtJVP1p1uD2MyvQawv1bWwJZVg_F5gJvqo-8sg",
                 url = "http://m.yshizi.cn/me/wallet?openid=o8IJf5hcH-rrubcZQUcN56xPizig",
                 data = new
                 {
                     first = new
                     {
-                        value = "徐航，您的返现已到账。"
+                        value = "贤～枫之霖，您的返现已到账。"
                     },
                     order = new
                     {
-                        value = "242226243293916259"
+                        value = "232188454789738893"
                     },
                     money = new
                     {
-                        value = "8.25元"
+                        value = "5.20元"
                     },
                     remark = new
                     {
-                        value = "点击进入“我的钱包”查看。"
+                        value = "请领取您的红包。"
                     }
 
                 }
