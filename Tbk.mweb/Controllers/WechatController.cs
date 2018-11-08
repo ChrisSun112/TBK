@@ -461,6 +461,10 @@ namespace TaobaoKe.Controllers
                                 case "xinyuan":
                                     msg = "双11心愿清单\n\n【快来帮我助力心愿单，双11当天抽10人赢免单哦】\n好福利记得分享哦！\n￥z9sTbiU4lRB￥\n——————\n\ue231①长按复制本段口令消息，\n\ue231②打开手机淘寳助力！";
                                     return "<xml><ToUserName><![CDATA[" + xmlMsg.FromUserName + "]]></ToUserName><FromUserName><![CDATA[" + xmlMsg.ToUserName + "]]></FromUserName><CreateTime>" + nowtime + "</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[" + msg + "]]></Content><FuncFlag>0</FuncFlag></xml>";
+
+                                case "zfbhb":
+                                    msg = "打开支付宝首页搜索“552353665” 立即领红包";
+                                    return "<xml><ToUserName><![CDATA[" + xmlMsg.FromUserName + "]]></ToUserName><FromUserName><![CDATA[" + xmlMsg.ToUserName + "]]></FromUserName><CreateTime>" + nowtime + "</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[" + msg + "]]></Content><FuncFlag>0</FuncFlag></xml>";
                             }
                             return "";
                         }
