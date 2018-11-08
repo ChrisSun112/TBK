@@ -15,6 +15,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tbk.DAL", "Tbk.DAL\Tbk.DAL.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PddOpenSdk", "PddOpenSdk\PddOpenSdk.csproj", "{96385FED-6406-4E7F-9A68-D55754EDE7A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Softcomm.Weixin.Web", "Softcomm.Weixin.Web\Softcomm.Weixin.Web.csproj", "{6D397F4B-3499-40FB-8DE0-407F5AC26281}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Softcomm.Weixin.Web.Tests", "Softcomm.Weixin.Web.Tests\Softcomm.Weixin.Web.Tests.csproj", "{DAC18E2C-2975-462D-B1F7-B46C5A017802}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Softcomm.Weixin.CommonService", "Softcomm.Weixin.CommService\Softcomm.Weixin.CommonService.csproj", "{4A985AA0-4AF2-4986-AB38-6800F3286469}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +51,18 @@ Global
 		{96385FED-6406-4E7F-9A68-D55754EDE7A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96385FED-6406-4E7F-9A68-D55754EDE7A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96385FED-6406-4E7F-9A68-D55754EDE7A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D397F4B-3499-40FB-8DE0-407F5AC26281}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D397F4B-3499-40FB-8DE0-407F5AC26281}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D397F4B-3499-40FB-8DE0-407F5AC26281}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D397F4B-3499-40FB-8DE0-407F5AC26281}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAC18E2C-2975-462D-B1F7-B46C5A017802}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAC18E2C-2975-462D-B1F7-B46C5A017802}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAC18E2C-2975-462D-B1F7-B46C5A017802}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAC18E2C-2975-462D-B1F7-B46C5A017802}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A985AA0-4AF2-4986-AB38-6800F3286469}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A985AA0-4AF2-4986-AB38-6800F3286469}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A985AA0-4AF2-4986-AB38-6800F3286469}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A985AA0-4AF2-4986-AB38-6800F3286469}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
