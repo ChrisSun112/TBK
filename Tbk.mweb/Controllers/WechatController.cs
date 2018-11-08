@@ -590,11 +590,11 @@ namespace TaobaoKe.Controllers
                 }
                 else if (content.Length == 18 && new Regex("^[0-9]*$").IsMatch(content)) //匹配淘宝订单号
                 {
-                    msg = "您的订单编号已收到，预计两个工作日内核实后通过现金红包形式发放。";
+                    msg = "您的订单编号已收到，预计两个工作日内核实后返利将通过现金红包形式发放。";
 
                 }else if (content.Length == 22 && new Regex("^[0-9-]*$").IsMatch(content)) //匹配拼多多订单号
                 {
-                    msg = "您的订单编号已收到，预计两个工作日内核实后通过现金红包形式发放。";
+                    msg = "您的订单编号已收到，预计两个工作日内核实后返利将通过现金红包形式发放。";
                 }
                 else
                 {
@@ -712,7 +712,7 @@ namespace TaobaoKe.Controllers
                     });
 
 
-                    return $"/:rose 亲，商品信息如下~\n========================\n{goods.GoodsName}\n【在售价】{((decimal)goods.MinGroupPrice) / 100}元\n【约返利】{Math.Round((decimal)(goods.MinGroupPrice * goods.PromotionRate) / 100000,2)}元\n\ue231 <a href='{promotionUrlModel.GoodsPromotionUrlGenerateResponse.GoodsPromotionUrlList.FirstOrDefault().Url}'>点击这里下单</a>\n下单确认收货后就能收到返利佣金啦~";
+                    return $"/:rose 亲，商品信息如下~\n========================\n{goods.GoodsName}\n【在售价】{((decimal)goods.MinGroupPrice) / 100}元\n【约返利】{Math.Round((decimal)(goods.MinGroupPrice * goods.PromotionRate) / 100000,2)}元\n\ue231 <a href='{promotionUrlModel.GoodsPromotionUrlGenerateResponse.GoodsPromotionUrlList.FirstOrDefault().Url}'>点击这里下单</a>\n下单确认收货后就能收到返利佣金啦~\n\n 点击查看  <a href='http://mp.weixin.qq.com/s?__biz=Mzg2NTAxOTEyMA==&mid=100000146&idx=1&sn=62405c8df3db46e74940aefb9ac3737b&chksm=4e61340d7916bd1bf645afbc6d10c1f19561d7fa59847516c01e64c0791e6d544f4f56c4f498#rd'>如何领取返利</a>";
                 }catch(Exception ex)
                 {
                     LogHelper.WriteLog(typeof(WechatController), "调用拼多多获取推广链接失败" + ex.Message);
@@ -889,7 +889,7 @@ namespace TaobaoKe.Controllers
                                 {
                                     var hongbao = decimal .Parse(g.ZkFinalPrice) * decimal.Parse(g.CommissionRate) / 10000 * commission_rate;
                                     
-                                    responeMessage = $"{g.Title}\n【在售价】{g.ZkFinalPrice}元\n【约返利】{Math.Round(hongbao, 2)}元\n复制这条信息，打开「手机绹宝」领巻下单{config.GetTaobaoKePassword(g.Url, g.PictUrl + "_400x400.jpg")}\n==========================\n下单确认收货后就能收到返利佣金啦~";
+                                    responeMessage = $"{g.Title}\n【在售价】{g.ZkFinalPrice}元\n【约返利】{Math.Round(hongbao, 2)}元\n复制这条信息，打开「手机绹宝」领巻下单{config.GetTaobaoKePassword(g.Url, g.PictUrl + "_400x400.jpg")}\n==========================\n下单确认收货后就能收到返利佣金啦~\n 点击查看  <a href='http://mp.weixin.qq.com/s?__biz=Mzg2NTAxOTEyMA==&mid=100000146&idx=1&sn=62405c8df3db46e74940aefb9ac3737b&chksm=4e61340d7916bd1bf645afbc6d10c1f19561d7fa59847516c01e64c0791e6d544f4f56c4f498#rd'>如何领取返利</a>";
                                     return responeMessage;
                                 }
                                 else
