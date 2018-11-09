@@ -8,31 +8,14 @@
     创建标识：Senparc - 20150312
 ----------------------------------------------------------------*/
 
-using System;
-using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
-using Senparc.NeuChar.Context;
-using Senparc.Weixin.Exceptions;
-using Senparc.CO2NET.Extensions;
-using Senparc.Weixin.HttpUtility;
-using Senparc.Weixin.MP.AdvancedAPIs;
 using Senparc.Weixin.MP.Entities;
-using Senparc.Weixin.MP.Helpers;
-using Senparc.Weixin.MP.MessageHandlers;
-using Senparc.Weixin.MP.Sample.CommonService.Download;
-using Senparc.Weixin.MP.Sample.CommonService.Utilities;
+
 using Senparc.NeuChar.Entities;
 
 
-#if NET45
-using System.Web;
-#else
-using Microsoft.AspNetCore.Http;
-#endif
 
-
-namespace Senparc.Weixin.MP.Sample.CommonService.CustomMessageHandler
+namespace Softcomm.Weixin.CommonService.CustomMessageHandler
 {
     /// <summary>
     /// 自定义MessageHandler

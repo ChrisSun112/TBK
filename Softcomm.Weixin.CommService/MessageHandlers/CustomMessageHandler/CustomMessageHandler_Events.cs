@@ -12,28 +12,19 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Senparc.NeuChar.Context;
 using Senparc.Weixin.Exceptions;
 using Senparc.CO2NET.Extensions;
-using Senparc.Weixin.HttpUtility;
+
 using Senparc.Weixin.MP.AdvancedAPIs;
 using Senparc.Weixin.MP.Entities;
-using Senparc.Weixin.MP.Helpers;
-using Senparc.Weixin.MP.MessageHandlers;
-using Senparc.Weixin.MP.Sample.CommonService.Download;
-using Senparc.Weixin.MP.Sample.CommonService.Utilities;
+
 using Senparc.NeuChar.Entities;
 using Senparc.NeuChar.Agents;
-
-
-#if NET45
 using System.Web;
-#else
-using Microsoft.AspNetCore.Http;
-#endif
 
 
-namespace Senparc.Weixin.MP.Sample.CommonService.CustomMessageHandler
+
+namespace Softcomm.Weixin.CommonService.CustomMessageHandler
 {
     /// <summary>
     /// 自定义MessageHandler
@@ -42,78 +33,10 @@ namespace Senparc.Weixin.MP.Sample.CommonService.CustomMessageHandler
     {
         private string GetWelcomeInfo()
         {
-            //获取Senparc.Weixin.MP.dll版本信息
-#if NET45
-             var fileVersionInfo = FileVersionInfo.GetVersionInfo(Server.GetMapPath("~/bin/Senparc.Weixin.MP.dll"));
-#else
-            var filePath = Server.GetMapPath("~/bin/Release/netcoreapp1.1/Senparc.Weixin.MP.dll");
-            var fileVersionInfo = FileVersionInfo.GetVersionInfo(filePath);
-#endif
-
-            string version = fileVersionInfo == null
-                ? "-"
-                : string.Format("{0}.{1}.{2}", fileVersionInfo.FileMajorPart, fileVersionInfo.FileMinorPart, fileVersionInfo.FileBuildPart);
-
-            return string.Format(
-@"欢迎关注【Senparc.Weixin 微信公众平台SDK】，当前运行版本：v{0}。
-您可以发送【文字】【位置】【图片】【语音】【文件】等不同类型的信息，查看不同格式的回复。
-
-您也可以直接点击菜单查看各种类型的回复。
-还可以点击菜单体验微信支付。
-
-SDK官方地址：https://weixin.senparc.com
-SDK Demo：http://sdk.weixin.senparc.com
-源代码及Demo下载地址：https://github.com/JeffreySu/WeiXinMPSDK
-Nuget地址：https://www.nuget.org/packages/Senparc.Weixin.MP
-QQ群：289181996
-
-===============
-更多：
-
-1、JSSDK测试：http://sdk.weixin.senparc.com/WeixinJSSDK
-
-2、开放平台测试（建议PC上打开）：http://sdk.weixin.senparc.com/OpenOAuth/JumpToMpOAuth
-
-3、回复关键字：
-
-【open】   进入第三方开放平台（Senparc.Weixin.Open）测试
-
-【tm】     测试异步模板消息
-
-【openid】 获取OpenId等用户信息
-
-【约束】   测试微信浏览器约束
-
-【AsyncTest】 异步并发测试
-
-【错误】    体验发生错误无法返回正确信息
-
-【容错】    体验去重容错
-
-【ex】      体验错误日志推送提醒
-
-【mute】     不返回任何消息，也无出错信息
-
-【jssdk】    测试JSSDK图文转发接口
-
-格式：【数字#数字】，如2010#0102，调用正则表达式匹配
-
-【订阅】     测试“一次性订阅消息”接口
-",
-                version);
+            return "欢迎关注我0";
         }
 
-        public string GetDownloadInfo(CodeRecord codeRecord)
-        {
-            return string.Format(@"您已通过二维码验证，浏览器即将开始下载 Senparc.Weixin SDK 帮助文档。
-当前选择的版本：v{0}（{1}）
-
-我们期待您的意见和建议，客服热线：400-031-8816。
-
-感谢您对盛派网络的支持！
-
-© {2} Senparc", codeRecord.Version, codeRecord.IsWebVersion ? "网页版" : ".chm文档版", DateTime.Now.Year);
-        }
+        
 
         public override IResponseMessageBase OnTextOrEventRequest(RequestMessageText requestMessage)
         {
@@ -185,59 +108,8 @@ QQ群：289181996
                         }
                     }
                     break;
-                case "SubClickRoot_Music":
-                    {
-                        //上传缩略图
-                        var accessToken = Containers.AccessTokenContainer.TryGetAccessToken(appId, appSecret);
-                        var uploadResult = AdvancedAPIs.MediaApi.UploadTemporaryMedia(accessToken, UploadMediaFileType.thumb,
-                                                                     Server.GetMapPath("~/Images/Logo.thumb.jpg"));
-                        //PS：缩略图官方没有特别提示文件大小限制，实际测试哪怕114K也会返回文件过大的错误，因此尽量控制在小一点（当前图片39K）
-
-                        //设置音乐信息
-                        var strongResponseMessage = CreateResponseMessage<ResponseMessageMusic>();
-                        reponseMessage = strongResponseMessage;
-                        strongResponseMessage.Music.Title = "天籁之音";
-                        strongResponseMessage.Music.Description = "真的是天籁之音";
-                        strongResponseMessage.Music.MusicUrl = "https://sdk.weixin.senparc.com/Content/music1.mp3";
-                        strongResponseMessage.Music.HQMusicUrl = "https://sdk.weixin.senparc.com/Content/music1.mp3";
-                        strongResponseMessage.Music.ThumbMediaId = uploadResult.thumb_media_id;
-                    }
-                    break;
-                case "SubClickRoot_Image":
-                    {
-                        //上传图片
-                        var accessToken = Containers.AccessTokenContainer.TryGetAccessToken(appId, appSecret);
-                        var uploadResult = AdvancedAPIs.MediaApi.UploadTemporaryMedia(accessToken, UploadMediaFileType.image,
-                                                                     Server.GetMapPath("~/Images/Logo.jpg"));
-                        //设置图片信息
-                        var strongResponseMessage = CreateResponseMessage<ResponseMessageImage>();
-                        reponseMessage = strongResponseMessage;
-                        strongResponseMessage.Image.MediaId = uploadResult.media_id;
-                    }
-                    break;
-                case "SubClickRoot_Agent"://代理消息
-                    {
-                        //获取返回的XML
-                        DateTime dt1 = DateTime.Now;
-                        reponseMessage = MessageAgent.RequestResponseMessage(this, agentUrl, agentToken, RequestDocument.ToString());
-                        //上面的方法也可以使用扩展方法：this.RequestResponseMessage(this,agentUrl, agentToken, RequestDocument.ToString());
-
-                        DateTime dt2 = DateTime.Now;
-
-                        if (reponseMessage is ResponseMessageNews)
-                        {
-                            (reponseMessage as ResponseMessageNews)
-                                .Articles[0]
-                                .Description += string.Format("\r\n\r\n代理过程总耗时：{0}毫秒", (dt2 - dt1).Milliseconds);
-                        }
-                    }
-                    break;
-                case "Member"://托管代理会员信息
-                    {
-                        //原始方法为：MessageAgent.RequestXml(this,agentUrl, agentToken, RequestDocument.ToString());//获取返回的XML
-                        reponseMessage = this.RequestResponseMessage(agentUrl, agentToken, RequestDocument.ToString());
-                    }
-                    break;
+              
+           
                 case "OAuth"://OAuth授权测试
                     {
                         var strongResponseMessage = CreateResponseMessage<ResponseMessageNews>();
@@ -306,21 +178,7 @@ QQ群：289181996
                         strongResponseMessage.Content = "您点击了个性化菜单按钮，您的微信性别设置为：女。";
                     }
                     break;
-                case "GetNewMediaId"://获取新的MediaId
-                    {
-                        var strongResponseMessage = CreateResponseMessage<ResponseMessageText>();
-                        try
-                        {
-                            var result = AdvancedAPIs.MediaApi.UploadForeverMedia(appId, Server.GetMapPath("~/Images/logo.jpg"));
-                            strongResponseMessage.Content = result.media_id;
-                        }
-                        catch (Exception e)
-                        {
-                            strongResponseMessage.Content = "发生错误：" + e.Message;
-                            WeixinTrace.SendCustomLog("调用UploadForeverMedia()接口发生异常", e.Message);
-                        }
-                    }
-                    break;
+              
                 default:
                     {
                         var strongResponseMessage = CreateResponseMessage<ResponseMessageText>();
@@ -368,22 +226,6 @@ QQ群：289181996
             //通过扫描关注
             var responseMessage = CreateResponseMessage<ResponseMessageText>();
 
-            //下载文档
-            if (!string.IsNullOrEmpty(requestMessage.EventKey))
-            {
-                var sceneId = long.Parse(requestMessage.EventKey.Replace("qrscene_", ""));
-                //var configHelper = new ConfigHelper(new HttpContextWrapper(HttpContext.Current));
-                var codeRecord =
-                    ConfigHelper.CodeCollection.Values.FirstOrDefault(z => z.QrCodeTicket != null && z.QrCodeId == sceneId);
-
-
-                if (codeRecord != null)
-                {
-                    //确认可以下载
-                    codeRecord.AllowDownload = true;
-                    responseMessage.Content = GetDownloadInfo(codeRecord);
-                }
-            }
 
             responseMessage.Content = responseMessage.Content ?? string.Format("通过扫描二维码进入，场景值：{0}", requestMessage.EventKey);
 
@@ -428,29 +270,7 @@ QQ群：289181996
                 responseMessage.Content += "\r\n============\r\n场景值：" + requestMessage.EventKey;
             }
 
-            //推送消息
-            //下载文档
-            if (requestMessage.EventKey.StartsWith("qrscene_"))
-            {
-                var sceneId = long.Parse(requestMessage.EventKey.Replace("qrscene_", ""));
-                //var configHelper = new ConfigHelper(new HttpContextWrapper(HttpContext.Current));
-                var codeRecord =
-                    ConfigHelper.CodeCollection.Values.FirstOrDefault(z => z.QrCodeTicket != null && z.QrCodeId == sceneId);
-
-                if (codeRecord != null)
-                {
-                    if (codeRecord.AllowDownload)
-                    {
-                        Task.Factory.StartNew(() => AdvancedAPIs.CustomApi.SendTextAsync(null, WeixinOpenId, "下载已经开始，如需下载其他版本，请刷新页面后重新扫一扫。"));
-                    }
-                    else
-                    {
-                        //确认可以下载
-                        codeRecord.AllowDownload = true;
-                        Task.Factory.StartNew(() => AdvancedAPIs.CustomApi.SendTextAsync(null, WeixinOpenId, GetDownloadInfo(codeRecord)));
-                    }
-                }
-            }
+           
 
 
             return responseMessage;

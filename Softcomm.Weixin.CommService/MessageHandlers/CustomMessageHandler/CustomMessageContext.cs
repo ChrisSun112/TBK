@@ -15,7 +15,7 @@ using System.Text;
 using Senparc.NeuChar.Context;
 using Senparc.NeuChar.Entities;
 
-namespace Senparc.Weixin.MP.Sample.CommonService.CustomMessageHandler
+namespace Softcomm.Weixin.CommonService.CustomMessageHandler
 {
     public class CustomMessageContext : MessageContext<IRequestMessageBase, IResponseMessageBase>
     {
