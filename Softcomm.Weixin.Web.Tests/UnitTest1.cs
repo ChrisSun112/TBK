@@ -35,40 +35,7 @@ namespace Softcomm.Weixin.Web.Tests
         protected void Init(string xmlFormat)
         {
 
-            //设置全局 Debug 状态
-            var isGLobalDebug = true;
-            //全局设置参数，将被储存到 Senparc.CO2NET.Config.SenparcSetting
-            var senparcSetting = SenparcSetting.BuildFromWebConfig(isGLobalDebug);
-            //也可以通过这种方法在程序任意位置设置全局 Debug 状态：
-            Senparc.CO2NET.Config.IsDebug = isGLobalDebug;
-
-
-            //CO2NET 全局注册，必须！！
-            IRegisterService register = RegisterService.Start(senparcSetting).UseSenparcGlobal();
-
-
- 
-
-
-            /* 微信配置开始
-             * 建议按照以下顺序进行注册
-             */
-
-            //设置微信 Debug 状态
-            var isWeixinDebug = true;
-            //全局设置参数，将被储存到 Senparc.Weixin.Config.SenparcWeixinSetting
-            var senparcWeixinSetting = SenparcWeixinSetting.BuildFromWebConfig(isWeixinDebug);
-            //也可以通过这种方法在程序任意位置设置微信的 Debug 状态：
-            //Senparc.Weixin.Config.IsDebug = isWeixinDebug;
-
-            //微信全局注册，必须！！
-            register.UseSenparcWeixin(senparcWeixinSetting, senparcSetting);
-
-             string Token = Senparc.Weixin.Config.SenparcWeixinSetting.Token;//与微信公众账号后台的Token设置保持一致，区分大小写。
-        string EncodingAESKey = Senparc.Weixin.Config.SenparcWeixinSetting.EncodingAESKey;//与微信公众账号后台的EncodingAESKey设置保持一致，区分大小写。
-        string AppId = Senparc.Weixin.Config.SenparcWeixinSetting.WeixinAppId;//与微信公众账号后台的AppId设置保持一致，区分大小写。
-
-
+    
         //target = StructureMap.ObjectFactory.GetInstance<WeixinController>();//使用IoC的在这里必须注入，不要直接实例化
         target = new WeixinController();
 

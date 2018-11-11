@@ -89,55 +89,12 @@ namespace Softcomm.Weixin.Web.Controllers
             try
             {
 
-                #region 记录 Request 日志
-
-                var logPath = Server.MapPath(string.Format("~/App_Data/MP/{0}/", DateTime.Now.ToString("yyyy-MM-dd")));
-                if (!Directory.Exists(logPath))
-                {
-                    Directory.CreateDirectory(logPath);
-                }
-
-                //测试时可开启此记录，帮助跟踪数据，使用前请确保App_Data文件夹存在，且有读写权限。
-                messageHandler.RequestDocument.Save(Path.Combine(logPath, string.Format("{0}_Request_{1}_{2}.txt", _getRandomFileName(),
-                    messageHandler.RequestMessage.FromUserName,
-                    messageHandler.RequestMessage.MsgType)));
-                if (messageHandler.UsingEcryptMessage)
-                {
-                    messageHandler.EcryptRequestDocument.Save(Path.Combine(logPath, string.Format("{0}_Request_Ecrypt_{1}_{2}.txt", _getRandomFileName(),
-                        messageHandler.RequestMessage.FromUserName,
-                        messageHandler.RequestMessage.MsgType)));
-                }
-
-                #endregion
+                
 
                 //执行微信处理过程
                 messageHandler.Execute();
 
-                #region 记录 Response 日志
-
-                //测试时可开启，帮助跟踪数据
-
-                //if (messageHandler.ResponseDocument == null)
-                //{
-                //    throw new Exception(messageHandler.RequestDocument.ToString());
-                //}
-                if (messageHandler.ResponseDocument != null && messageHandler.ResponseDocument.Root != null)
-                {
-                    messageHandler.ResponseDocument.Save(Path.Combine(logPath, string.Format("{0}_Response_{1}_{2}.txt", _getRandomFileName(),
-                        messageHandler.ResponseMessage.ToUserName,
-                        messageHandler.ResponseMessage.MsgType)));
-                }
-
-                if (messageHandler.UsingEcryptMessage &&
-                    messageHandler.FinalResponseDocument != null && messageHandler.FinalResponseDocument.Root != null)
-                {
-                    //记录加密后的响应信息
-                    messageHandler.FinalResponseDocument.Save(Path.Combine(logPath, string.Format("{0}_Response_Final_{1}_{2}.txt", _getRandomFileName(),
-                        messageHandler.ResponseMessage.ToUserName,
-                        messageHandler.ResponseMessage.MsgType)));
-                }
-
-                #endregion
+                
 
                 //return Content(messageHandler.ResponseDocument.ToString());//v0.7-
                 return new WeixinResult(messageHandler);//v0.8+
@@ -183,15 +140,15 @@ namespace Softcomm.Weixin.Web.Controllers
         [ActionName("MiniPost")]
         public ActionResult MiniPost(PostModel postModel)
         {
-            if (!CheckSignature.Check(postModel.Signature, postModel.Timestamp, postModel.Nonce, Token))
-            {
-                //return Content("参数错误！");//v0.7-
-                return new WeixinResult("参数错误！");//v0.8+
-            }
+            //if (!CheckSignature.Check(postModel.Signature, postModel.Timestamp, postModel.Nonce, Token))
+            //{
+            //    //return Content("参数错误！");//v0.7-
+            //    return new WeixinResult("参数错误！");//v0.8+
+            //}
 
-            postModel.Token = Token;
-            postModel.EncodingAESKey = EncodingAESKey;//根据自己后台的设置保持一致
-            postModel.AppId = AppId;//根据自己后台的设置保持一致
+            //postModel.Token = Token;
+            //postModel.EncodingAESKey = EncodingAESKey;//根据自己后台的设置保持一致
+            //postModel.AppId = AppId;//根据自己后台的设置保持一致
 
             var messageHandler = new CustomMessageHandler(Request.InputStream, postModel, 10);
 

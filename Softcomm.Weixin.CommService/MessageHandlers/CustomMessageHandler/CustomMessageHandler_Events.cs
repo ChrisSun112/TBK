@@ -36,7 +36,6 @@ namespace Softcomm.Weixin.CommonService.CustomMessageHandler
             return "欢迎关注我0";
         }
 
-        
 
         public override IResponseMessageBase OnTextOrEventRequest(RequestMessageText requestMessage)
         {
@@ -191,30 +190,9 @@ namespace Softcomm.Weixin.CommonService.CustomMessageHandler
             return reponseMessage;
         }
 
-        /// <summary>
-        /// 进入事件
-        /// </summary>
-        /// <param name="requestMessage"></param>
-        /// <returns></returns>
-        public override IResponseMessageBase OnEvent_EnterRequest(RequestMessageEvent_Enter requestMessage)
-        {
-            var responseMessage = ResponseMessageBase.CreateFromRequestMessage<ResponseMessageText>(requestMessage);
-            responseMessage.Content = "您刚才发送了ENTER事件请求。";
-            return responseMessage;
-        }
+       
 
-        /// <summary>
-        /// 位置事件
-        /// </summary>
-        /// <param name="requestMessage"></param>
-        /// <returns></returns>
-        public override IResponseMessageBase OnEvent_LocationRequest(RequestMessageEvent_Location requestMessage)
-        {
-            //这里是微信客户端（通过微信服务器）自动发送过来的位置信息
-            var responseMessage = CreateResponseMessage<ResponseMessageText>();
-            responseMessage.Content = "这里写什么都无所谓，比如：上帝爱你！";
-            return responseMessage;//这里也可以返回null（需要注意写日志时候null的问题）
-        }
+     
 
         /// <summary>
         /// 通过二维码扫描关注扫描事件
@@ -227,7 +205,7 @@ namespace Softcomm.Weixin.CommonService.CustomMessageHandler
             var responseMessage = CreateResponseMessage<ResponseMessageText>();
 
 
-            responseMessage.Content = responseMessage.Content ?? string.Format("通过扫描二维码进入，场景值：{0}", requestMessage.EventKey);
+            responseMessage.Content = "";
 
             return responseMessage;
         }
@@ -241,7 +219,7 @@ namespace Softcomm.Weixin.CommonService.CustomMessageHandler
         {
             //说明：这条消息只作为接收，下面的responseMessage到达不了客户端，类似OnEvent_UnsubscribeRequest
             var responseMessage = CreateResponseMessage<ResponseMessageText>();
-            responseMessage.Content = "您点击了view按钮，将打开网页：" + requestMessage.EventKey;
+            responseMessage.Content = "";
             return responseMessage;
         }
 
@@ -253,7 +231,7 @@ namespace Softcomm.Weixin.CommonService.CustomMessageHandler
         public override IResponseMessageBase OnEvent_MassSendJobFinishRequest(RequestMessageEvent_MassSendJobFinish requestMessage)
         {
             var responseMessage = CreateResponseMessage<ResponseMessageText>();
-            responseMessage.Content = "接收到了群发完成的信息。";
+            responseMessage.Content = "";
             return responseMessage;
         }
 
@@ -289,78 +267,7 @@ namespace Softcomm.Weixin.CommonService.CustomMessageHandler
             return responseMessage;
         }
 
-        /// <summary>
-        /// 事件之扫码推事件(scancode_push)
-        /// </summary>
-        /// <param name="requestMessage"></param>
-        /// <returns></returns>
-        public override IResponseMessageBase OnEvent_ScancodePushRequest(RequestMessageEvent_Scancode_Push requestMessage)
-        {
-            var responseMessage = base.CreateResponseMessage<ResponseMessageText>();
-            responseMessage.Content = "事件之扫码推事件";
-            return responseMessage;
-        }
-
-        /// <summary>
-        /// 事件之扫码推事件且弹出“消息接收中”提示框(scancode_waitmsg)
-        /// </summary>
-        /// <param name="requestMessage"></param>
-        /// <returns></returns>
-        public override IResponseMessageBase OnEvent_ScancodeWaitmsgRequest(RequestMessageEvent_Scancode_Waitmsg requestMessage)
-        {
-            var responseMessage = base.CreateResponseMessage<ResponseMessageText>();
-            responseMessage.Content = "事件之扫码推事件且弹出“消息接收中”提示框";
-            return responseMessage;
-        }
-
-        /// <summary>
-        /// 事件之弹出拍照或者相册发图（pic_photo_or_album）
-        /// </summary>
-        /// <param name="requestMessage"></param>
-        /// <returns></returns>
-        public override IResponseMessageBase OnEvent_PicPhotoOrAlbumRequest(RequestMessageEvent_Pic_Photo_Or_Album requestMessage)
-        {
-            var responseMessage = base.CreateResponseMessage<ResponseMessageText>();
-            responseMessage.Content = "事件之弹出拍照或者相册发图";
-            return responseMessage;
-        }
-
-        /// <summary>
-        /// 事件之弹出系统拍照发图(pic_sysphoto)
-        /// 实际测试时发现微信并没有推送RequestMessageEvent_Pic_Sysphoto消息，只能接收到用户在微信中发送的图片消息。
-        /// </summary>
-        /// <param name="requestMessage"></param>
-        /// <returns></returns>
-        public override IResponseMessageBase OnEvent_PicSysphotoRequest(RequestMessageEvent_Pic_Sysphoto requestMessage)
-        {
-            var responseMessage = base.CreateResponseMessage<ResponseMessageText>();
-            responseMessage.Content = "事件之弹出系统拍照发图";
-            return responseMessage;
-        }
-
-        /// <summary>
-        /// 事件之弹出微信相册发图器(pic_weixin)
-        /// </summary>
-        /// <param name="requestMessage"></param>
-        /// <returns></returns>
-        public override IResponseMessageBase OnEvent_PicWeixinRequest(RequestMessageEvent_Pic_Weixin requestMessage)
-        {
-            var responseMessage = base.CreateResponseMessage<ResponseMessageText>();
-            responseMessage.Content = "事件之弹出微信相册发图器";
-            return responseMessage;
-        }
-
-        /// <summary>
-        /// 事件之弹出地理位置选择器（location_select）
-        /// </summary>
-        /// <param name="requestMessage"></param>
-        /// <returns></returns>
-        public override IResponseMessageBase OnEvent_LocationSelectRequest(RequestMessageEvent_Location_Select requestMessage)
-        {
-            var responseMessage = base.CreateResponseMessage<ResponseMessageText>();
-            responseMessage.Content = "事件之弹出地理位置选择器";
-            return responseMessage;
-        }
+       
 
         /// <summary>
         /// 事件之发送模板消息返回结果
@@ -407,17 +314,5 @@ MsgId：{1}
             return null;
         }
 
-        #region 微信认证事件推送
-
-        public override IResponseMessageBase OnEvent_QualificationVerifySuccessRequest(RequestMessageEvent_QualificationVerifySuccess requestMessage)
-        {
-            //以下方法可以强制定义返回的字符串值
-            //TextResponseMessage = "your content";
-            //return null;
-
-            return new SuccessResponseMessage();//返回"success"字符串
-        }
-
-        #endregion
     }
 }
