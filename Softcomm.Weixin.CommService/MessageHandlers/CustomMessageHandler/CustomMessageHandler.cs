@@ -142,7 +142,6 @@ namespace Softcomm.Weixin.CommonService.CustomMessageHandler
         {
             var eventResponseMessage = base.OnEventRequest(requestMessage);//对于Event下属分类的重写方法，见：CustomerMessageHandler_Events.cs
 
-           
             //TODO: 对Event信息进行统一操作
             return eventResponseMessage;
         }

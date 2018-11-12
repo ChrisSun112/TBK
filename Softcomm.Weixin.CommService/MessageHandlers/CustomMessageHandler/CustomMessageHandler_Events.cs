@@ -21,8 +21,7 @@ using Senparc.Weixin.MP.Entities;
 using Senparc.NeuChar.Entities;
 using Senparc.NeuChar.Agents;
 using System.Web;
-
-
+using System.Configuration;
 
 namespace Softcomm.Weixin.CommonService.CustomMessageHandler
 {
@@ -67,109 +66,25 @@ namespace Softcomm.Weixin.CommonService.CustomMessageHandler
 
             switch (requestMessage.EventKey)
             {
-                case "OneClick":
+                case "zfbhb":
                     {
                         //这个过程实际已经在OnTextOrEventRequest中完成，这里不会执行到。
                         var strongResponseMessage = CreateResponseMessage<ResponseMessageText>();
                         reponseMessage = strongResponseMessage;
-                        strongResponseMessage.Content = "您点击了底部按钮。\r\n为了测试微信软件换行bug的应对措施，这里做了一个——\r\n换行";
+                        strongResponseMessage.Content = "打开支付宝首页搜索“552353665” 立即领红包";
                     }
                     break;
-                case "SubClickRoot_Text":
+                case "usage":
                     {
                         var strongResponseMessage = CreateResponseMessage<ResponseMessageText>();
                         reponseMessage = strongResponseMessage;
-                        strongResponseMessage.Content = "您点击了子菜单按钮。";
-                    }
-                    break;
-                case "SubClickRoot_News":
-                    {
-                        var strongResponseMessage = CreateResponseMessage<ResponseMessageNews>();
-                        reponseMessage = strongResponseMessage;
-                        strongResponseMessage.Articles.Add(new Article()
-                        {
-                            Title = "您点击了子菜单图文按钮",
-                            Description = "您点击了子菜单图文按钮，这是一条图文信息。这个区域是Description内容\r\n可以使用\\r\\n进行换行。",
-                            PicUrl = "http://sdk.weixin.senparc.com/Images/qrcode.jpg",
-                            Url = "http://sdk.weixin.senparc.com"
-                        });
-
-                        //随机添加一条图文，或只输出一条图文信息
-                        if (DateTime.Now.Second % 2 == 0)
-                        {
-                            strongResponseMessage.Articles.Add(new Article()
-                            {
-                                Title = "这是随机产生的第二条图文信息，用于测试多条图文的样式",
-                                Description = "这是随机产生的第二条图文信息，用于测试多条图文的样式",
-                                PicUrl = "http://sdk.weixin.senparc.com/Images/qrcode.jpg",
-                                Url = "http://sdk.weixin.senparc.com"
-                            });
-                        }
+                        strongResponseMessage.Content = $"\ue231 <a href='{ConfigurationManager.AppSettings["tb_find_coupon_sop"]}'>点击淘宝优惠券返利教程</a> \n\n\ue231 <a href='{ConfigurationManager.AppSettings["jd_find_coupon_sop"]}'>点击京东优惠券返利教程</a> \n\n\ue231 <a href='{ConfigurationManager.AppSettings["pdd_find_coupon_sop"]}'>点击拼多多优惠券返利教程</a> \n";
                     }
                     break;
               
            
-                case "OAuth"://OAuth授权测试
-                    {
-                        var strongResponseMessage = CreateResponseMessage<ResponseMessageNews>();
-
-                        strongResponseMessage.Articles.Add(new Article()
-                        {
-                            Title = "OAuth2.0测试",
-                            Description = "选择下面两种不同的方式进行测试，区别在于授权成功后，最后停留的页面。",
-                            //Url = "http://sdk.weixin.senparc.com/oauth2",
-                            //PicUrl = "http://sdk.weixin.senparc.com/Images/qrcode.jpg"
-                        });
-
-                        strongResponseMessage.Articles.Add(new Article()
-                        {
-                            Title = "OAuth2.0测试（不带returnUrl），测试环境可使用",
-                            Description = "OAuth2.0测试（不带returnUrl）",
-                            Url = "http://sdk.weixin.senparc.com/oauth2",
-                            PicUrl = "http://sdk.weixin.senparc.com/Images/qrcode.jpg"
-                        });
-
-                        var returnUrl = "/OAuth2/TestReturnUrl";
-                        strongResponseMessage.Articles.Add(new Article()
-                        {
-                            Title = "OAuth2.0测试（带returnUrl），生产环境强烈推荐使用",
-                            Description = "OAuth2.0测试（带returnUrl）",
-                            Url = "http://sdk.weixin.senparc.com/oauth2?returnUrl=" + returnUrl.UrlEncode(),
-                            PicUrl = "http://sdk.weixin.senparc.com/Images/qrcode.jpg"
-                        });
-
-                        reponseMessage = strongResponseMessage;
-
-                    }
-                    break;
-                case "Description":
-                    {
-                        var strongResponseMessage = CreateResponseMessage<ResponseMessageText>();
-                        strongResponseMessage.Content = GetWelcomeInfo();
-                        reponseMessage = strongResponseMessage;
-                    }
-                    break;
-                case "SubClickRoot_PicPhotoOrAlbum":
-                    {
-                        var strongResponseMessage = CreateResponseMessage<ResponseMessageText>();
-                        reponseMessage = strongResponseMessage;
-                        strongResponseMessage.Content = "您点击了【微信拍照】按钮。系统将会弹出拍照或者相册发图。";
-                    }
-                    break;
-                case "SubClickRoot_ScancodePush":
-                    {
-                        var strongResponseMessage = CreateResponseMessage<ResponseMessageText>();
-                        reponseMessage = strongResponseMessage;
-                        strongResponseMessage.Content = "您点击了【微信扫码】按钮。";
-                    }
-                    break;
-                case "ConditionalMenu_Male":
-                    {
-                        var strongResponseMessage = CreateResponseMessage<ResponseMessageText>();
-                        reponseMessage = strongResponseMessage;
-                        strongResponseMessage.Content = "您点击了个性化菜单按钮，您的微信性别设置为：男。";
-                    }
-                    break;
+             
+                
                 case "ConditionalMenu_Femle":
                     {
                         var strongResponseMessage = CreateResponseMessage<ResponseMessageText>();

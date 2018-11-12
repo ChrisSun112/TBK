@@ -57,7 +57,8 @@
       <HintPath>..\packages\Senparc.Weixin.6.1.11\lib\net45\Senparc.Weixin.dll</HintPath>
     </Reference>
     <Reference Include="Senparc.Weixin.MP, Version=16.4.12.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Senparc.Weixin.MP.16.4.12.1\lib\net45\Senparc.Weixin.MP.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\OtherPackages\Senparc.Weixin.MP.dll</HintPath>
     </Reference>
     <Reference Include="Senparc.Weixin.MP.MvcExtension, Version=7.1.11.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Senparc.Weixin.MP.MVC.7.1.11\lib\net45\Senparc.Weixin.MP.MvcExtension.dll</HintPath>
