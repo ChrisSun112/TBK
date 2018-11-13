@@ -1,7 +1,9 @@
-﻿using Senparc.CO2NET;
+﻿using PddOpenSdk.Services;
+using Senparc.CO2NET;
 using Senparc.CO2NET.RegisterServices;
 using Senparc.Weixin;
 using Senparc.Weixin.Entities;
+using Senparc.Weixin.MP.MessageHandlers;
 using Softcomm.Weixin.CommonService;
 using System;
 using System.Collections.Generic;
@@ -53,6 +55,7 @@ namespace Softcomm.Weixin.Web
             //微信全局注册，必须！！
             register.UseSenparcWeixin(senparcWeixinSetting, senparcSetting);
 
+         
         }
 
         /// <summary>

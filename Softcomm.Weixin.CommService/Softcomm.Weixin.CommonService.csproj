@@ -56,8 +56,12 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="TopSdk">
+      <HintPath>..\OtherPackages\TopSdk.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CouponHelper.cs" />
     <Compile Include="EventService.cs" />
     <Compile Include="MessageHandlers\CustomMessageHandler\Async\CustomMessageHandlerAsync_Events.cs" />
     <Compile Include="MessageHandlers\CustomMessageHandler\CustomMessageContext.cs" />
@@ -70,6 +74,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PddOpenSdk\PddOpenSdk.csproj">
+      <Project>{96385FED-6406-4E7F-9A68-D55754EDE7A4}</Project>
+      <Name>PddOpenSdk</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tbk.Common\Tbk.Common.csproj">
+      <Project>{6BD5F88C-F069-4B17-A986-E11024825315}</Project>
+      <Name>Tbk.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

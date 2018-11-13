@@ -93,13 +93,10 @@ namespace Softcomm.Weixin.CommonService
             {
                 Task.Factory.StartNew(async () =>
                 {
-#if NET45
-                    var appId = Config.SenparcWeixinSetting.WeixinAppId;
-#else
-                    var appId = "AppId";
-#endif
 
-                    string openId = "";//收到通知的管理员OpenId
+                    var appId = Config.SenparcWeixinSetting.WeixinAppId;
+
+                    string openId = "o8IJf5hcH-rrubcZQUcN56xPizig";//收到通知的管理员OpenId
                     var host = "A1 / AccessTokenOrAppId：" + (ex.AccessTokenOrAppId ?? "null");
                     string service = null;
                     string message = ex.Message;

@@ -115,7 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\WeixinController.cs" />
+    <Compile Include="Controllers\WeixinAsyncController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -137,6 +137,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PddOpenSdk\PddOpenSdk.csproj">
+      <Project>{96385FED-6406-4E7F-9A68-D55754EDE7A4}</Project>
+      <Name>PddOpenSdk</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Softcomm.Weixin.CommService\Softcomm.Weixin.CommonService.csproj">
       <Project>{4a985aa0-4af2-4986-ab38-6800f3286469}</Project>
       <Name>Softcomm.Weixin.CommonService</Name>

@@ -590,7 +590,7 @@ namespace TaobaoKe.Controllers
                 }
                 else if (content.Length == 18 && new Regex("^[0-9]*$").IsMatch(content)) //匹配淘宝订单号
                 {
-                    msg = "您的订单编号已收到，预计两个工作日内核实后返利将通过现金红包形式发放。";
+                    msg = "您的订单编号已收到，预计1个工作日内核实后返利将通过现金红包形式发放。";
 
                 }else if (content.Length == 22 && new Regex("^[0-9-]*$").IsMatch(content)) //匹配拼多多订单号
                 {

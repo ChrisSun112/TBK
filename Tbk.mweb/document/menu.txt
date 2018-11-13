@@ -26,18 +26,7 @@
         {
             "name": "粉丝福利", 
             "sub_button": [
-                {
-                    "type": "click", 
-                    "name": "[红包]双11心愿清单", 
-                    "key": "xinyuan", 
-                    "sub_button": [ ]
-                }, 
-                {
-                    "type": "click", 
-                    "name": "[红包]双11超级红包", 
-                    "key": "hongbao", 
-                    "sub_button": [ ]
-                }, 
+               
 				{
                     "type": "click", 
                     "name": "[红包]支付宝红包", 
@@ -58,6 +47,12 @@
                 {
                     "type": "click", 
                     "name": "领券教程", 
+                    "key": "usage", 
+                    "sub_button": [ ]
+                }, 
+				{
+                    "type": "view", 
+                    "name": "如何领取返佣", 
                     "key": "usage", 
                     "sub_button": [ ]
                 }, 
