@@ -206,3 +206,6 @@ ERROR 2018-10-30 16:35:34,603 137635ms config                 WriteLog          
 ERROR 2018-10-30 16:36:04,188 167220ms config                 WriteLog           - 生成淘宝口令失败未将对象引用设置到对象的实例。
 ERROR 2018-10-30 16:36:04,188 167220ms config                 WriteLog           - 生成淘宝口令失败,url为https:undefined
 ERROR 2018-11-15 09:56:54,611 263859ms WechatController       WriteLog           - 通过抓包方式未获取到宝贝item id
+ERROR 2018-11-16 10:37:45,438 11619ms WechatController       WriteLog           - 获取京东skuid失败http://item.jd.com/20230477164.html
+ERROR 2018-11-16 10:38:25,206 51387ms WechatController       WriteLog           - 获取京东skuid失败http://item.jd.com/20230477164.html
+ERROR 2018-11-16 11:18:18,876 62534ms WechatController       WriteLog           - 获取京东skuid失败https://wqitem.jd.com/item/view?sku=19108586928&PTAG=17047.12.1

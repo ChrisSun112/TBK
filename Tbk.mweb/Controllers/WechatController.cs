@@ -728,9 +728,11 @@ namespace TaobaoKe.Controllers
         public string GetJdCoupon(ExmlMsg xmlMsg)
         {
             string msg = xmlMsg.Content;
-            Match m_goods = Regex.Match(msg, @"(?<=product\/)([0-9]*)|(?<=sku=)([0-9]*)");
+            Match m_goods = Regex.Match(msg, @"(?<=product\/)([0-9]+)|(?<=sku=)([0-9]+)|(?<=item.jd.com\/)([0-9]+)");
 
             string skuId = m_goods.Value;
+
+            
 
             if (string.IsNullOrEmpty(skuId))
             {
@@ -742,13 +744,41 @@ namespace TaobaoKe.Controllers
             {
                 var hjkGoodsDetail = hjkApi.GetJDGoodsDetail(skuId);
 
-                if (hjkGoodsDetail.StatusCode == 200 && hjkGoodsDetail.Data != null && !string.IsNullOrEmpty(hjkGoodsDetail.Data.CouponList))
+                if (hjkGoodsDetail.StatusCode == 200 && hjkGoodsDetail.Data != null )
                 {
+
                     var model = hjkApi.GetUnionUrl(skuId, hjkGoodsDetail.Data.CouponList);
                     if (model != null && model.StatusCode == 200 && !string.IsNullOrEmpty(model.Data))
                     {
-                        return $"{hjkGoodsDetail.Data.SkuName}\n【在售价】{hjkGoodsDetail.Data.WlPrice}元\n【巻后价】{hjkGoodsDetail.Data.WlPriceAfter} 元\n\n\ue231 <a href='{model.Data}'>点击这里领券下单</a>\n\n";
+                        if (string.IsNullOrEmpty(hjkGoodsDetail.Data.CouponList))
+                        {
+                            return $"{hjkGoodsDetail.Data.SkuName}\n【在售价】{hjkGoodsDetail.Data.WlPrice}元\n【约返利】{Math.Round(decimal.Parse(hjkGoodsDetail.Data.WlCommission) * commission_rate, 2)} 元\n\ue231 <a href='{model.Data}'>点击这里领券下单</a>"
+                               +"\n下单确认收货后就能收到返利佣金啦~\n 点击查看<a href='http://mp.weixin.qq.com/s?__biz=Mzg2NTAxOTEyMA==&mid=100000146&idx=1&sn=62405c8df3db46e74940aefb9ac3737b&chksm=4e61340d7916bd1bf645afbc6d10c1f19561d7fa59847516c01e64c0791e6d544f4f56c4f498#rd'>如何领取返利 </a>";
+                        }
+                        else
+                        {
+                            return $"{hjkGoodsDetail.Data.SkuName}\n【在售价】{hjkGoodsDetail.Data.WlPrice}元\n【巻后价】{hjkGoodsDetail.Data.WlPriceAfter} 元\n\n\ue231 <a href='{model.Data}'>点击这里领券下单</a>\n\n";
+                        }
+                       
                     }
+                    //else if(!string.IsNullOrEmpty(hjkGoodsDetail.Data.WlPrice))
+                    //{
+                    //    string result = HttpUtility.SendPostHttpRequest("http://japi.jingtuitui.com/api/get_goods_link&appid=1811161026288813&appkey=39f3f66320d7c37caca9b37db2d3a5b1&unionid=1001037633&positionid=1534105049&gid=" + skuId, "application/json", null);
+
+                    //    JObject jObject = (JObject)JsonConvert.DeserializeObject(result);
+
+                    //    if ((string)jObject["return"] == "0")
+                    //    {
+                    //        return $"{hjkGoodsDetail.Data.SkuName}\n【在售价】{hjkGoodsDetail.Data.WlPrice}元\n【约返利】{Math.Round(decimal.Parse(hjkGoodsDetail.Data.WlCommission) * commission_rate / 100, 2)} 元\n\n\ue231 <a href='{jObject["result"]["link"]}'>点击这里领券下单</a>\n"
+                    //            +"\n下单确认收货后就能收到返利佣金啦~\n 点击查看<a href='http://mp.weixin.qq.com/s?__biz=Mzg2NTAxOTEyMA==&mid=100000146&idx=1&sn=62405c8df3db46e74940aefb9ac3737b&chksm=4e61340d7916bd1bf645afbc6d10c1f19561d7fa59847516c01e64c0791e6d544f4f56c4f498#rd'>如何领取返利 </a>";
+                    //    }
+                    //    else
+                    //    {
+                    //        return ConfigurationManager.AppSettings["jd_nocoupon_msg"].Replace("\\n", "\n").Replace("\\ue231", "\ue231");
+                    //    }
+
+                        
+                    //}
                     else
                     {
                         return ConfigurationManager.AppSettings["jd_nocoupon_msg"].Replace("\\n", "\n").Replace("\\ue231", "\ue231");

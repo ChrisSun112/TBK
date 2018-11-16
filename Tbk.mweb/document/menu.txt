@@ -33,6 +33,18 @@
                     "key": "zfbhb", 
                     "sub_button": [ ]
                 },
+				{
+				 "type": "view", 
+                    "name": "[红包]拼多多红包", 
+                    "url": "https://mobile.yangkeduo.com/duo_red_packet.html?pid=2818214_31982735&cpsSign=CR2818214_31982735_00ec24b6abd552b058e196f92e1303b2&duoduo_type=2&_wv=41729&_wvx=10&refer_share_id=8F8wpT87HgFCOXPMUOQQ1AHgEZQnXt4L&refer_share_uid=4308129203&refer_share_channel=message&from=singlemessage", 
+                    "sub_button": [ ]
+				},
+				{
+				 "type": "view", 
+                    "name": "拼多多免单", 
+                    "url": "https://mobile.yangkeduo.com/duo_roulette.html?pid=2495191_31302208&cpsSign=CL2495191_31302208_6e7ecef3ba1fef174945b088d77de11c&duoduo_type=2", 
+                    "sub_button": [ ]
+				},
                 {
                     "type": "click", 
                     "name": "分享拿红包", 
@@ -53,7 +65,7 @@
 				{
                     "type": "view", 
                     "name": "如何领取返佣", 
-                    "key": "usage", 
+                    "url": "https://mp.weixin.qq.com/s/WC7OvPcwB_l0gKdvcdJjxg", 
                     "sub_button": [ ]
                 }, 
                 {
