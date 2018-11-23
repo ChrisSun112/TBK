@@ -41,7 +41,7 @@ namespace Tbk.mweb.Tests
             {
                 touser = "o8IJf5uvDWuxCsGGgjJ8HArPtzBA",
                 template_id = "WdfEogtJVP1p1uD2MyvQawv1bWwJZVg_F5gJvqo-8sg",
-                url = "http://m.yshizi.cn/me/wallet?openid=o8IJf5hcH-rrubcZQUcN56xPizig",
+                url = "http://tb.yshizi.cn/",
                 data = new
                 {
                     first = new
@@ -50,11 +50,11 @@ namespace Tbk.mweb.Tests
                     },
                     order = new
                     {
-                        value = "232188454789738893"
+                        value = "244813188846738893"
                     },
                     money = new
                     {
-                        value = "5.20元"
+                        value = "5.28元"
                     },
                     remark = new
                     {
