@@ -927,6 +927,7 @@ namespace TaobaoKe.Controllers
 
                 string title = temp;
 
+                //解决手淘分享【】内非商品关键字bug
                 if (title.Contains(",") | title.Contains("，"))
                 {
                     return GetTaobaoCoupon(itemInfo);

@@ -55,20 +55,17 @@ namespace Softcomm.Weixin.CommService
 
                 string title = temp;
 
+                //通过商品关键字查询商品
                 ITopClient client = new DefaultTopClient(taobaoApiUrl,taobaoAppkey, taobaoSecret);
-
                 TbkDgMaterialOptionalRequest req = new TbkDgMaterialOptionalRequest();
                 req.AdzoneId = addzoneId;
                 req.Platform = 2L;
-                //req.Cat = category.Taobao_Categorys;
+                
                 req.PageSize = 100L;
                 req.Q = title;
-                //req.EndTkRate = 5000L;
-                //req.StartTkRate = 500L;
-                //req.HasCoupon = true;
+           
                 req.PageNo = 1L;
                 TbkDgMaterialOptionalResponse rsp = client.Execute(req);
-
 
                 if (rsp.ResultList.Count > 0)
                 {
@@ -106,8 +103,7 @@ namespace Softcomm.Weixin.CommService
                         else
                         {
                             var hongbao = (decimal.Parse(g.ZkFinalPrice) - decimal.Parse(Regex.Match(g.CouponInfo, "减" + @"(\d+)").Groups[1].Value)) * decimal.Parse(g.CommissionRate) / 10000 * commission_rate;
-                            //responeMessage = $"{g.Title}\n【在售价】{g.ZkFinalPrice}元\n【巻后价】{Math.Round(double.Parse(g.ZkFinalPrice) - double.Parse(Regex.Match(g.CouponInfo, "减" + @"(\d+)").Groups[1].Value), 2)} 元\n【约返利】{Math.Round(hongbao, 2)}元\n复制这条信息，打开「手机绹宝」领巻下单{config.GetTaobaoKePassword(g.CouponShareUrl, g.PictUrl + "_400x400.jpg")}\n==========================\n下单确认收货后就能收到返利佣金啦~";
-
+                            
                             responeMessage = $"{g.Title}\n【在售价】{g.ZkFinalPrice}元\n【巻后价】{Math.Round(double.Parse(g.ZkFinalPrice) - double.Parse(Regex.Match(g.CouponInfo, "减" + @"(\d+)").Groups[1].Value), 2)} 元\n复制这条信息，打开「手机绹宝」领巻下单{GetTaobaoKePassword(g.CouponShareUrl, g.PictUrl + "_400x400.jpg")}\n";
 
                         }
@@ -123,7 +119,8 @@ namespace Softcomm.Weixin.CommService
                         }
                         catch (Exception ex)
                         {
-                           // LogHelper.WriteLog(typeof(WechatController), "解析宝贝item id出错" + ex.Message);
+
+                          //通过淘宝链接没有获取到item id,显示销量最高商品
                             var g = rsp.ResultList.Where(y => !string.IsNullOrEmpty(y.CouponId)).OrderByDescending(y => y.Volume).FirstOrDefault();
 
                             var hongbao = (decimal.Parse(g.ZkFinalPrice) - decimal.Parse(Regex.Match(g.CouponInfo, "减" + @"(\d+)").Groups[1].Value)) * decimal.Parse(g.CommissionRate) / 10000 * commission_rate;
@@ -133,7 +130,7 @@ namespace Softcomm.Weixin.CommService
 
                         }
 
-
+                        //在接口返回的商品中找查询的商品
                         foreach (var g in rsp.ResultList)
                         {
                             if (g.NumIid == numid)
@@ -326,7 +323,6 @@ namespace Softcomm.Weixin.CommService
                 //LogHelper.WriteLog(typeof(WechatController), "获取京东skuid失败" + ex.Message);
                 return "";
             }
-
         }
 
         #region 获取淘口令

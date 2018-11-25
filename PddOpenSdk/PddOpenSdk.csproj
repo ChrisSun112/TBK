@@ -43,6 +43,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="TopSdk">
+      <HintPath>..\OtherPackages\TopSdk.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Function.cs" />
@@ -383,6 +386,7 @@
     <Compile Include="Services\PddApi\VirtualApi.cs" />
     <Compile Include="Services\PddApi\VoucherApi.cs" />
     <Compile Include="Services\PddCommonApi.cs" />
+    <Compile Include="Services\TaobaoCommonApi.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

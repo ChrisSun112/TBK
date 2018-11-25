@@ -68,6 +68,8 @@
     <Compile Include="MessageHandlers\CustomMessageHandler\CustomMessageHandler.cs" />
     <Compile Include="MessageHandlers\CustomMessageHandler\CustomMessageHandler_Events.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\ICouponService.cs" />
+    <Compile Include="Service\TaobaoCouponService.cs" />
     <Compile Include="TemplateMessage\WeixinTemplate_ExceptionAlert.cs" />
     <Compile Include="TemplateMessage\WeixinTemplate_PaySuccess.cs" />
     <Compile Include="TemplateMessage\WxOpen\WxOpenTemplateMessage_PaySuccessNotice.cs" />

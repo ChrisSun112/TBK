@@ -130,8 +130,7 @@ namespace PddOpenSdk.Services
                 return JsonConvert.DeserializeObject<TResult>(jsonResult);
             }
 
-            return Activator.CreateInstance<TResult>(); ;
-
+           
         }
         /// <summary>
         /// 生成签名
