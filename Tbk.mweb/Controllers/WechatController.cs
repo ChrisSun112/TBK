@@ -1163,14 +1163,15 @@ namespace TaobaoKe.Controllers
         /// <returns></returns>
         public string Draw(WxUser user)
         {
-
+            //背景图片
             string path = Server.MapPath("/Content/images/tg.jpg");
 
             System.Drawing.Image imgSrc = System.Drawing.Image.FromFile(path);
 
+            //处理二维码图片大小 240*240px
             System.Drawing.Image qrCodeImage = ReduceImage("https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket="+user.ticket, 240, 240);
 
-
+            //处理头像图片大小 100*100px
             Image titleImage = ReduceImage(user.headimgurl, 100, 100);
 
             using (Graphics g = Graphics.FromImage(imgSrc))
@@ -1200,7 +1201,7 @@ namespace TaobaoKe.Controllers
         {
             WebRequest request = WebRequest.Create(url);
             WebResponse response = request.GetResponse();
-            Stream responseStream = response.GetResponseStream(); // 到这里都没有错，这里的Stream responseStream已经是字节流了。 // 接下来要放到Response里面 
+            Stream responseStream = response.GetResponseStream();
 
             Image originalImage = Image.FromStream(responseStream);
             if (toWidth <= 0 && toHeight <= 0)
